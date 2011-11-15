@@ -1,0 +1,14 @@
+<?php if( !count($todos) ){ ?>
+  <p><?= t('No additional to-dos to display') ?></p>
+<?php } else { ?>
+ <h3 class=principle-title><?= filter_xss($principle->p_title, $principle->p_format) ?></h3>
+ <div class=content><?= check_markup($principle->p_body) ?> 
+   <ul>
+    <?php foreach ($todos as $todo) { ?>
+      <li>
+        <?= $todo->body ? check_markup($todo->body, $todo->format) : $todo->title ?>
+      </li>
+    <?php } ?>
+   </ul>
+ </div>
+<?php } ?>

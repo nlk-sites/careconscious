@@ -1,0 +1,601 @@
+<?php
+// $Id: delegate_menu_admin.module
+
+
+/**
+ * Todos:
+ * Nothing here anywmore, sweet!
+ */
+
+/**
+ * Ideas for future development:
+ * 1. Create more specific permissions besides 'admin' 
+ *   For menus/menu items: Edit, delete, add to/enable sub-items, remove from/disable sub-items, 
+ *   reorder sub-items, delegate admin perms for this item & its sub items
+ * 2. Overview pages for users that dont have complete admin rights over a menu.  These could be the
+ *   same as the standard pages but restricting menu and operation links to the rights and restrictions
+ *   that the user has.  Currently a user that is an admin of some menu items but no menus has no place 
+ *   to see what all of the items they have access to are.Ze
+ */
+
+
+/*****************************Drupal Hooks*******************************/
+/**
+ * Implementation of hook_menu_alter
+ */
+function delegate_menu_admin_menu_alter(&$items) {
+  //Menu admin overview page
+  $items['admin/build/menu']['page callback'] = 'drupal_get_form';
+  $items['admin/build/menu']['page arguments'] = array('delegate_menu_admin_overview_form');
+  $items['admin/build/menu']['access callback'] = 'delegate_menu_admin_access';
+  $items['admin/build/menu']['access arguments'] = array();
+  
+  //Operations for single menu
+  $items['admin/build/menu-customize/%menu']['access callback'] = 'delegate_menu_admin_access';
+  $items['admin/build/menu-customize/%menu']['access arguments'] = array(3);
+  
+  $items['admin/build/menu-customize/%menu/edit']['access callback'] = 'delegate_menu_admin_access';
+  $items['admin/build/menu-customize/%menu/edit']['access arguments'] = array(3);
+  
+  $items['admin/build/menu-customize/%menu/add']['access callback'] = 'delegate_menu_admin_access';
+  $items['admin/build/menu-customize/%menu/add']['access arguments'] = array(3);
+  
+  $items['admin/build/menu-customize/%menu/delete']['access callback'] = 'delegate_menu_admin_access';
+  $items['admin/build/menu-customize/%menu/delete']['access arguments'] = array(3);
+  
+  //Operations for single menu item
+  $items['admin/build/menu/item/%menu_link/edit']['access callback'] = 'delegate_menu_admin_link_access';
+  $items['admin/build/menu/item/%menu_link/edit']['access arguments'] = array(4,5);
+  
+  $items['admin/build/menu/item/%menu_link/delete']['access callback'] = 'delegate_menu_admin_link_access';
+  $items['admin/build/menu/item/%menu_link/delete']['access arguments'] = array(4,5);
+  
+  $items['admin/build/menu/item/%menu_link/reset']['access callback'] = 'delegate_menu_admin_link_access';
+  $items['admin/build/menu/item/%menu_link/reset']['access arguments'] = array(4,5);
+}
+
+/**
+ * Implementation of hook_menu
+ */
+function delegate_menu_admin_menu() {
+  $items['admin/build/menu/item/%menu_link'] = array (
+    
+  );
+  //return $items;
+}
+
+/**
+ * Implementation of hook_perm
+ */
+function delegate_menu_admin_perm() {
+  return array('administer some menus');
+}
+
+/**
+ * Implementation of hook_theme
+ */
+function delegate_menu_admin_theme($existing, $type, $theme, $path) {
+  return array(
+    'delegate_menu_admin_overview_form' => array(
+      'arguments' => array('form' => NULL),
+    ),
+    'delegate_menu_admin_menu_overview_form' => array(
+      'arguments' => array('form' => NULL),
+    ),
+  );
+}
+
+/***************************************Form building/handling/theming functions***************/
+
+/**
+ * Overriding the menu admin form at admin/build/menu
+ */
+function delegate_menu_admin_overview_form(&$form_state) {
+  $result = db_query("SELECT * FROM {menu_custom} ORDER BY title");
+  $aRoles = delegate_menu_admin_get_roles();
+  if(!$aRoles) {
+    $link = l('here','admin/user/permissions');
+    drupal_set_message("No other roles have been given permissions to be assigned as menu administrators. Delegate permissions for potential administrators $link.");
+  }
+  while ($menu = db_fetch_array($result)) {
+    //Only show menus that the user has admin access to.
+    if(!delegate_menu_admin_access($menu)) { continue; }
+    
+    $menu['href'] = 'admin/build/menu-customize/'. $menu['menu_name'];
+    $menu['localized_options'] = array();
+    
+    $row = array();
+    
+    $form['rows'][$menu['menu_name']]['link'] = array(
+      '#type' => 'markup',
+      '#value' => l($menu['title'], $menu['href'], $menu['localized_options']) .'<div class="menu-description">'.$menu['description'].'</div>',
+    );
+    
+    //Don't show delegation checkboxes if the user doesn't have admin menu access.  This may change to hierarchy style system in the future
+    if(!user_access('administer menu')) { continue; }
+    
+    $aSaved = variable_get('delegate_menu', array());
+    foreach ($aRoles as $rid => $role) {
+      $form['rows'][$menu['menu_name']]['checks'][$rid.'_'.$menu['menu_name']] = array(
+        '#name' => $rid.'_'.$menu['menu_name'],
+        '#type' => 'checkbox',
+        '#title' => 'Make admin',
+        '#default_value' => $aSaved[$rid][$menu['menu_name']]['admin'],
+        '#return_value' => array(
+          'menu_name' => $menu['menu_name'],
+          'rid' => $rid,
+          'role' => $role,
+        ),
+      );  
+    }
+  }
+  
+  //If the user didn't have any menus that they were able to admin, show an access denied page
+  if(!sizeof($form['rows'])) {
+    drupal_access_denied();
+  }
+  
+  $form['submit'] = array (
+    '#access' => user_access('administer menu'),
+    '#type' => 'submit',
+    '#value' => 'Save Changes',
+    '#submit' => array('delegate_menu_admin_overview_form_submit'),
+  );
+  $form['#theme'] = 'delegate_menu_admin_overview_form';
+  return $form;
+}
+
+function delegate_menu_admin_overview_form_submit(&$form, &$form_state) {
+  $aSaved = variable_get('delegate_menu', array());
+  //clear all existing data - this method will be bunk when delegation is able to be delegated.
+  foreach ($aSaved as &$aMenus) {
+    foreach ($aMenus as &$aMenu) {
+      unset($aMenu['admin']);	
+    }
+  }
+  $aVals = array_filter($form_state['values']);
+  foreach ($aVals as $del_key => $val) {
+  	$aSaved[$val['rid']][$val['menu_name']]['admin'] = true;
+  }
+  variable_set('delegate_menu',$aSaved);
+  drupal_set_message('Setting saved.');
+}
+
+function theme_delegate_menu_admin_overview_form(&$form) {
+  $aHeader = array('Menu');
+  if(user_access('administer menu')) {
+    $aRoles = delegate_menu_admin_get_roles();
+    foreach ($aRoles as $rid => $role) {
+      $aHeader[] = $role;
+    }
+  }
+  foreach (element_children($form['rows']) as $menu_name) {
+    $row = $form['rows'][$menu_name];
+  	$trow = array();
+  	$trow[] = drupal_render($form['rows'][$menu_name]['link']);
+  	foreach (element_children($row['checks']) as $key) {
+  	  $check = $row['checks'][$key];
+  	  $trow[] = drupal_render($form['rows'][$menu_name]['checks'][$key]);
+  	  if(!in_array($check/*['#return_value']*/['role'],$aHeader)) {
+  	    $aHeader[] = $check/*['#return_value']*/['role'];
+  	  }
+  	}
+  	$aRows[] = $trow;
+  }
+  $output = theme('table',$aHeader, $aRows);
+  $output .= drupal_render($form);
+  return $output;
+}
+
+function delegate_menu_admin_form_menu_overview_form_alter(&$form, &$form_state) {
+  if(!user_access('administer menu')) { return; }
+  $aRoles = delegate_menu_admin_get_roles();
+  $menu_name = $form['#parameters'][2]['menu_name'];
+  $aSaved = variable_get('delegate_menu', array());
+  foreach (element_children($form) as $key) {
+    if(!stristr($key, 'mlid')) { continue; }
+    foreach ($aRoles as $rid => $role) {
+      $mlid = $form[$key]['mlid']['#value'];
+      if(delegate_menu_admin_check_role_admin($rid, $menu_name) ||
+      delegate_menu_admin_link_parents_check_role_admin($rid, $menu_name, $mlid)) {
+        $disabled = true;
+      }
+      else {
+        $disabled = false;
+      }
+      $form[$key]['delegate_menu'][$rid.'_'.$key] = array(
+        '#name' => $rid.'_'.$key,
+        '#type' => 'checkbox',
+        '#title' => 'Make admin',
+        '#default_value' => $aSaved[$rid][$menu_name][$mlid]['admin'] ? true : false,
+        '#return_value' => array(
+          'menu_name' => $menu_name,
+          'rid' => $rid,
+          'mlid' => $mlid,
+          'role' => $role,
+        ),
+        '#disabled' => $disabled,
+      );
+    }
+  }
+  $form['#theme'] = 'delegate_menu_admin_menu_overview_form';
+  $form['#submit'][] = 'delegate_menu_admin_menu_overview_form_submit';
+}
+
+/**
+ * Note: for some reason the stuff we put in #return_value is showing up here.  This code seems identical to the 
+ * implementation of delegate_menu_admin_overview_form - the only difference I can see is that in this case the data
+ * is added via hook_form_alter, whereas the former case is form builder only.  Drupal FAPI bug??
+ */
+function delegate_menu_admin_menu_overview_form_submit(&$form, &$form_state) {
+  $menu_name = $form['#parameters'][2]['menu_name'];
+  $aSaved = variable_get('delegate_menu', array());
+  $aVals = $form_state['values'];
+  foreach ($aVals as $key => $element) {
+  	if(!stristr($key, 'mlid')) { continue; }
+  	$aChecked = $element['delegate_menu'];//array_filter($element['delegate_menu']);
+  	foreach ((array)$aChecked as $del_key => $aData) {
+  	  //Data should contain stuff we put in #return_value, but it doesn't so we'll have to extrapolate info based on its key
+  		$aParts = explode('_mlid:',$del_key);
+  	  $aData = array();
+  		$aData['rid'] = $aParts[0];
+  		$aData['mlid'] = $aParts[1];
+  		
+  		//if the checkbox was checked when the form posted:
+  		if($form['#post'][$del_key]) {
+  		  $aSaved[$aData['rid']][$menu_name][$aData['mlid']]['admin'] = true;  
+  		}
+  		//otherwise erase the data if it was stored before (we dont store extraneous 0's, only true values)
+  		elseif($aSaved[$aData['rid']][$menu_name][$aData['mlid']]['admin']) {
+  		  unset($aSaved[$aData['rid']][$menu_name][$aData['mlid']]['admin']);
+  		}
+  	}
+  }
+  variable_set('delegate_menu',$aSaved);
+}
+
+/**
+ * Theme the menu overview form into a table.
+ *
+ * @ingroup themeable
+ */
+function theme_delegate_menu_admin_menu_overview_form($form) {
+  drupal_add_tabledrag('menu-overview', 'match', 'parent', 'menu-plid', 'menu-plid', 'menu-mlid', TRUE, MENU_MAX_DEPTH - 1);
+  drupal_add_tabledrag('menu-overview', 'order', 'sibling', 'menu-weight');
+  
+  $iMaxOps = 0;
+  $aHeader = array();
+
+  $rows = array();
+  foreach (element_children($form) as $mlid) {
+    if (isset($form[$mlid]['hidden'])) {
+      $element = &$form[$mlid];
+      // Build a list of operations.
+      $operations = array();
+      foreach (element_children($element['operations']) as $op) {
+        $operations[] = drupal_render($element['operations'][$op]);
+      }
+      while (count($operations) < 2) {
+        $operations[] = '';
+      }
+      
+      if(count($operations) > $iMaxOps) {
+        $iMaxOps = count($operations);
+      }
+
+      // Add special classes to be used for tabledrag.js.
+      $element['plid']['#attributes']['class'] = 'menu-plid';
+      $element['mlid']['#attributes']['class'] = 'menu-mlid';
+      $element['weight']['#attributes']['class'] = 'menu-weight';
+
+      // Change the parent field to a hidden. This allows any value but hides the field.
+      $element['plid']['#type'] = 'hidden';
+
+      $row = array();
+      $row[] = theme('indentation', $element['#item']['depth'] - 1) . drupal_render($element['title']);
+      $row[] = array('data' => drupal_render($element['hidden']), 'class' => 'checkbox');
+      $row[] = array('data' => drupal_render($element['expanded']), 'class' => 'checkbox');
+      $row[] = drupal_render($element['weight']) . drupal_render($element['plid']) . drupal_render($element['mlid']);
+      $row = array_merge($row, $operations);
+      
+      //Add delegate checkboxes
+      if(isset($form[$mlid]['delegate_menu'])) {
+        foreach (element_children($form[$mlid]['delegate_menu']) as $key) {
+          $check = $form[$mlid]['delegate_menu'][$key];
+          $row[] = drupal_render($form[$mlid]['delegate_menu'][$key]);
+          if(!in_array($check['#return_value']['role'],$aHeader)) {
+            $aHeader[] = $check['#return_value']['role'];
+          }
+        }
+      }
+
+      $row = array_merge(array('data' => $row), $element['#attributes']);
+      $row['class'] = !empty($row['class']) ? $row['class'] .' draggable' : 'draggable';
+      $rows[] = $row;
+    }
+  }
+  $header = array(
+    t('Menu item'),
+    array('data' => t('Enabled'), 'class' => 'checkbox'),
+    array('data' => t('Expanded'), 'class' => 'checkbox'),
+    t('Weight'),
+    array('data' => t('Operations'), 'colspan' => $iMaxOps),
+  );
+  
+  $header = array_merge($header, $aHeader);
+  
+  $output = '';
+  if ($rows) {
+    $output .= theme('table', $header, $rows, array('id' => 'menu-overview'));
+  }
+  $output .= drupal_render($form);
+  return $output;
+}
+
+/**
+ * Restrict the parent of a menu item to only those the user has permission to administer.
+ * Options also seem to be restricted by the menu.module based on whether the user has permission to access them at all.
+ * Since drupal 6 doesn't support disabling form elements, we do it by turning options into option groups.  D7 should 
+ * provide new FAPI stuff to support this.
+ */
+function delegate_menu_admin_form_menu_edit_item_alter(&$form, &$form_state) {
+  $aFilteredOps = array();
+  foreach ($form['menu']['parent']['#options'] as $key => $value) {
+    $aParts = explode(':',$key);
+    $menu_name = $aParts[0];
+    $mlid = $aParts[1];
+    $menu['menu_name'] = $menu_name;
+    $menu['mlid'] = $mlid;
+    if(delegate_menu_admin_access($menu)) {
+      $aFilteredOps[$key] = $value;
+      continue;
+    }
+    
+    if($mlid == 0) {
+      if(!delegate_menu_admin_access($menu)) {
+        $aFilteredOps[$value] = array ();
+        continue;
+      }
+      else {
+        $aFilteredOps[$key] = $value;
+        $bHasItems = true;
+        continue;
+      }
+    }
+    
+    $menu_link = menu_link_load($mlid);
+    if(!delegate_menu_admin_link_access($menu_link)) {
+        $aFilteredOps[$value] = array ();  
+      continue;
+    }
+    else {
+      $aFilteredOps[$key] = $value;
+      $bHasItems = true;
+    }
+  }
+  $form['menu']['parent']['#options'] = $aFilteredOps;
+}
+
+function delegate_menu_admin_form_alter(&$form, $form_state, $form_id) {
+  if (isset($form['#node']) && $form['#node']->type .'_node_form' == $form_id) {
+    if(user_access('administer menu')) { 
+      //the menu module will take care of this case
+      return; 
+    }
+    $form['menu']['#access'] = user_access('administer menu') || user_access('administer some menus');
+    $form['menu']['delete']['#access'] = delegate_menu_admin_link_access($form['menu']['mlid']['#value']);
+    
+    //the structure of the forms is the same, so we can reuse our other alter function to restrict parent options
+    delegate_menu_admin_form_menu_edit_item_alter($form, $form_state);
+  }
+}
+
+/********************************Custom access control functions********************/
+
+/**
+ * 
+ */
+function delegate_menu_admin_access($menu = null, $user = null) {
+  if(!$user || !is_object($user)) {
+    global $user;
+  }
+  //Super user can do anything
+  if($user->uid == 1) {
+    return true;
+  }
+  
+  //If you can do one, do em all!
+  if(user_access('administer menu',$user)) {
+    return true;
+  }
+  
+  if(is_null($menu)) {
+    return user_access('administer some menus');
+  }
+  
+  if(!user_access('administer some menus')) {
+    return false;
+  }
+  
+  //Return true if this user's role(s) has been given permission to administer this menu 
+  if(delegate_menu_admin_check_user_admin($user,$menu['menu_name'])) {
+    return true;  
+  }
+  
+  return false;
+}
+
+function delegate_menu_admin_link_access($menu_link, $op = null, $user = null) {
+  if(!$user || !is_object($user)) {
+    global $user;
+  }
+  if(is_numeric($menu_link)) {
+    $menu_link = menu_link_load($menu_link);
+  }
+  
+  $menu_name = $menu_link['menu_name'];
+  $mlid = $menu_link['mlid'];
+  
+  //Will grant access for super user, administer menu perms, or roles that can already admin this whole menu
+  if(delegate_menu_admin_access(menu_load($menu_name), $user)) {
+    return true;
+  }
+  
+  if(!user_access('administer some menus')) {
+    return false;
+  }
+  
+  //Check if user has access to administer this item
+  if(delegate_menu_admin_link_check_user_admin($user, $menu_name, $mlid)) {
+    return true;
+  }
+  
+  //Check if user has access to administer any parents of this item
+  //Note - Maybe we're being lazy by not doing this with a recursive function, but there are 9 parent items loaded
+  //into the link item already, so this saves some query overhead.  It's hard to imagine there being more than 9 
+  //levels of recursion, but it is possible....
+  if(delegate_menu_admin_link_parents_check_user_admin($user, $menu_name, $menu_link)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**************************Helpers functions*******************/
+
+/**
+ * Return an array of roles (rid => role) that have 'administer some menus' permissions
+ */
+function delegate_menu_admin_get_roles() {
+  return user_roles(false, 'administer some menus');
+}
+
+/**
+ * Return true if a user has admin access to a menu
+ */
+function delegate_menu_admin_check_user_admin($user = null, $menu_name) {
+  if(!$user || !is_object($user)) {
+    global $user;
+  }
+  $aSaved = variable_get('delegate_menu', array());
+  foreach ($user->roles as $rid => $role) {
+    if($aSaved[$rid][$menu_name]['admin']) {
+      return true;
+    }
+  }
+}
+
+/**
+ * Return true if a role has admin access to a menu
+ */
+function delegate_menu_admin_check_role_admin($rid, $menu_name) {
+  $aSaved = variable_get('delegate_menu', array());
+  if(isset($aSaved[$rid])) {
+  	foreach ($aSaved[$rid] as $key_menu_name => $aMenuInfo) {
+  		if($menu_name == $key_menu_name) {
+  		  if($aMenuInfo['admin']) {
+  		    return true;
+  		  }
+  		  else {
+  		    return false;
+  		  }
+  		}
+  	}
+  }
+  return false;
+}
+//////////////////////
+/**
+ * Return true if the user has admin access to a menu link item
+ */
+function delegate_menu_admin_link_check_user_admin($user = null, $menu_name, $mlid) {
+  if(!$user || !is_object($user)) {
+    global $user;
+  }
+  $aSaved = variable_get('delegate_menu', array());
+  foreach ($user->roles as $rid => $role) {
+    if($aSaved[$rid][$menu_name][$mlid]['admin']) {
+      return true;
+    }
+  }
+}
+
+/**
+ * Return true if the user has admin access to one the parents of a menu link item 
+ */
+function delegate_menu_admin_link_parents_check_user_admin($user = null, $menu_name = null, $menu_link) {
+  if(is_numeric($menu_link)) {
+    $menu_link = menu_link_load($menu_link);
+    $mlid = $menu_link['mlid'];
+  }
+  if(is_null($menu_name)) {
+    $menu_name = $menu_link['menu_name'];
+  }
+  if(!$user || !is_object($user)) {
+    global $user;
+  }
+  
+  for($i = 1; $i <= MENU_MAX_DEPTH; $i++) {
+    $key = 'p'.$i;
+    //Make sure we only check parents, not ourself
+    if((int)$menu_link[$key] == (int)$mlid) { continue; }
+    if($menu_link[$key]) {
+      if(delegate_menu_admin_link_check_user_admin($user, $menu_name, $menu_link[$key])) {
+        return true;
+      }
+    }
+  }
+}
+//////////////////////
+
+/**
+ * Return true if a role has admin access to a menu link item
+ */
+function delegate_menu_admin_link_check_role_admin($rid, $menu_name, $mlid) {
+  $aSaved = variable_get('delegate_menu', array());
+  if(isset($aSaved[$rid])) {
+  	foreach ($aSaved[$rid] as $key_menu_name => $aMenuInfo) {
+  		if($menu_name == $key_menu_name) {
+  		  foreach ($aMenuInfo as $key_mlid => $aItem) {
+  		  	if($mlid == $key_mlid) {
+  		  	  if($aItem['admin']) {
+  		  	    return true;
+  		  	  }
+  		  	  else {
+  		  	    return false;
+  		  	  }
+  		  	}
+  		  }
+  		}
+  	}
+  }
+  return false;
+}
+
+/**
+ * Return true if the role has admin access to one of a menu link items parents
+ */
+function delegate_menu_admin_link_parents_check_role_admin($rid = null, $menu_name = null, $menu_link) {
+  if(is_numeric($menu_link)) {
+    $menu_link = menu_link_load($menu_link);
+    $mlid = $menu_link['mlid'];
+  }
+  if(is_null($menu_name)) {
+    $menu_name = $menu_link['menu_name'];
+  }
+  
+  for($i = 1; $i <= MENU_MAX_DEPTH; $i++) {
+    $key = 'p'.$i;
+    //Make sure we only check parents, not ourself
+    if((int)$menu_link[$key] == (int)$mlid) { continue; }
+    if($menu_link[$key]) {
+      if(delegate_menu_admin_link_check_role_admin($rid, $menu_name, $menu_link[$key])) {
+        return true;
+      }
+    }
+  }
+  
+  return false;
+}
+
+?>

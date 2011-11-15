@@ -1,0 +1,159 @@
+<?php
+
+/**
+ * Implementation of hook_perm()
+ */
+
+function custom_header_perm() {
+  return array('administer custom header', 'administer custom header settings');
+}
+
+/**
+ * Implementation of hook_init()
+ */
+
+function custom_header_init() {
+  if (user_access('administer custom header')) {
+    $path_info = custom_header_get_path_information($_GET['q']);
+   
+    if (!$path_info) {
+      $path_info['path'] = $_GET['q'];
+    }
+    $path_info['form_id'] = 'custom_header_settings_form';
+    
+    $admin_menu_query = array();
+    
+    foreach ($path_info as $key=>$val) {
+      $admin_menu_query[]  = $key .'='. $val;
+    }
+    
+    $admin_menu_query = implode('&', $admin_menu_query);
+    
+    $path = drupal_get_path('module', 'custom_header');
+    
+    drupal_add_js($path .'/custom_header.js');
+    drupal_add_js(array('custom_header' => array(
+      'form' => $path_info,
+      'admin_menu' => '/admin/custom_header',
+      'admin_menu_query' => $admin_menu_query,
+    )), 'setting');
+  }
+}
+
+/**
+ * Implementation of hook_menu()
+ */
+
+function custom_header_menu() {
+  $items['admin/settings/custom_header'] = array(
+    'title' => 'Custom header Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_header_admin_settings'),
+    'access arguments' => array('administer custom header settings'),
+    'file' => 'custom_header.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/custom_header'] = array(
+    'title' => 'Custom header',
+    'page callback' => 'custom_header_nop',
+    'access arguments' => array('administer custom header'),
+    'file' => 'custom_header.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  return $items;
+}
+
+/**
+ * Implementation of hook_theme()
+ */
+
+function custom_header_theme($existing, $type, $theme, $path) {
+  return array(
+  
+  );
+}
+
+function custom_header_nop() {
+  drupal_goto('');
+}
+
+function custom_header_get_path_information($path) {
+  $normal_path = drupal_get_normal_path($path);
+  
+  $ancestors = menu_get_ancestors(explode('/', $normal_path));
+  
+  array_unshift($ancestors[0], $path);
+  
+  $result = db_query('
+    SELECT * 
+    FROM {custom_header} 
+    WHERE path IN ('. db_placeholders($ancestors[0], 'varchar') .')
+    ORDER BY path DESC
+  ', $ancestors[0]);
+  
+  while($r = db_fetch_array($result)) {
+    $info = $r;
+    break;
+  }
+  
+  return $info;
+}
+
+
+function custom_header_settings_form($form_state, $params = NULL) {
+  $form = array();
+  
+  $form['#title'] = t('Custom header');
+  
+  $form['path'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Path'),
+    '#size' => 30,
+    '#default_value' => $params['path'],
+  );
+
+  $form['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#size' => 30,
+    '#default_value' => $params['title'],
+  );
+  
+  $form['description'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Description'),
+    '#value' => $params['description'],
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+  
+  return $form;
+}
+
+function custom_header_settings_form_submit($form, $form_state) {
+  $header = array(
+    'path' => $form_state['values']['path'],
+    'title' => $form_state['values']['title'],
+    'description' => $form_state['clicked_button']['#post']['description']
+  );
+  
+  if (db_result(db_query('SELECT * FROM {custom_header} WHERE path = \'%s\'', $form_state['values']['path']))) {
+    drupal_write_record('custom_header', $header, 'path');
+  } else {
+    drupal_write_record('custom_header', $header);
+  }
+}
+
+function custom_header_preprocess_page(&$vars, $hook) {
+  if ($hook) {
+    $page_info = custom_header_get_path_information($_GET['q']);
+    if ($page_info) {
+      $vars['title'] = token_replace($page_info['title']);
+      $vars['custom_header'] = token_replace($page_info['description']);
+    }
+  }
+}

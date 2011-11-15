@@ -1,0 +1,1 @@
+<div id="ajax_popup" style="display:none;">  <div class="ajax_popup">    <div class="body">      <div class="header">        <h1 class="nun"/>        <span/>      </div>      <div class="content process_load"/>    </div>  </div></div>

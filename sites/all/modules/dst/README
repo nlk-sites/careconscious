@@ -1,0 +1,7 @@
+This module is intended to make drupal work correctly with local timezones instead of standart drupal time offsets.
+To use them just apply patch common.inc.diff to includes/common.inc.
+After that turn in DST in /admin/settings/dst and that's all.
+
+Authors: Ilya V. Azarov, brainstorm@brainstorm.name, Andrey Postnykov, andypost@drupal.org.
+
+All the code is under gnu public version 2.

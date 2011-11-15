@@ -1,0 +1,7 @@
+; $Id$
+name = Custom header
+description = Customize header of pages 
+package = ADCI
+core = 6.x
+
+dependencies[] = ajax_popup

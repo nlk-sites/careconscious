@@ -1,0 +1,303 @@
+
+/** Font styles 
+---------------------------------*/
+
+body {
+  margin: 0;
+  /*
+   * Setting up font size, leading and font family
+   * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography
+   */
+  font:13px/1.5em Helvetica,Arial,sans-serif;
+  letter-spacing:.03em;
+}
+
+/* Links */
+
+a{
+color:#15476B;
+text-decoration:none;
+}
+
+/* Titles  */
+
+h1, h2, h3, h4, h5, h6 {line-height:1.3em;}
+
+h1 {
+	font-size: 2.2em;
+	font-weight:300;
+	padding: 0 0 0.5em;
+	margin: 0;
+}
+
+#content-header>h1{font-weight:bold;color:#15476B;}
+
+h2 {font-size:1.8em;font-weight:300;margin-bottom:0.75em;}
+h3 {font-size:1.4em;margin-bottom:1em;}
+h4 {font-size:1.2em;margin-bottom:0.8em;}
+h5 {font-size:1.1em;font-weight:600;margin-bottom:0;}
+h6 {font-size:1em;font-weight:bold;}
+
+/* Paragraph Styles */
+
+p {
+  margin:0 0 1em 0;
+}
+
+/* List Styles  */
+
+ul, ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+/* Table Styles  */
+
+table {
+	width: 99%;
+}
+tr.even td, tr.odd td {
+	padding: 10px 5px;
+}
+tr.odd {
+	background-color: #fff;
+}
+
+/* Code */
+
+pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
+
+pre {
+	background-color: #efefef;
+	display: block;
+	padding: 5px;
+	margin: 5px 0;
+	border: 1px solid #aaa;
+}
+
+/* List Styles */
+
+ul          { list-style-type: disc; }
+ul ul       { list-style-type: circle; }
+ul ul ul    { list-style-type: square; }
+ul ul ul ul { list-style-type: circle; }
+ol          { list-style-type: decimal; }
+ol ol       { list-style-type: lower-alpha; }
+ol ol ol    { list-style-type: decimal; }
+
+/* Abbreviation */
+
+abbr {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+  white-space: nowrap;
+}
+
+/* UI improvments  */
+
+#edit-title{
+	font-size: 24px;
+}
+#system-themes-form img{
+	width:100px;
+}
+.form-item .description{
+	font-style:italic;
+	line-height:1.2em;
+	font-size:0.8em;
+	margin-top:5px;
+	color:#777;
+}
+#edit-delete{
+	color:#c00;
+}
+
+.teeny {
+	text-align: center;
+	font-size: 9px;
+	
+}
+
+/**
+ * Console, style from Slate theme
+ */
+div.messages {
+  padding: 9px;
+  margin: 1em 0;
+  color: #036;
+  background: #bdf;
+  border: 1px solid #ace;
+}
+div.warning {
+  color: #840;
+  background: #fe6;
+  border-color: #ed5;
+}
+div.error {
+  color: #fff;
+  background: #e63;
+  border-color: #d52;
+}
+div.status {
+  color: #FFFFFF;
+  background: #3683A7;
+  border-color: #15476B;
+}
+
+#sidebar-second .block-inner>h3{
+	color:#15476B;
+	font-weight:bold;
+	margin:2px 5px;
+	font-size:14px;
+}
+
+#sidebar-second div.content{
+	padding:0px 5px;
+}
+
+/** Region Colors
+---------------------------------
+*  delete when starting a new theme */
+
+#header, #footer { background-color: #efefef; }
+#sidebar-first {	background: #e7edff; }
+#sidebar-second {  }
+#sidebar-second a{font-weight:normal !important;font-size:12px !important;}
+#sidebar-second li{line-height:14px;}
+#sidebar-second-inner{}
+#navigation { background-color: #feffa5; }
+
+div.taxonomy>ul.links>li>a{margin-top:15px;display:inline-block;}
+div.links>ul.links>li.statistics_counter>span{display:block;color:#15476B;font-weight:bold;margin-top:15px;}
+
+div.views-row-even{background:#EEEEEE;/*border-top:3px solid #3683A7;padding:10px;*/}
+div.views-row-odd{background:#FFFFFF;/*border-top:3px solid #3683A7;padding:10px;*/}
+div.view-content>div[class~="views-row-odd"],div[class~="views-row-even"]{
+  margin: 10px 50px 10px 0;
+  border-top: 1px dotted #ccc;
+  padding-top: 20px;
+}
+
+.view-display-id-nodecomment_comments_1 div.views-row-even{
+  background-color: #fff; 
+}
+.view-display-id-nodecomment_comments_1 div.views-row-even .node{
+  background-color: #eee; 
+}
+
+div.view-content div.picture>a>img{width:60px;}
+
+div.links>ul.links>li.comment_add{padding:0px;}
+div.links>ul.links>li.comment_add>a{font-weight:bold;margin:0px 0px 10px;display:block;}
+div.links>ul.links>li{padding:0px;}
+div#content-area>div>div.node-inner>div.picture{float:left;margin-right:10px;}
+div.view-content div.picture{float:left;margin-right:10px;}
+div#node-3{/*border-top:3px solid #3683A7;*/border-bottom:3px solid #3683A7;margin-bottom:10px;}
+
+
+.node-type-resource div.taxonomy {
+  display: none;
+}
+
+body.fullscreen
+  #content-header{
+    display: none;
+ }
+
+body.fullscreen
+  div.taxonomy,
+body.fullscreen
+  div.links {
+    display: none;
+  }  
+body.fullscreen
+  #content-bottom {
+    margin-top: 0;
+  }
+body.fullscreen
+  #content-top {
+    display: none;
+  }
+body.fullscreen
+  .content {
+    margin-top:0 !important;
+  }
+  
+.page-send .breadcrumb {
+  display: none;
+}
+
+#edit-send-content-message-content-wrapper.img_assist-button{
+  display: none;
+}
+
+.page-resources table > thead > tr {
+  background-image: none;
+}
+
+.page-resources table > thead {
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+  -moz-border-radius-topleft:4px;
+  -moz-border-radius-topright:4px;
+  -webkit-border-top-left-radius:4px;
+  -webkit-border-top-right-radius:4px;
+}
+
+.page-resources .views-table {
+  /*border-top-left-radius:4px;
+  border-top-right-radius:4px;
+  -moz-border-radius-topleft:4px;
+  -moz-border-radius-topright:4px;
+  -webkit-border-top-left-radius:4px;
+  -webkit-border-top-right-radius:4px;*/
+  background: url(../imgs/table_corners.png) no-repeat top center;
+  width: 753px;
+  height: 35px;
+}
+
+.page-resources  table > thead > tr {
+  background-color: transparent;
+  _background-color: #15476B;
+}
+
+.node-type-resource #content-area ul.links li.send_node a, span.send_node a {
+  background: url(../imgs/email.jpg) no-repeat left center;
+  _background: none;
+  height: 20px;
+  padding-left: 24px;
+  padding-bottom: 1px;
+}
+
+.node-type-resource ul.links {
+  padding: 0;
+  margin-bottom: 10px;
+}
+.node-type-resource ul.links li a {
+  color: #636363;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.node-type-resource ul.links li.first {
+  padding-left: 0;
+}
+
+.node-type-resource ul.links li.statistics_counter {
+  display: none;
+}
+
+.node-type-resource ul.links li.print_html {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+img.print-logo {
+  display: none;
+}
+
+.print-logo {
+  background: url(../imgs/black_logo.jpg) no-repeat;
+  width: 241px;
+  height: 69px;
+} 

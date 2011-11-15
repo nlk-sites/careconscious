@@ -1,0 +1,97 @@
+/* $Id: defaults.css,v 1.5 2007/10/02 12:10:40 dries Exp $ */
+
+/*
+** HTML elements
+*/
+fieldset {
+  margin-bottom: 1em;
+  padding: .5em;
+  border:none;
+}
+
+fieldset input{
+	padding:5px;
+	border:1px solid #15476B;
+	color:#808080;
+}
+
+fieldset div.description{
+	color:#15476B !important;
+	width:490px;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+hr {
+  height: 1px;
+  border: 1px solid gray;
+}
+img {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  text-align: left; /* LTR */
+  padding-right: 1em; /* LTR */
+/*  border-bottom: 3px solid #ccc;*/
+}
+
+/*
+** Markup free clearing
+** Details: http://www.positioniseverything.net/easyclearing.html
+*/
+.clear-block:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clear-block {
+  display: inline-block;
+}
+
+/* Hides from IE-mac \*/
+* html .clear-block {
+  height: 1%;
+}
+.clear-block {
+  display: block;
+}
+
+table>thead>tr{
+background-color:#15476B;
+background-image:-moz-linear-gradient(-90deg,#15476B,#3683A7);
+background-image:-webkit-gradient(linear,left top,left bottom,from(#15476B),to(#3683A7));
+color:#FFFFFF;
+}
+
+table>thead>tr>th{
+padding:10px;
+}
+
+th>a.active{
+color:#FFBB00;
+text-decoration:none;
+}
+
+table{
+margin:20px 0px;
+border-collapse:collapse;
+}
+
+table>tbody>tr>td{
+color:#15476B !important;
+}
+
+table>tbody>tr>td>a{
+color:#15476B;
+font-weight:bold;
+}
+
+/* End hide from IE-mac */

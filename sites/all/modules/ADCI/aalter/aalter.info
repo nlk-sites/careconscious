@@ -1,0 +1,5 @@
+name = Aalter
+description = Aalter.
+package = ADCI
+core = 6.x
+version = 1.0

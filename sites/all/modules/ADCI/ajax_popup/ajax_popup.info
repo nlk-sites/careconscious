@@ -1,0 +1,5 @@
+; $Id$
+name = Ajax Popup
+description = Ajax Popup
+package = ADCI
+core = 6.x

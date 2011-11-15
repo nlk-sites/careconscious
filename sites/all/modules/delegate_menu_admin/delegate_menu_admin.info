@@ -1,0 +1,12 @@
+; $Id: delegate_menu_admin.info
+name = "Delegate Menu Administration"
+description = "Allows you to allow select user roles to administer individual menus or menu items."
+package = Delegation
+core = 6.x
+version = 6.x-1.0
+; Information added by drupal.org packaging script on 2009-06-02
+version = "6.x-1.1"
+core = "6.x"
+project = "delegate_menu_admin"
+datestamp = "1243984523"
+

@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Installation / uninstallation routines.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function custom_header_install() {
+  drupal_install_schema('custom_header');
+}
+
+/**
+ * Implentation of hook_uninstall().
+ */
+function custom_header_uninstall() {
+  drupal_uninstall_schema('custom_header');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function custom_header_schema() {
+  $schema['custom_header'] = array(
+    'description' => 'Custom header data managed by custom_header.module.',
+    'fields' => array(
+      'path' => array(
+        'description' => 'Path to page',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''
+      ),
+      'title' => array(
+        'description' => 'The title of page',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''
+      ),
+      'description' => array(
+        'description' => 'The description of page.',
+        'type' => 'text',
+        'not null' => TRUE,
+        'size' => 'big'
+      ),
+    ),
+    'primary key' => array('path'),
+  );
+
+  return $schema;
+}

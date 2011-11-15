@@ -1,0 +1,109 @@
+<?php
+
+function careconscious_comment_submitted($comment) {
+  return t('Submitted by !username',
+    array(
+      '!username' => theme('username', $comment),
+    ));
+}
+
+function careconscious_node_submitted($node){
+  if ($node->field_anon[0][value]) {
+    return 'Submitted by Anonymous';
+  } else {
+    return t('Submitted by !username',
+      array(
+         '!username' => theme('username', $node),
+       ));
+  }
+}
+
+function careconscious_preprocess_user_profile(&$vars){
+  $account = $vars['account'];
+  $full_name = $account->content->field_first_name_field[0]['view'];
+  $vars['xyzzy'] = $full_name;
+  $vars['full_name'] = $full_name;
+  $vars['profile'] = 'No profile for you!';
+  $vars['user_profile'] = 'No profile for you!';
+  $vars['my_account'] = $account;
+  $account->member_data = content_profile_load('profile_member', $account->uid);
+  $account->cp_data = content_profile_load('profile_cp', $account->uid);
+  $account->expert_data = content_profile_load('profile_expert', $account->uid);
+  drupal_set_title($full_name);
+}
+
+function careconscious_preprocess_page(&$vars) {
+  if (arg(0) == 'community'){
+    $vars['breadcrumb'] = '';
+  }
+  if (arg(0) == 'node' && $vars['node']->type == 'intro'  && !arg(2)) {
+    $vars['body_classes'] .= ' fullscreen';
+  }
+  if ( arg(0) == 'node' && arg(1) && !arg(2) && $vars['node']->type == 'webform') {
+    $vars['title'] = '';
+  }
+}
+
+function phptemplate_breadcrumb($breadcrumb){
+  $links = array();
+  $path = '';
+
+  // Get URL arguments
+  $arguments = explode('/', request_uri());
+
+  // Remove empty values
+  foreach ($arguments as $key => $value) {
+    if (empty($value)) {
+      unset($arguments[$key]);
+    }
+  }
+  $arguments = array_values($arguments);
+
+  // Add 'Home' link
+  $links[] = l(t('Home'), '<front>');
+
+  // Add other links
+  if (!empty($arguments)) {
+    foreach ($arguments as $key => $value) {
+      // Don't make last breadcrumb a link
+      
+      if ($key == (count($arguments) - 1)) {
+        $links[] = t(drupal_get_title());
+      } else {
+        if ($value == 'content')
+          continue;
+        if (!empty($path)) {
+          $path .= '/'. $value;
+        } else {
+          $path .= $value;
+        }
+        $links[] = l(t(drupal_ucfirst($value)), $path);
+      }
+    }
+  }
+
+  // Set custom breadcrumbs
+  drupal_set_breadcrumb($links);
+
+  // Get custom breadcrumbs
+  $breadcrumb = drupal_get_breadcrumb();
+
+  // Hide breadcrumbs if only 'Home' exists
+  if (count($breadcrumb) > 1) {
+    return '<div class="breadcrumb">'. implode(' &raquo; ', $breadcrumb) .'</div>';
+  }
+  
+}
+
+function careconscious_preprocess_node(&$vars) {
+  
+  if ($vars['type'] == 'resource') {
+    $vars['node']->links['back'] = array(
+      'title' => l('back', '', array('attributes' => array('onclick' => 'window.history.back(); return false;'))),
+      'html' => true
+    );
+    
+    $vars['links'] = theme_links($vars['node']->links, $attributes = array('class' => 'links'));
+  }
+}
+

@@ -1,0 +1,11 @@
+[14-Jun-2010 11:17:45] PHP Warning:  require_once(/includes/bootstrap.inc): failed to open stream: No such file or directory in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:17:45] PHP Fatal error:  require_once(): Failed opening required '/includes/bootstrap.inc' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:19:02] PHP Warning:  require_once(/includes/bootstrap.inc): failed to open stream: No such file or directory in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:19:02] PHP Fatal error:  require_once(): Failed opening required '/includes/bootstrap.inc' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:19:34] PHP Warning:  require_once(/includes/bootstrap.inc): failed to open stream: No such file or directory in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:19:34] PHP Fatal error:  require_once(): Failed opening required '/includes/bootstrap.inc' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:23:30] PHP Warning:  chdir(): No such file or directory (errno 2) in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 267
+[14-Jun-2010 11:23:30] PHP Warning:  chdir(): No such file or directory (errno 2) in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 267
+[14-Jun-2010 11:23:30] PHP Warning:  chdir(): No such file or directory (errno 2) in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 267
+[14-Jun-2010 11:23:30] PHP Warning:  require_once(/includes/bootstrap.inc): failed to open stream: No such file or directory in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275
+[14-Jun-2010 11:23:30] PHP Fatal error:  require_once(): Failed opening required '/includes/bootstrap.inc' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/carecons/public_html/sites/all/modules/ad/adserve.inc on line 275

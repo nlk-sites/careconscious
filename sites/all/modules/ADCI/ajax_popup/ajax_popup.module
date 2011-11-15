@@ -1,0 +1,122 @@
+<?php
+
+/**
+ * Implementation of hook_init()
+ */
+
+function ajax_popup_init() {
+  if (user_access('ajax popup')) {
+    $path = drupal_get_path('module', 'ajax_popup');
+    drupal_add_js($path .'/ajax_popup.js');
+    drupal_add_css($path .'/ajax_popup.css');
+    drupal_add_js(array('ajax_popup_box' => theme('ajax_popup')), 'setting');
+  }
+}
+
+/**
+ * Implementation of hook_perm()
+ */
+
+function ajax_popup_perm() {
+  return array('ajax popup');
+}
+
+/**
+ * Implementation of hook_menu()
+ */
+function ajax_popup_menu() {
+  $items = array();
+  $items['ajax_popup/%'] = array(
+    'title' => 'Ajax popup', 
+    'page callback' => 'ajax_popup',
+    'page arguments' => array(1),
+    'access arguments' => array('ajax popup'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_theme()
+ */
+
+function ajax_popup_theme($existing, $type, $theme, $path) {
+   return array(
+    'ajax_popup' => array(
+      'template' => 'ajax_popup',
+    ),
+  );
+}
+
+function ajax_popup($op) {
+  $temp = $data = $title = $redirect = NULL;
+  $ajax_popup = array(
+    'status' => FALSE
+  );
+  
+  // $temp = ajax_popup_invoke_ajax_popup_api($op, $_POST);
+  
+  switch($op) {
+    case 'form':
+      if (isset($_POST['form_id'])) {
+        $form_id = $_POST['form_id'];
+        $params = $_POST;
+        $_POST = array();
+        $temp = $form_id();
+        
+        $title = $temp['#title'];
+        $data = drupal_get_form($form_id, $params);
+      }
+      break;
+    case 'submit':
+      if (isset($_POST['form_id'])) {
+        $form_id = $_POST['form_id'];
+        $form_state['values'] = $_POST;
+        
+        drupal_execute($form_id, $form_state);
+        
+        $data = theme_status_messages();
+        if ($data) {
+          $title = t('Error');
+        }
+      }
+      break;
+  }
+  
+  if ($data) {
+    $ajax_popup['title'] = $title;
+    $ajax_popup['data'] = $data;
+    $ajax_popup['status'] = TRUE;
+  }
+  
+  if ($redirect) {
+    $ajax_popup['redirect'] = $redirect;
+    $ajax_popup['status'] = TRUE;
+  }
+  
+  drupal_json($ajax_popup);
+  exit();
+}
+
+/**
+ * Invoke a hook_ajax_popup_api() operation on all modules.
+ *
+ * @param $op A string containing the name of the ajax_popup_api operation.
+ * @param $post Arguments to pass on to the hook.
+ * @return The returned value of the invoked hooks.
+ */
+
+function ajax_popup_invoke_ajax_popup_api($op, $post = NULL) {
+  $return = array();
+  foreach (module_implements('ajax_popup_api') as $name) {
+    $function = $name .'_ajax_popup_api';
+    $result = $function($op, $post);
+    if (isset($result) && is_array($result)) {
+      $return = array_merge($return, $result);
+    }
+    else if (isset($result)) {
+      $return[] = $result;
+    }
+  }
+  return $return;
+}
