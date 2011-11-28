@@ -1,0 +1,391 @@
+/* $Id$ */
+
+/*
+ * Let's get everything in this
+ * http://www.chapterthree.com/blog/nica_lorber/design_drupal_template_approach
+ *
+ */
+
+
+/* Font Base
+------------------------------------------------------------------------------*/
+body {
+  margin: 0;
+  /* Setting up font size, leading and font family
+   * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography */
+  font: 13px/1.5em Helvetica, Arial, sans-serif;
+}
+
+
+/* Common
+------------------------------------------------------------------------------*/
+blockquote, p {
+  margin: 0 0 1em;
+}
+p:first-child {
+  margin-top: 0;
+}
+img {
+  border: none;
+}
+abbr {
+  border-bottom: 1px dotted;
+  cursor: help;
+  white-space: nowrap;
+}
+
+
+/* Links
+------------------------------------------------------------------------------*/
+a {
+  text-decoration: none;
+}
+a:link,
+a:visited {
+  color: #004cbf;
+}
+a:hover,
+a:focus {
+  color: #0084ef;
+  -webkit-transition: color 0.3s linear;
+}
+a:active,
+li.active a,
+.active-trail > a {
+  color: #0084ef;
+}
+.section-content a {
+  text-shadow: 1px 1px 1px #fff;
+}
+
+
+/* Headings
+------------------------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  line-height: 1em;
+  padding: 0;
+}
+h1 {
+  font-size: 2em;
+  margin: 0 0 0.5em;
+}
+h2 {
+  font-size: 1.8em;
+  margin: 0 0 0.55em;
+}
+h3 {
+  font-size: 1.5em;
+  margin: 0 0 0.625em;
+}
+h4 {
+  font-size: 1.3em;
+  margin: 0 0 0.714em;
+}
+h5 {
+  font-size: 1.1em;
+  margin: 0 0 0.833em;
+}
+h6 {
+  font-size: 1em;
+  margin: 0 0 0.900em;
+}
+
+
+/* Lists
+------------------------------------------------------------------------------*/
+ul, ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 0;
+}
+ul { list-style-type: disc; }
+ul ul { list-style-type: circle; }
+ul ul ul { list-style-type: square; }
+ul ul ul ul { list-style-type: circle; }
+
+ol { list-style-type: decimal; }
+ol ol { list-style-type: lower-alpha; }
+ol ol ol { list-style-type: decimal; }
+li {
+  margin: 0;
+  padding: 0;
+}
+dl {
+  margin: 1em 0;
+}
+dt {
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+dt:first-child {
+  margin: 0;
+}
+dd {
+  margin: 0 0 0 1.5em;
+  padding: 0;
+}
+
+/* Messages
+------------------------------------------------------------------------------*/
+div.messages {
+  padding: 9px;
+  margin: 1em 0;
+  color: #003366;
+  background: #bbddff;
+  border: 1px solid #aaccee;
+}
+div.warning {
+  color: #884400;
+  background: #ffee66;
+  border-color: #eedd55;
+}
+div.error {
+  color: white;
+  background: #ee6633;
+  border-color: #dd5522;
+}
+div.status {
+  color: #336600;
+  background: #ccff88;
+  border-color: #bbee77;
+}
+
+
+/* Blockquote
+------------------------------------------------------------------------------*/
+blockquote {
+  padding: 15px 0;
+  font-style: italic;
+  font-size: 90%;
+}
+
+
+/* Code
+------------------------------------------------------------------------------*/
+pre, code, tt {
+  font-family: Monaco, "Courier New", Courier, monospace!important;
+  font-size: 1em;
+  font-style: normal;
+}
+pre {
+  background: #f8f8f8;
+  border: solid 1px #ddd;
+  color: #333;
+  padding: 1em;
+}
+
+
+/* Tables
+------------------------------------------------------------------------------*/
+table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 1em auto;
+  width: 100%;
+}
+thead, thead th, tbody {
+  background: transparent;
+  border: none;
+}
+thead tr {
+  background: #f8f8f8;
+}
+tr {
+  background: #fff;
+  border-bottom: solid 1px #ddd;
+}
+td, th {
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+table h2 {
+  margin: 0 0 0.25em 0;
+}
+td.checkbox {
+  text-align: center;
+}
+th img {
+  display: inline;
+}
+table .form-item {
+  margin: 0;
+}
+.tabledrag-processed th:last-child,
+tr.draggable td:last-child { /* fixed screwed up table colums */
+  border-right: solid 1px #ddd;
+}
+
+
+/* Fieldsets
+------------------------------------------------------------------------------*/
+fieldset	{ 
+  padding: 20px; 
+  border: 1px solid #ddd; 
+  margin: 0 0 15px; 
+  background: #f9f9f9; 
+  font-size: 12px; 
+  line-height: 16px;
+}
+html.js #content fieldset.collapsed { 
+  padding: 0 20px; 
+  margin: 0 0 10px; 
+  border-width: 1px 0 0; 
+  background: none;
+}
+fieldset legend	{ 
+  font-weight: bold; 
+  padding: 0 5px; 
+}
+fieldset table	{ 
+  border-collapse: collapse;
+}
+fieldset td	{ 
+  padding: 5px; 
+  font-size: 13px;
+}
+
+
+/* Forms
+------------------------------------------------------------------------------*/
+form {
+  margin: 0;
+  padding: 0;
+}
+.node-form .form-text, 
+.node-form .form-textarea {
+  padding:4px;
+  width:90%;
+  border: 1px inset #999;
+  font-size: 12px;
+}
+.node-form .form-text:focus, 
+.node-form .form-textarea:focus {
+  background:#FFFFCC;
+}
+
+/* Search
+------------------------------------------------------------------------------*/
+#search-block-form label {
+  display: none;
+}
+
+
+/* Clearfix These Please
+------------------------------------------------------------------------------*/
+form:after,
+.clearfix:after,
+ul.tabs:after,
+ul.links:after,
+div.content:after,
+div.item-list:after,
+div.comment-wrapper:after,
+div.form-item:after,
+div.page-links:after,
+div.changed-notification:after,
+ul.quicktabs_tabs:after {
+  content: ".";
+  display: block;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  visibility: hidden;
+}
+form,
+.clearfix,
+ul.tabs,
+ul.links,
+div.content,
+div.item-list,
+div.comment-wrapper,
+div.form-item,
+div.help-navigation,
+div.page-links,
+div.changed-notification,
+ul.quicktabs_tabs {
+  display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html form,
+* html .clearfix,
+* html ul.tabs,
+* html ul.links,
+* html div.content,
+* html div.item-list,
+* html div.comment-wrapper,
+* html div.form-item,
+* html div.help-navigation,
+* html div.page-links,
+* html div.changed-notification,
+* html ul.quicktabs_tabs {
+  height: 1%;
+}
+form,
+.clearfix,
+ul.tabs,
+div.content,
+ul.link,
+div.item-list,
+div.comment-wrapper,
+div.form-item,
+div.help-navigation,
+div.page-links,
+div.changed-notification,
+ul.quicktabs_tabs {
+  display: block;
+}
+
+form,
+.clearfix,
+ul.tabs,
+div.content,
+ul.link,
+div.item-list,
+div.comment-wrapper,
+div.form-item,
+div.help-navigation,
+div.page-links,
+div.changed-notification,
+ul.quicktabs_tabs {
+  display: block;
+}
+
+
+/* Toggle
+------------------------------------------------------------*/
+.toggle-content {
+  display: none;
+}
+
+
+/* Accessible titles
+------------------------------------------------------------------------------*/
+div.hide-title h2.title {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+/* Inline lists
+------------------------------------------------------------------------------*/
+.inline ul {
+  margin: 0;
+  padding: 0;
+}
+.inline li {
+  display: inline-block;
+  list-style: none;
+  margin: 0 0.25em 0 0;
+  padding: 0;
+}

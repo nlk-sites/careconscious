@@ -92,7 +92,8 @@
 
 //$db_url = 'mysqli://carecons_ccdru:lErNuJAw8%23eu@localhost/carecons_ccdrudb';
 //$db_prefix = '';
-$db_url = 'mysqli://ninthlin_drp1:AmJGveYCfM@localhost/ninthlin_drp1';
+//$db_url = 'mysqli://ninthlin_drp1:AmJGveYCfM@localhost/ninthlin_drp1';
+$db_url = 'mysqli://root:root@localhost/careconscious';
 $db_prefix = '';
 
 /**

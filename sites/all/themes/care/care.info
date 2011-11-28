@@ -1,0 +1,35 @@
+name = Care
+description = Care Conscious theme 2011
+
+screenshot = screenshot.png
+
+core   = 6.x
+engine = phptemplate
+
+; STYLESHEETS
+;-------------------------------------------------------------------------------
+stylesheets[all][] = css/html-elements.css
+stylesheets[all][] = css/styles.css
+stylesheets[print][] = css/print.css
+
+regions[header] = Header
+regions[left]  = First sidebar
+regions[right] = Second sidebar
+regions[content_top]    = Content top
+regions[content] = Content
+regions[content_home] = Content Home
+regions[content_bottom] = Content bottom
+regions[prefooter] = Pre Footer
+regions[footer] = Footer
+
+layouts[dashboard][name] = "Dashboard"
+layouts[dashboard][description] = "Layout for Dashboard pages."
+layouts[dashboard][template] = "page-dashboard"
+layouts[dashboard][regions][] = "header"
+layouts[dashboard][regions][] = "left"
+layouts[dashboard][regions][] = "right"
+layouts[dashboard][regions][] = "content_top"
+layouts[dashboard][regions][] = "content"
+layouts[dashboard][regions][] = "content_home"
+layouts[dashboard][regions][] = "content_bottom"
+layouts[dashboard][regions][] = "footer"
