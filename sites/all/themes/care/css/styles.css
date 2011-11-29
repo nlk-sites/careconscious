@@ -20,6 +20,7 @@ body {
 #header {
   position: relative;
   height: 210px;
+  z-index:90;
 }
 #logo {
   float: left;
@@ -320,9 +321,129 @@ ul.secondary li.active a:hover {
   width: 300px;
 }
 /* sidebar second */
-#sidebar_second .block  {
+#block-quicktabs-register_login  {
+  position: relative;
+  padding: 4px;
+  width: 300px;
+  margin: -45px -4px 30px;
+  background: #fff;
+  z-index: 100;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 0px 3px 0px #999;
+  -moz-box-shadow: 0px 0px 3px 0px #999;
+  box-shadow: 0px 0px 3px 0px #999;
+}
+#block-quicktabs-register_login .quicktabs_tabs {
+  height: 62px;
+  padding: 0;
+  margin: 0;
+}
+#block-quicktabs-register_login .quicktabs_tabs li {
+  padding: 0;
+  margin: 0 3px 0 0;
+  list-style: none;
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#block-quicktabs-register_login .quicktabs_tabs li.last {
+  margin: 0;
+}
+#block-quicktabs-register_login .quicktabs_tabs li a:link,
+#block-quicktabs-register_login .quicktabs_tabs li a:visited {
+  display: block;
+  float: left;
+  color:#484a49;
+  background: #e0e9f0;
+  height: 41px;
+  line-height: 41px;
+  width: 147px;
+  text-align: center;
+}
+#block-quicktabs-register_login .quicktabs_tabs li a:hover {
+  background: #ddd;
+  text-decoration: none;
+}
+#block-quicktabs-register_login .quicktabs_tabs li.active a:link,
+#block-quicktabs-register_login .quicktabs_tabs li.active a:visited {
+  color:#fff;
+  background: #3ab2cd url(../images/qt_on.png) no-repeat 50% 0;
+  height: 62px;
+}
+#block-quicktabs-register_login .quicktabs_main {
+  padding: 10px 20px 20px;
+  background: #eef8fa;
+  min-height: 312px;
+}
+#block-quicktabs-register_login form {
+  text-align: left;
+}
+#block-quicktabs-register_login form .form-item {
+  margin: 0 0 6px;
+}
+#block-quicktabs-register_login form .form-item label,
+#block-quicktabs-register_login form .form-item .description,
+#block-quicktabs-register_login form fieldset legend {
+  display: none;
+}
+#block-quicktabs-register_login form fieldset  {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 15px 0;
+}
+#block-quicktabs-register_login form fieldset .description  {
+  font-size: 10px;
+  line-height: 12px;
+}
+#block-quicktabs-register_login form .form-item .form-text {
+  padding: 5px;
+  border: 1px solid #d2d3d5;
+  border-color: #d2d3d5 #e2e6e9 #e2e6e9 #d2d3d5;
+  font-size: 13px;
+  font-family: helvetica, arial, sans-serif;
+  font-style: italic;
+  color:#888;
+  width: 95%;
+}
+#block-quicktabs-register_login form .form-submit {
+  color:#fff;
+  background: #05576c url(../images/btn_large.png) repeat-x;
+  text-transform: uppercase;
+  display:inline-block;
+  height: 46px;
+  line-height: 46px;
+  padding: 0;
+  font-weight: bold;
+  border: 0;
+  text-align: center;
+  width: 100%;
+  font-size:18px;
+  font-family: helvetica, arial, sans-serif;
 }
 
+#block-quicktabs-register_login form .item-list {
+
+}
+#block-quicktabs-register_login form .item-list ul {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#block-quicktabs-register_login form .item-list ul li {
+  padding: 10px 0 0;
+  margin: 0;
+  width: 50%;
+  text-align: center;
+  float: left;
+  list-style: none;
+  font-size: 10px;
+}
+
+
+/* content */
 #content_top  {
   margin: 0 0 20px;
 }
@@ -339,6 +460,13 @@ ul.secondary li.active a:hover {
 #content {
   margin: 0 0 20px;
   padding: 20px;
+}
+.subhead_image  {
+  position: relative;
+  background: url(../images/bg_subhead.png) no-repeat top left;
+  padding: 9px 0 0 9px;
+  width: 646px;
+  margin: -59px -20px 20px -19px;
 }
 #prefooter_outer {
   background: #edf2f5 url(../images/bg_prefooter.png) repeat-x;
@@ -451,7 +579,7 @@ ul.secondary li.active a:hover {
 #block-block-17 a.btn:link,
 #block-block-17 a.btn:visited  {
   color:#fff;
-  background: #05576c url(../images/btn_small.png) repeat-x;
+  background: #05576c url(../images/btn_large.png) repeat-x;
   text-transform: uppercase;
   display:inline-block;
   height: 34px;
@@ -882,7 +1010,6 @@ body.dashboard-principle8 #sidebar_second .block {
   background:;
 }
 
-
 body.dashboard .quicktabs_tabs {
   height: 26px;
   padding: 0 0 0 15px;
@@ -927,4 +1054,10 @@ body.dashboard .quicktabs_tabs li.active a:visited {
 body.dashboard #content .quicktabs_main {
   background: #fff;
   padding: 20px;
+}
+
+/* forms */
+.form-radios .form-item {
+  margin: 0 10px;
+  float: left;
 }

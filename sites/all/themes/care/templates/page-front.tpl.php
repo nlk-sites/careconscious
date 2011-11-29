@@ -50,15 +50,12 @@
           <div class="subhead_image"><?php print t($node->field_subhead_image[0]['view']); ?></div>
         <?php endif; ?>
 
-          <?php if ($tabs): print '<div id="tabs-wrapper" class="clear-block">'; endif; ?>
-          <?php if ($tabs): print '<ul class="tabs primary">'. $tabs .'</ul></div>'; endif; ?>
-          <?php if ($tabs2): print '<ul class="tabs secondary">'. $tabs2 .'</ul>'; endif; ?>
-          <?php if ($title): print '<h1'. ($tabs ? ' class="with-tabs"' : '') .'>'. $title .'</h1>'; endif; ?>
-
-          <?php if ($show_messages && $messages): print $messages; endif; ?>
-          <?php print $help; ?>
-          <?php print $content ?>
-          <div class="clear"></div>
+        <?php // if ($tabs): print '<div id="tabs-wrapper" class="clear-block">'; endif; ?>
+        <?php // if ($tabs): print '<ul class="tabs primary">'. $tabs .'</ul></div>'; endif; ?>
+        <?php // if ($tabs2): print '<ul class="tabs secondary">'. $tabs2 .'</ul>'; endif; ?>
+        <?php // if ($title): print '<h1'. ($tabs ? ' class="with-tabs"' : '') .'>'. $title .'</h1>'; endif; ?>
+        <?php print $content ?>
+        <div class="clear"></div>
       </div><!-- END: content -->
 
       </div><!-- END: main_content -->
