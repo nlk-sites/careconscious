@@ -19,40 +19,27 @@
   </div><!-- END: header -->
 
 <div id="main">
-
-      <?php if ($left): ?>
-        <div id="sidebar_first" class="sidebar">
-          <?php print $left ?>
-          <div class="clear"></div>
-        </div><!-- END: sidebar -->
-      <?php endif; ?>
-
-    <div id="main_content">
       <?php if ($content_top): ?>
         <div id="content_top">
           <?php print $content_top ?>
           <div class="clear"></div>
         </div><!-- END: content_top -->
       <?php endif; ?>
-      <div id="content">
-          <?php //if ($tabs): print '<div id="tabs-wrapper" class="clear-block">'; endif; ?>
-          <?php //if ($tabs): print '<ul class="tabs primary">'. $tabs .'</ul></div>'; endif; ?>
-          <?php //if ($tabs2): print '<ul class="tabs secondary">'. $tabs2 .'</ul>'; endif; ?>
-          <?php if ($title): print '<h1'. ($tabs ? ' class="with-tabs"' : '') .'>'. $title .'</h1>'; endif; ?>
 
+    <div id="main_content_single">
+
+      <?php //if ($tabs): print '<div id="tabs-wrapper" class="clear-block">'; endif; ?>
+      <?php //if ($tabs): print '<ul class="tabs primary">'. $tabs .'</ul></div>'; endif; ?>
+      <?php //if ($tabs2): print '<ul class="tabs secondary">'. $tabs2 .'</ul>'; endif; ?>
+      <?php if ($title): print '<h1'. ($tabs ? ' class="with-tabs"' : '') .'>'. $title .'</h1>'; endif; ?>
+
+      <div id="content">
           <?php if ($show_messages && $messages): print $messages; endif; ?>
           <?php print $content ?>
           <div class="clear"></div>
       </div><!-- END: content -->
 
       </div><!-- END: main_content -->
-
-      <?php if ($right): ?>
-        <div id="sidebar_second" class="sidebar">
-          <?php print $right ?>
-          <div class="clear"></div>
-        </div><!-- END: sidebar -->
-      <?php endif; ?>
 
       <?php if ($content_bottom): ?>
         <div id="content_bottom">

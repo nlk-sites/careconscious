@@ -18,18 +18,18 @@
 ?>
   <script>
     jQuery(function($) {
-      var 
+      var
         player = $('#player');
       player.bind('ended', function(e) {
         window.location.href = "<?php print url('node/'. $principle, array('absolute' => true)); ?>";
       }, true);
     });
   </script>
-  <video id="player" width="968" height="544" controls autobuffer autoplay='true'>
+  <video id="player" width="610" height="365" controls autobuffer autoplay='true'>
      <source src='<?= base_path() .'movs/'. $file_mov_name ?>' type='video/mp4'/>
   </video>
-<?php 
-  } else { 
+<?php
+  } else {
 ?>
       <script type="text/javascript">
       function getSize() {
@@ -45,14 +45,14 @@
               return winH
       }
       </script>
-      <object style="display: block" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="968" height="544">
+      <object style="display: block" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="610" height="365">
       <param name="movie" value="<?= url('video_player.swf') ?>" />
       <param name="quality" value="high" />
       <param name="Flashvars" value="vid=<?= url($file_name) ?>&rep=<?= $rep ?>&link=<?= url('node/' .$principle) ?>" />
       <param name="allowScriptAccess" value="always" />
       <script language="JavaScript">
 if (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]){
-  document.write('<embed src="<?= url('video_player.swf') ?>" width="968" height="544" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" flashvars="vid=<?= url($file_name) ?>&rep=<?= $rep ?>&link=<?= url('node/' .$principle) ?>" allowscriptaccess="always"></embed>');
+  document.write('<embed src="<?= url('video_player.swf') ?>" width="610" height="365" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" flashvars="vid=<?= url($file_name) ?>&rep=<?= $rep ?>&link=<?= url('node/' .$principle) ?>" allowscriptaccess="always"></embed>');
 }
 else {
   document.write('\
