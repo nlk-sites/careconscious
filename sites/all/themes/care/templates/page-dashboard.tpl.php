@@ -40,7 +40,7 @@
           <?php //if ($tabs2): print '<ul class="tabs secondary">'. $tabs2 .'</ul>'; endif; ?>
           <?php if ($title): print '<h1'. ($tabs ? ' class="with-tabs"' : '') .'>'. $title .'</h1>'; endif; ?>
 
-          <?php if ($show_messages && $messages): print $messages; endif; ?>
+          <?php //if ($show_messages && $messages): print $messages; endif; ?>
           <?php print $content ?>
           <div class="clear"></div>
       </div><!-- END: content -->

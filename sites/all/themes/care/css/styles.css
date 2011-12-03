@@ -1215,12 +1215,15 @@ body.dashboard-main #content .block-views .more-link {
 body.dashboard-main #content .block-views .content {
   padding: 10px 15px;
 }
+body.dashboard-main #content #block-views-tasks-block_9.block-views .content {
+  padding: 10px 0;
+}
 body.dashboard-main #content .block .item-list {
   float: left;
   border-right: 1px solid #e1e1e1;
-  margin: 0 10px 20px 0;
+  margin: 0 -2px 20px 16px;
   padding: 0 10px 0 0;
-  width: 168px;
+  width: 174px;
   min-height: 160px;
 }
 body.dashboard-main #content .block .item-list h3 {

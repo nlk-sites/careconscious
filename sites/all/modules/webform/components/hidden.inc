@@ -1,5 +1,4 @@
 <?php
-// $Id: hidden.inc,v 1.21.2.3 2010/06/21 03:35:13 quicksketch Exp $
 
 /**
  * @file
@@ -7,7 +6,7 @@
  */
 
 /**
- * Implementation of _webform_defaults_component().
+ * Implements _webform_defaults_component().
  */
 function _webform_defaults_hidden() {
   return array(
@@ -17,23 +16,25 @@ function _webform_defaults_hidden() {
     'weight' => 0,
     'value' => '',
     'extra' => array(
+      'private' => FALSE,
     ),
   );
 }
 
 /**
- * Implementation of _webform_theme_component().
+ * Implements _webform_theme_component().
  */
 function _webform_theme_hidden() {
   return array(
     'webform_display_hidden' => array(
       'arguments' => array('element' => NULL),
+      'file' => 'components/hidden.inc',
     ),
   );
 }
 
 /**
- * Implementation of _webform_edit_component().
+ * Implements _webform_edit_component().
  */
 function _webform_edit_hidden($component) {
   $form = array();
@@ -47,18 +48,19 @@ function _webform_edit_hidden($component) {
     '#weight' => 0,
   );
   $form['extra']['description'] = array(); // Hide the description box.
+  $form['display'] = array('#type' => 'markup'); // Hide the display options.
   return $form;
 }
 
 /**
- * Implementation of _webform_render_component().
+ * Implements _webform_render_component().
  */
 function _webform_render_hidden($component, $value = NULL, $filter = TRUE) {
   $element = array(
-    '#type'          => 'hidden',
-    '#title'         => $component['name'],
+    '#type' => 'hidden',
+    '#title' => $filter ? _webform_filter_xss($component['name']) : $component['name'],
     '#default_value' => $filter ? _webform_filter_values($component['value']) : $component['value'],
-    '#weight'        => $component['weight'],
+    '#weight' => $component['weight'],
   );
 
   if (isset($value[0])) {
@@ -69,7 +71,7 @@ function _webform_render_hidden($component, $value = NULL, $filter = TRUE) {
 }
 
 /**
- * Implementation of _webform_display_component().
+ * Implements _webform_display_component().
  */
 function _webform_display_hidden($component, $value, $format = 'html') {
   $element = array(
@@ -77,11 +79,11 @@ function _webform_display_hidden($component, $value, $format = 'html') {
     '#value' => isset($value[0]) ? $value[0] : NULL,
     '#weight' => $component['weight'],
     '#theme' => 'webform_display_hidden',
-    '#component' => $component,
     '#format' => $format,
     '#theme' => 'webform_display_hidden',
-    '#theme_wrappers' => $format == 'text' ? array('webform_element_text') : array('webform_element'),
+    '#theme_wrappers' => $format == 'html' ? array('webform_element', 'webform_element_wrapper') : array('webform_element_text'),
     '#post_render' => array('webform_element_wrapper'),
+    '#webform_component' => $component,
   );
 
   // TODO: This check is unusual. It shows hidden fields in e-mails but not
@@ -101,7 +103,7 @@ function theme_webform_display_hidden($element) {
 }
 
 /**
- * Implementation of _webform_analysis_component().
+ * Implements _webform_analysis_component().
  */
 function _webform_analysis_hidden($component, $sids = array()) {
   $placeholders = count($sids) ? array_fill(0, count($sids), "'%s'") : array();
@@ -116,7 +118,7 @@ function _webform_analysis_hidden($component, $sids = array()) {
 
   $result = db_query($query, array_merge(array($component['nid'], $component['cid']), $sids));
   while ($data = db_fetch_array($result)) {
-    if ( strlen(trim($data['data'])) > 0 ) {
+    if (strlen(trim($data['data'])) > 0) {
       $nonblanks++;
       $wordcount += str_word_count(trim($data['data']));
     }
@@ -131,14 +133,14 @@ function _webform_analysis_hidden($component, $sids = array()) {
 }
 
 /**
- * Implementation of _webform_csv_data_component().
+ * Implements _webform_csv_data_component().
  */
 function _webform_table_hidden($component, $value) {
   return check_plain(empty($value[0]) ? '' : $value[0]);
 }
 
 /**
- * Implementation of _webform_csv_data_component().
+ * Implements _webform_csv_data_component().
  */
 function _webform_csv_headers_hidden($component, $export_options) {
   $header = array();
@@ -149,7 +151,7 @@ function _webform_csv_headers_hidden($component, $export_options) {
 }
 
 /**
- * Implementation of _webform_csv_data_component().
+ * Implements _webform_csv_data_component().
  */
 function _webform_csv_data_hidden($component, $export_options, $value) {
   return empty($value[0]) ? '' : $value[0];
