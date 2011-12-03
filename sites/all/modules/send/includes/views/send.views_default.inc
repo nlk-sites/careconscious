@@ -3,6 +3,13 @@
  * Implementation of hook_views_default_views().
  */
 function send_views_default_views() {
+  /* TODO this view is horribly broken (http://drupal.org/node/911936) and
+     publicly available (http://drupal.org/node/480844).  I rule!
+
+     Commenting out until this can be fixed correctly.
+  */
+  return;
+
   $view = new view;
   $view->name = 'send';
   $view->description = 'Default views provided by the Send module';

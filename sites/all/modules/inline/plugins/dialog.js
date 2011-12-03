@@ -1,4 +1,3 @@
-// $Id: dialog.js,v 1.1 2009/08/08 06:56:42 sun Exp $
 
 /**
  * Attach insert/close behavior to Inline-based Wysiwyg dialogs.

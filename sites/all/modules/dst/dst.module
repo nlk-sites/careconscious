@@ -4,7 +4,7 @@
  *  This module need a patch into common.inc to eat timezone correct!
  *  WARNING: PHP 5 only.
  */
-// $Id: dst.module,v 1.6 2010/04/02 09:57:34 ilya1st Exp $
+// $Id: dst.module,v 1.7 2011/02/24 13:28:56 ilya1st Exp $
 
 //define('DST_PATH', drupal_get_path('module', 'dst'));
 
@@ -220,13 +220,14 @@ function dst_form_alter(&$form, $form_state, $form_id){
 function _dst_get_user($user) {
   $dst = '';
   if ($user->uid) {
-    $dst = $user->dst;
-    if (empty($dst)) {
+    if (empty($user->dst) ) {
       $result = db_query('SELECT dst FROM {users_dst} WHERE uid=%d', $user->uid);
       if($o = db_fetch_object($result) ){
         $dst = $o->dst;
         unset($o);
       }
+    } else {
+      $dst = $user->dst;
     }
   }
   if (empty($dst)) {

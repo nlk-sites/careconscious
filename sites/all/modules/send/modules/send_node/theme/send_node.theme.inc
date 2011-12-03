@@ -1,4 +1,4 @@
-<?php // $Id: send_node.theme.inc,v 1.2 2010/08/03 22:44:13 vauxia Exp $
+<?php // $Id$
 
 /**
  * Implementation of hook_theme().

@@ -1,4 +1,4 @@
-<?php /* $Id: send.admin.inc,v 1.5 2010/07/26 22:19:02 vauxia Exp $ */
+<?php /* $Id$ */
 
 /**
  * An overview page for the Send API.

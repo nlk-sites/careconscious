@@ -1,4 +1,3 @@
-/* $Id: img_assist_popup.js,v 1.3 2009/02/01 09:21:08 sun Exp $ */
 
 var currentMode;
 

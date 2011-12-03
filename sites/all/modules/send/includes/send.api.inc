@@ -222,8 +222,8 @@ function send_contact($mode, $contact) {
       $contact->scid = $row->scid;
 
       if ($table) {
-        if ($row = db_fetch_array(db_query("SELECT * FROM {$table} 
-          WHERE scid = %d", $row->scid))) {
+        if ($row = db_fetch_array(db_query('SELECT * FROM {' . $table . '}
+          WHERE scid = %d', $row->scid))) {
 
           foreach ($row as $key => $val) $contact->key = $contact->val;
         }
@@ -242,8 +242,8 @@ function send_contact($mode, $contact) {
           $values[] = $contact->$key;
         }
       }
-      if ($row = db_fetch_array(db_query("SELECT * FROM {$table} 
-        WHERE ". join(' AND ', $query), $values))) {
+      if ($row = db_fetch_array(db_query('SELECT * FROM {' . $table . '}
+        WHERE '. join(' AND ', $query), $values))) {
 
         foreach ($row as $key => $val) $contact->$key = $val;
       }

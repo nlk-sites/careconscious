@@ -1,4 +1,3 @@
-// $Id: img_assist.js,v 1.5 2009/06/13 01:17:21 sun Exp $
 
 Drupal.wysiwyg.plugins.img_assist = {
 

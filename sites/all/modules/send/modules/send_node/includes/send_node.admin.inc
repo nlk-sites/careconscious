@@ -1,4 +1,4 @@
-<?php // $Id: send_node.admin.inc,v 1.4 2010/08/04 15:49:33 vauxia Exp $
+<?php // $Id$
 
 /**
  * The site-wide administration form for "Send to friend" functionality.

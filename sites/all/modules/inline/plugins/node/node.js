@@ -1,4 +1,3 @@
-// $Id: node.js,v 1.2 2009/08/12 07:52:29 sun Exp $
 
 Drupal.wysiwyg.plugins.node = {
   /**

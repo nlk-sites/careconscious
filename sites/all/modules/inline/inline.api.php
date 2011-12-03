@@ -1,5 +1,4 @@
 <?php
-// $Id: inline.api.php,v 1.1 2009/08/08 06:32:40 sun Exp $
 
 /**
  * @file

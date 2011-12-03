@@ -1,4 +1,4 @@
-<?php // $Id: send.theme.inc,v 1.10 2010/07/29 20:09:18 vauxia Exp $
+<?php
 
 function send_theme_theme() {
   $path = drupal_get_path('module', 'send') .'/theme';
@@ -95,7 +95,12 @@ function theme_send_body($body, $profile, $values = array()) {
   if ($profile->content()) {
     $content = '';
     foreach ($profile->content() as $name => $data) {
-      if (isset($data['nid'])) {
+      // Special-case the 'message' element.
+      if ($name == 'message') {
+        $values[$name] = $data['content'];
+        continue;
+      }
+      elseif (isset($data['nid'])) {
         $delta = $i+1;
         $node = node_load($data['nid']);
         if (!isset($data['content'])) {
@@ -125,7 +130,7 @@ function theme_send_body($body, $profile, $values = array()) {
         }
       }
       if (isset($data['content'])) {
-        $content .= $values[$name] = $data['content'];
+        $content .= $data['content'];
       }
     }
     $values['body'] = $content;

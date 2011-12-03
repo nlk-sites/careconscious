@@ -1,5 +1,5 @@
 <?php
-// $Id: watcher.module,v 1.2.2.6.2.25 2009/07/12 10:17:24 solipsist Exp $
+// $Id: watcher.module,v 1.2.2.6.2.31 2010/10/26 20:39:32 solipsist Exp $
 /**
  * @file
  * Watcher module.
@@ -68,18 +68,18 @@ function theme_watcher_binder($intro_text = null, $posts_table_header, $posts_ta
  *    A string denoting whether the icon should be of type enabled or disabled
  * @param $url
  *    The URL for the link, usually the URL for toggling email notification status
- * @param $dest
- *    A destination path, used for redirection afterwards, should be current path
+ * @param $query
+ *    Query portion of the link
  *
  * @return
  *    A themed icon for toggling email notifications
  */
-function theme_watcher_binder_email_icon($t, $type, $url, $dest = null) {
+function theme_watcher_binder_email_icon($t, $type, $url, $query = null) {
   $output = l(
   ( $type == 'enabled' ? $t['binder_notif_text_enabled'] : $t['binder_notif_text_disabled'] ),
   $url,
   array(
-      'query' => $dest,
+      'query' => $query,
       'attributes' => array(
         'class' => "watcher_binder_send_email_status_icon watcher_binder_send_email_status_icon_$type",
         'title' => ( $type == 'enabled' ? $t['binder_notif_title_enabled'] : $t['binder_notif_title_disabled'] ),
@@ -94,18 +94,18 @@ function theme_watcher_binder_email_icon($t, $type, $url, $dest = null) {
  *
  * @param $url
  *    A URL for toggling watching of given nid
- * @param $dest
- *    A destination path, used for redirection, should be current path
+ * @param $query
+ *    Query portion of the link
  *
  * @return
  *    A themed link for stopping watching a node
  */
-function theme_watcher_binder_stop_watching_icon($url, $dest = null) {
+function theme_watcher_binder_stop_watching_icon($url, $query = null) {
   $output = l(
   t('Stop watching'),
   $url,
   array(
-      'query' => $dest,
+      'query' => $query,
       'attributes' => array(
         'class' => "watcher_binder_stop_watching_icon",
         'title' => t('Stop watching this post.'),
@@ -125,8 +125,8 @@ function theme_watcher_binder_stop_watching_icon($url, $dest = null) {
  *    The user we'd like to toggle watching for
  * @param $nid
  *    The node id we're toggling watching for for this user
- * @param $dest
- *    The URL of the current page, used for redirection afterwards
+ * @param $query
+ *    Query portion of the link
  * @param $user_is_watching
  *    A boolean denoting whether uid is watching nid
  * @param $t
@@ -136,7 +136,7 @@ function theme_watcher_binder_stop_watching_icon($url, $dest = null) {
  *    A themed widget for toggling watching of the given nid
  *
  */
-function theme_watcher_node_toggle_watching_link($uid, $nid, $dest, $user_is_watching, $t = array()) {
+function theme_watcher_node_toggle_watching_link($uid, $nid, $query, $user_is_watching, $t = array()) {
 
   // Set up classes
   $class_watch_status_link = ( $user_is_watching ? ' watcher_node_toggle_watching_link_watched' : '');
@@ -149,7 +149,7 @@ function theme_watcher_node_toggle_watching_link($uid, $nid, $dest, $user_is_wat
   ( $user_is_watching ? $t['watch_toggle_enabled'] : $t['watch_toggle_disabled'] ),
     "user/$uid/watcher/toggle/$nid",
   array(
-      'query' => $dest,
+      'query' => $query,
       'attributes' => array(
         'class' => "watcher_node_toggle_watching_link$class_watch_status_link",
         'title' => ( $user_is_watching ? $t['watch_toggle_enabled_title'] : $t['watch_toggle_disabled_title'] ),
@@ -214,13 +214,13 @@ function watcher_theme($existing, $type, $theme, $path) {
       'arguments' => array('intro_text' => null, 'posts_table_header' => null, 'posts_table_body' => null),
   ),
     'watcher_binder_email_icon' => array(
-      'arguments' => array('t' => null, 'type' => null, 'url' => null, 'dest' => null),
+      'arguments' => array('t' => null, 'type' => null, 'url' => null, 'query' => null),
   ),
     'watcher_binder_stop_watching_icon' => array(
-      'arguments' => array('url' => null, 'dest' => null),
+      'arguments' => array('url' => null, 'query' => null),
   ),
     'watcher_node_toggle_watching_link' => array(
-      'arguments' => array('uid' => null, 'nid' => null, 'dest' => null, 'user_is_watching' => null, 't' => array()),
+      'arguments' => array('uid' => null, 'nid' => null, 'query' => null, 'user_is_watching' => null, 't' => array()),
   ),
     'watcher_help_page' => array(
       'arguments' => array('content' => null),
@@ -276,7 +276,7 @@ function watcher_menu() {
     );
 
     $items['user/%user/watcher'] = array(
-    'title' => 'My Favorites',
+    'title' => 'My Watched Posts',
     'page callback' => '_watcher_binder',
     'page arguments' => array(1),
     'access callback' => '_watcher_menu_access_binder',
@@ -390,7 +390,7 @@ function watcher_menu() {
 
     // Binder shortcut, redirect to user's My Watched Posts page
     $items['user/watcher'] = array(
-    'title' => 'My Favorites',
+    'title' => 'My Watched Posts',
     'page callback' => '_watcher_binder_shortcut',
     'access callback' => '_watcher_menu_access_binder_shortcut',
     'type' => MENU_NORMAL_ITEM,
@@ -1307,7 +1307,6 @@ function _watcher_binder($account) {
   drupal_add_js(drupal_get_path('module', 'watcher') .'/js/watcher.js');
   drupal_add_js(array('watcher' => $tstrings), 'setting');
 
-
   //////////// Set up table header ////////////////
   $header = array();
 
@@ -1370,8 +1369,8 @@ function _watcher_binder($account) {
     // Determine the number of comments:
     $comments = _watcher_binder_comment_count($node);
 
-    // Get destination
-    $dest = drupal_get_destination();
+    // Generate destination and token query
+    $link_query = drupal_get_destination() ."&token=". _watcher_get_token($node->nid);
 
     // Populate table
     $row = array();
@@ -1405,12 +1404,12 @@ function _watcher_binder($account) {
 
     // Email notification status icon
     if ($user_is_owner && $emails_enabled) {
-      $row[] = theme('watcher_binder_email_icon', $tstrings, ($node->send_email ? 'enabled' : 'disabled'), "user/$uid/watcher/email_notifications_toggle/$node->nid", $dest);
+      $row[] = theme('watcher_binder_email_icon', $tstrings, ($node->send_email ? 'enabled' : 'disabled'), "user/$uid/watcher/email_notifications_toggle/$node->nid", $link_query);
     }
 
     // Stop watching icon
     if ($user_is_owner) {
-      $row[] = theme('watcher_binder_stop_watching_icon', "user/$uid/watcher/toggle/$node->nid", $dest);
+      $row[] = theme('watcher_binder_stop_watching_icon', "user/$uid/watcher/toggle/$node->nid", $link_query);
     }
 
     $rows[] = $row;
@@ -1594,6 +1593,14 @@ function _watcher_help_page() {
  */
 function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = null) {
   $nid = $node->nid;
+  $token = $_REQUEST['token'];
+
+  // Validate token
+  if (_watcher_get_token($node->nid) != $token) {
+    drupal_set_message(t("You've followed an invalid link."));
+    drupal_access_denied();
+    return;
+  }
 
   global $user;
 
@@ -1630,7 +1637,7 @@ function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = 
     if ($unwatch == 'node') {
       $nids = array($nid);
       if (_watcher_user_unset_watching_nodes(array($nid), $recipient_user)) {
-        $message = t('%ntitle previously watched by %email is no longer being watched.', array('%ntitle' => $node->title, '%email' => $recipient_user->mail));
+        $message = t('%ntitle previously watched by %email is no longer being watched.', array('%ntitle' => check_plain($node->title), '%email' => check_plain($recipient_user->mail)));
 
         // Remove NID from session to mark it as no longer being watched
         $nids = _watcher_session('watching');
@@ -1642,12 +1649,16 @@ function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = 
     }
 
     // Unwatching all nodes being watched
+
     if ($unwatch == 'all') {
       if ($confirm != 'confirm') {
+
+        $link_query = "token=$token";
+
         // Confirm the action
         $out = array();
         $out[] = array(
-          '#value' => '<h3>' . t('Are you sure you want to STOP watching all posts %email currently watches on this site? This action cannot be undone.', array('%email' => $recipient_user->mail)) . '</h3>' . '<p style="font-weight: bold;">'. l('Yes, I am sure.', 'user/'. $user->uid .'/watcher/toggle/'.$nid.'/unwatch-all/'.$mail.'/confirm') .'</p>',
+          '#value' => '<h3>' . t('Are you sure you want to STOP watching all posts %email currently watches on this site? This action cannot be undone.', array('%email' =>  check_plain($recipient_user->mail))) . '</h3>' . '<p style="font-weight: bold;">'. l('Yes, I am sure.', 'user/'. $user->uid .'/watcher/toggle/'. $nid .'/unwatch-all/'. $mail .'/confirm', array('query' => $link_query)) .'</p>',
         );
         return drupal_render($out);
       }
@@ -1666,7 +1677,7 @@ function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = 
 
           // Unwatch nodes
           _watcher_user_unset_watching_nodes($watched_nids, $recipient_user);
-          $message = t('All posts on this site previously watched by %email are no longer being watched.', array('%email' => $recipient_user->mail));
+          $message = t('All posts on this site previously watched by %email are no longer being watched.', array('%email' => check_plain($recipient_user->mail)));
         }
       }
     }
@@ -1691,11 +1702,13 @@ function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = 
 
 
   // Handle watching and unwatching for logged-in users
-
   else {
+
+    $link_query = $dest ."&token=$token";
+
     if (_watcher_user_is_watching_node($user, $nid)) {
       if (_watcher_user_unset_watching_nodes(array($nid), $user)) {
-        $message = t('You are no longer watching <em>!ntitle</em>. <strong><a href="!undo">Undo</a></strong>', array('!ntitle' => $node->title, '!undo' => url("user/$user->uid/watcher/toggle/$node->nid", array('query' => $dest))));
+        $message = t('You are no longer watching <em>!ntitle</em>. <strong><a href="!undo">Undo</a></strong>', array('!ntitle' => check_plain($node->title), '!undo' => url("user/$user->uid/watcher/toggle/$node->nid", array('query' => $link_query))));
         $nstatus['status'] = 'disabled';
       }
       else {
@@ -1704,7 +1717,7 @@ function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = 
     }
     else {
       if (_watcher_user_set_watching_node($nid, $user)) {
-        $message = t('You are now watching <em>!ntitle</em>. <strong><a href="!undo">Undo</a></strong>', array('!ntitle' => $node->title, '!undo' => url("user/$user->uid/watcher/toggle/$node->nid", array('query' => $dest))));
+        $message = t('You are now watching <em>!ntitle</em>. <strong><a href="!undo">Undo</a></strong>', array('!ntitle' => check_plain($node->title), '!undo' => url("user/$user->uid/watcher/toggle/$node->nid", array('query' => $link_query))));
         $nstatus['status'] = 'enabled';
       }
       else {
@@ -1732,6 +1745,15 @@ function _watcher_watch_toggle($node, $mail = null, $unwatch = null, $confirm = 
 function _watcher_email_notifications_toggle($nid) {
   global $user;
   $uid = $user->uid;
+
+  $token = $_REQUEST['token'];
+
+  // Validate token
+  if (_watcher_get_token($nid) != $token) {
+    drupal_set_message(t("You've followed an invalid link."));
+    drupal_access_denied();
+    return;
+  }
 
   // Toggle
   if (_watcher_user_is_watching_node($user, $nid)) {
@@ -1829,8 +1851,8 @@ function _watcher_email_notify_node_update(&$node) {
   $recipients = _watcher_db_get_users_notify_node_update($node->nid, $user->uid);
 
   // Set up subject
-  $node_title = ( $node->title ? ' "'. substr($node->title, 0, 128) .'" ' : false );
-  $site_name = ( variable_get('site_name', false ) ? ' ('. variable_get('site_name', '') .')' : '' );
+  $node_title = check_plain($node->title ? ' "'. substr($node->title, 0, 128) .'" ' : false);
+  $site_name = variable_get('site_name', false ? ' ('. check_plain(variable_get('site_name', '')) .')' : '');
   $subject = t('Post!nodetitlehas been updated!sitename', array('!nodetitle' => $node_title, '!sitename' => $site_name));
 
   // Add to queue
@@ -1985,7 +2007,7 @@ function _watcher_email_notify_anonymous_watch_confirm($user, $nid, $what = null
   $subj_for_what['updates'] = ' '. t('for updates');
 
   // Set up subject
-  $node_title = ( $node->title ? t(' "!nodetitle"', array('!nodetitle' => substr($node->title, 0, 128))) : false );
+  $node_title = check_plain($node->title ? t(' "!nodetitle"', array('!nodetitle' => substr($node->title, 0, 128))) : false);
   $site_name = ( variable_get('site_name', false ) ? ' ('. variable_get('site_name', '') .')' : '' );
   $subject = t('You are now watching!aboutnodetitle!forwhat!sitename', array('!aboutnodetitle' => $node_title, '!forwhat' => $subj_for_what[$what], '!sitename' => $site_name));
 
@@ -2168,17 +2190,17 @@ function _watcher_node_watch_link(&$node, $a3, $a4) {
     $watching = _watcher_user_is_watching_node($user, $node->nid);
   }
 
-  $dest = drupal_get_destination();
+  $link_query = drupal_get_destination() ."&token=". _watcher_get_token($node->nid, $user->uid);
 
   // Make localized strings
   $tstrings = array();
-  $tstrings['watch_toggle_enabled'] = t('You are watching this post, click to remove from favorites');
+  $tstrings['watch_toggle_enabled'] = t('You are watching this post, click to stop watching');
   $tstrings['watch_toggle_enabled_title'] = t('This post is being watched. You can track and change email notification setting for this post in your watched posts list (see your user profile)');
-  $tstrings['watch_toggle_disabled'] = t('Want to quickly access this article?  Save as a favorite.');
+  $tstrings['watch_toggle_disabled'] = t('You are not watching this post, click to start watching');
   $tstrings['watch_toggle_disabled_title'] = t('Watch posts to be notified when other users comment on them or the posts are changed');
 
   // Build link to the user's list of watched posts
-  $tstrings['watch_watched_posts_link'] = l(t('View my favorites'), 'user/'. $user->uid .'/watcher', array('attributes' => array('class' => 'watcher_node_help_link_to_binder')));
+  $tstrings['watch_watched_posts_link'] = l(t('Go to your list of watched posts'), 'user/'. $user->uid .'/watcher', array('attributes' => array('class' => 'watcher_node_help_link_to_binder')));
 
   // Add JS setting boolean variable indicating whether the current user is anonymous or not
   $settings['watcher'] = array('user_is_anonymous' => (bool) $user->uid);
@@ -2200,7 +2222,7 @@ function _watcher_node_watch_link(&$node, $a3, $a4) {
 
   //Add element to node
   $node->content['watcher'] = array(
-    '#value' => theme('watcher_node_toggle_watching_link', $user->uid, $node->nid, $dest, $watching, $tstrings),
+    '#value' => theme('watcher_node_toggle_watching_link', $user->uid, $node->nid, $link_query, $watching, $tstrings),
     '#weight' => 30,
   );
 }
@@ -2653,11 +2675,13 @@ function _watcher_email_notifications_replace_tokens_header_and_footer($recipien
   // Set recipient email address
   $r_email = ( $recipient->mail ? $recipient->mail : ( $recipient->umail ? $recipient->umail : $recipient->wnmail ));
 
+  $link_query = "token=". _watcher_get_token($nid, $recipient->uid);
+
   // Start by replacing our own tokens
   $recipient_username = $recipient->name;
   $recipient_user_settings_url = url('user/'. $recipient->uid .'/watcher/settings', array('absolute' => true));
-  $stop_watching_url = url('user/'. $recipient->uid .'/watcher/toggle/'. $nid . ( $recipient->uid ? '' : '/unwatch/'. $r_email ), array('absolute' => true));
-  $stop_watching_all_url = url('user/'. $recipient->uid .'/watcher/toggle/'. $nid .'/unwatch-all/'. $r_email, array('absolute' => true));
+  $stop_watching_url = url('user/'. $recipient->uid .'/watcher/toggle/'. $nid . ( $recipient->uid ? '' : '/unwatch/'. $r_email ), array('absolute' => true, 'query' => $link_query));
+  $stop_watching_all_url = url('user/'. $recipient->uid .'/watcher/toggle/'. $nid .'/unwatch-all/'. $r_email, array('absolute' => true, 'query' => $link_query));
 
   $tokens = array('[recipient-username]', '[recipient-user-settings-url]', '[stop-watching-url]', '[stop-watching-all-url]', '[user-ip]');
   $replaces = array($recipient_username, $recipient_user_settings_url, $stop_watching_url, $stop_watching_all_url, $recipient->ip);
@@ -2888,7 +2912,7 @@ function _watcher_email_notifications_send_message($qmsg) {
   static $from;
 
   // Set up addresses
-  $site_name = variable_get('site_name', '');
+  $site_name = check_plain(variable_get('site_name', ''));
   $site_mail = variable_get('site_mail', ini_get('sendmail_from'));
 
   // No need to generate the from header more than once
@@ -2959,14 +2983,14 @@ function _watcher_watch_toggle_anonymous_form(&$form_state, $nid, $watch_action)
   if ($watch_action == 'unwatch') {
     $form['watcher'] = array (
       '#type' => 'fieldset',
-      '#title' => '<strong>'. t("Stop watching %title", array('%title' => $node->title)) .'</strong>',
+      '#title' => '<strong>'. t("Stop watching %title", array('%title' => check_plain($node->title))) .'</strong>',
     );
-    $info = t("Enter your email address below to stop watching %title. The form will remember the email you enter until next time.", array('%title' => $node->title, '%ipinfo' => ( $ip_reported ? $ip_info : null )));
+    $info = t("Enter your email address below to stop watching %title. The form will remember the email you enter until next time.", array('%title' => check_plain($node->title), '%ipinfo' => ( $ip_reported ? $ip_info : null )));
   }
   else {
     $form['watcher'] = array (
       '#type' => 'fieldset',
-      '#title' => '<strong>'. t("Watch %title", array('%title' => $node->title)) .'</strong>',
+      '#title' => '<strong>'. t("Watch %title", array('%title' => check_plain($node->title))) .'</strong>',
     );
     $info = t("Enter your email address below to start watching %title. The form will remember the email you enter until next time. Once you submit the form, a confirmation message will be sent to the email address entered. %ipinfo", array('%title' => $node->title, '%ipinfo' => ( $ip_reported ? $ip_info : null )));
   }
@@ -3133,7 +3157,7 @@ function _watcher_watch_toggle_anonymous_form_submit($form, &$form_state) {
   // Handle watching/unwatching
   if ($watch_action == 'unwatch') {
     if ($user->mail && _watcher_user_unset_watching_nodes(array($nid), $user)) {
-      $message = t('You are no longer watching %ntitle. <strong><a href="!undo">Undo</a></strong>', array('%ntitle' => $node->title, '!undo' => url("user/$user->uid/watcher/toggle/$node->nid", array('query' => $dest))));
+      $message = t('You are no longer watching %ntitle. <strong><a href="!undo">Undo</a></strong>', array('%ntitle' => check_plain($node->title), '!undo' => url("user/$user->uid/watcher/toggle/$node->nid", array('query' => $dest))));
       drupal_set_message($message);
 
       // Remove NID from session to mark it as no longer being watched
@@ -3144,7 +3168,7 @@ function _watcher_watch_toggle_anonymous_form_submit($form, &$form_state) {
       }
     }
     else {
-      $message = t('That email address is not associated with any user watching %ntitle', array('%ntitle' => $node->title));
+      $message = t('That email address is not associated with any user watching %ntitle', array('%ntitle' => check_plain($node->title)));
       drupal_set_message($message);
     }
   }
@@ -3173,6 +3197,26 @@ function _watcher_watch_toggle_anonymous_form_submit($form, &$form_state) {
 
   // Redirect user back to originating page
   drupal_goto();
+}
+
+/**
+ * Get a private token used to protect links from spoofing - CSRF.
+ */
+function _watcher_get_token($seed, $uid = false) {
+  if ($uid === false) {
+    $uid = $GLOBALS['user']->uid;
+  }
+  return drupal_get_token($seed . $uid);
+}
+
+/**
+ * Check to see if a token value matches the specified node.
+ */
+function _watcher_check_token($token, $seed, $uid = false) {
+  if ($uid === false) {
+    $uid =  $GLOBALS['user']->uid;
+  }
+  return drupal_get_token($seed . $uid) == $token;
 }
 
 /**

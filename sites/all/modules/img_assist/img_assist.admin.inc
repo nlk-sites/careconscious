@@ -1,5 +1,4 @@
 <?php
-// $Id: img_assist.admin.inc,v 1.1 2009/08/13 19:32:44 sun Exp $
 
 /**
  * @file

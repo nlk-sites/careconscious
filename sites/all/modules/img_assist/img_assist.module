@@ -1,5 +1,4 @@
 <?php
-// $Id: img_assist.module,v 1.107 2009/08/13 19:32:44 sun Exp $
 
 /**
  * @file
@@ -302,9 +301,14 @@ function img_assist_loader() {
   $output .= "<head>\n";
   $output .= '<title>'. t('Add image') ."</title>\n";
   $output .= drupal_get_js();
+  $output .= '<script type="text/javascript">
+$(document).ready(function () {
+  initLoader();
+});
+</script>';
   $output .= "</head>\n\n";
-  
-  $output .= '<frameset rows="38, *" onload="initLoader()" frameborder="0" border="0" framespacing="0">' . "\n";
+
+  $output .= '<frameset rows="38, *" frameborder="0" border="0" framespacing="0">' . "\n";
   $output .= '<frame name="img_assist_header" src="" class="img_assist_header" noresize="noresize" />' . "\n";
   $output .= '<frame name="img_assist_main" src="" class="img_assist_main" noresize="noresize" />' . "\n";
   $output .= "</frameset>\n";
@@ -1010,12 +1014,18 @@ function img_assist_display(&$node, $size = NULL, $attributes = array()) {
       }
     }
   }
-  
+
   if ($regen) {
     _img_assist_build_derivatives($node, $size);
   }
-  
-  return image_display($node, $label);
+
+  // For custom size images, add a consistent CSS class, JavaScripts can rely on.
+  $attributes = array();
+  if (is_array($size) && isset($size['key']) && strpos($size['key'], 'img_assist_custom') === 0) {
+    $attributes['class'] = 'image-img_assist_custom';
+  }
+
+  return image_display($node, $label, $attributes);
 }
 
 /**
@@ -1168,7 +1178,7 @@ function img_assist_render_image($attributes = array()) {
             }
             // Calculate default width and height based on aspect ratio.
             // Width is controlling factor.
-            if (!$height_std && ($width_std && round($width_std / $aspect_ratio) <= $height_std)) {
+            if (!$height_std || ($width_std && round($width_std / $aspect_ratio) <= $height_std)) {
               $height_std = round($width_std / $aspect_ratio);
             }
             // Height is controlling factor.
@@ -1359,7 +1369,7 @@ function img_assist_get_references($nid, $limit = 10) {
   $and_clause = implode(' OR ', $and_clause);
   
   if ($images) {
-    return node_title_list(db_query_range(db_rewrite_sql("SELECT n.nid, n.title FROM {node} n WHERE n.status = 1 AND $and_clause ORDER BY n.nid DESC"), 0, (int) $limit));
+    return node_title_list(db_query_range(db_rewrite_sql("SELECT n.nid, n.title FROM {node} n WHERE n.status = 1 AND ($and_clause) ORDER BY n.nid DESC"), 0, (int) $limit));
   }
 }
 

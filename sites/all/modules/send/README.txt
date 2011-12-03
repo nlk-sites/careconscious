@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.9 2009/03/16 20:04:03 vauxia Exp $
 
 ABOUT THE AUTHOR
   Please contact Allie Micka < allie at pajunas dot com > with questions, 

@@ -1,5 +1,4 @@
 <?php
-// $Id: img-assist-browser-thumbnail.tpl.php,v 1.2 2008/10/27 19:14:45 sun Exp $
 
 /**
  * @file

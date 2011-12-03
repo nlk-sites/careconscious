@@ -1,5 +1,4 @@
 <?php
-// $Id: inline.node.inc,v 1.4 2009/08/12 05:54:36 sun Exp $
 
 /**
  * @file

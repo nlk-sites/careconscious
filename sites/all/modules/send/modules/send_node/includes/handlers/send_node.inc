@@ -1,4 +1,4 @@
-<?php // $Id: send_node.inc,v 1.2 2010/07/29 20:09:18 vauxia Exp $
+<?php // $Id$
 
 class sendNodeProfile extends sendProfile {
   public $handler = 'send_node';

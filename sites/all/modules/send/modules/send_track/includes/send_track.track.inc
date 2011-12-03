@@ -1,4 +1,4 @@
-<?php // $Id: send_track.track.inc,v 1.3 2009/08/07 01:00:05 vauxia Exp $
+<?php // $Id$
 
 /**
  * Menu callback for a tracking activity.

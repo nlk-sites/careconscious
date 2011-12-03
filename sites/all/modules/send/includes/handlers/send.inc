@@ -1,4 +1,4 @@
-<?php // $Id: send.inc,v 1.8 2010/08/05 21:04:45 vauxia Exp $
+<?php // $Id$
 
 interface SendProfileInterface {
   // Accessors.
@@ -247,8 +247,14 @@ class SendProfile implements SendProfileInterface {
   }
 
   public function setRecipients($values) {
+    static $addresses = array();
     if (isset($values['mail'])) $values = array($values);
     foreach ($values as $contact) {
+      // Hack to prevent double-addition of mail addresses.
+      if ($mail = $contact['mail']) {
+        if (in_array($mail, $addresses)) continue;
+        $addresses[] = $mail;
+      }
       $this->addRecipient($contact);
     }
   }
@@ -375,6 +381,8 @@ class SendProfile implements SendProfileInterface {
         WHERE scid IN (". join(', ', $scids) .")", $send->timestamp);
     }
   
+    // Trigger any action that might want to go out.
+    $this->drupal_invoke('send_send', $this, $send);
     return $send->contact_count;
   }
 

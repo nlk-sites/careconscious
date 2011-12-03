@@ -1,5 +1,4 @@
 <?php
-// $Id: inline.theme.inc,v 1.2 2008/08/17 14:43:39 sun Exp $
 
 /**
  * @file

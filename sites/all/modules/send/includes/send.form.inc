@@ -1,9 +1,12 @@
-<?php // $Id: send.form.inc,v 1.21 2010/08/02 20:41:53 vauxia Exp $
+<?php // $Id$
 
 /**
  * The default submission page for user-initiated send activities.
  */
 function send_form($form_state, $profile) {
+  // Prevent this page from getting indexed.
+  header('X-Robots-Tag: noindex,noarchive', TRUE);
+
   return array(
     // Ensure that this form always posts here - necessary when using AHAH.
     'send' => array(

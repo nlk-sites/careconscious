@@ -1,4 +1,4 @@
-<?php // $Id: send_track.views.inc,v 1.1 2010/07/16 22:50:53 vauxia Exp $
+<?php // $Id$
 
 /**
  * Implementation of hook_views_data().

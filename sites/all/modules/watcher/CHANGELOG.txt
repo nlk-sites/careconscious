@@ -1,3 +1,6 @@
+Note: CHANGELOG is no longer being updated. See the commit history at
+drupal.org/project/watcher for a list of changes.
+
 2009-02-26
  - Fixed #384388 by J-Chance: Autowatching of nodes you make doesn't work.
 

@@ -1,4 +1,4 @@
-<?php // $Id: send.template.inc,v 1.5 2009/08/26 01:18:14 vauxia Exp $
+<?php // $Id$
 
 function send_template_load($stid) {
   $template = db_fetch_object(db_query("SELECT * FROM {send_template} WHERE stid = %d", $stid));
@@ -142,7 +142,7 @@ function send_template_list($profile = NULL, $active_only = TRUE, $limit = 0, $s
   if ($active_only) {
     $sql[0] .= " WHERE status = 1";
   }
-  $sql[0] = db_rewrite_sql($sql[0] . tablesort_sql($sort));
+  $sql[0] = db_rewrite_sql($sql[0] . tablesort_sql($sort), 'send_template');
 
   if ($pager_limit) {
     $res = call_user_func_array('pager_query', $sql);

@@ -1,4 +1,3 @@
-// $Id: img_assist_textarea.js,v 1.7 2009/02/01 09:21:08 sun Exp $
 /**
  * This javascript file allows img_assist to work with a plain textarea.
  * This file is used instead of img_assist_tinymce.js if img_assist is called

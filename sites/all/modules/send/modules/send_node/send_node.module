@@ -1,4 +1,4 @@
-<?php // $Id: send_node.module,v 1.4 2010/08/05 21:13:55 vauxia Exp $
+<?php // $Id$
 
 /**
  * Implementation of hook_menu().
@@ -109,7 +109,10 @@ function send_node_link($type, $node = NULL) {
         'send_node' => array(
           'title' => $linktext,
           'href'  => $profile->url(),
-          'attributes' =>  array("class" => 'send-link send-'. $profile->name())
+          'attributes' =>  array(
+            'class' => 'send-link send-'. $profile->name(),
+            'rel' => 'nofollow',
+          ),
         ),
       );
     }
@@ -125,7 +128,7 @@ function send_node_profile_load($node, $send_node = NULL) {
   // Not enabled at all.
   if (!variable_get('send_enabled'. $suffix, FALSE)) return FALSE;
 
-  // Figuret out the name of the default profile.
+  // Figured out the name of the default profile.
   $default = 'send_node';
   if (!variable_get('send_default'. $suffix, TRUE)) $default .= '_type'. $suffix;
 
@@ -163,17 +166,19 @@ function send_node_profile_load($node, $send_node = NULL) {
         }
       }
 
-      $profile->setEnabled($send_node->enabled);
-      $profile->setDefault($send_node->use_default);
-
+      if ($profile) {
+        $profile->setEnabled($send_node->enabled);
+        $profile->setDefault($send_node->use_default);
+      }
       return $profile;
     }
   }
 
   // Haven't returned yet?  Let's just return the default value.
-  $profile = send_profile_load($default);
-  $profile->setDefault(TRUE);
-  $profile->setEnabled(TRUE);
+  if ($profile = send_profile_load($default)) {
+    $profile->setDefault(TRUE);
+    $profile->setEnabled(TRUE);
+  }
   return $profile;
 }
 
@@ -194,4 +199,21 @@ function send_node_send_profile_info($profile_name = NULL, $options = array()) {
       'parent' => 'send',
     ),
   );
+}
+
+/**
+ * Implementation of hook_slinky_links_alter().
+ */
+function send_slinky_share_links_alter(&$links, $node) {
+  // Alter the path used for the e-mail share link to use send instead.
+  if (isset($links['email'])) {
+    if (!$node) return;
+    if (!$profile = send_node_profile_load($node)) $links['email']['enabled'] = FALSE;
+  
+    if ($profile->enabled && $profile->access()) {
+      $profile->addNode($node);
+      $links['email']['href'] = $profile->url();
+      $links['email']['title'] = $profile->linktext();
+    }
+  }
 }

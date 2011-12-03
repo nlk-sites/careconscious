@@ -1,5 +1,4 @@
 <?php
-// $Id: send.views.inc,v 1.4 2009/08/26 01:18:14 vauxia Exp $
 
 /**
  * @file

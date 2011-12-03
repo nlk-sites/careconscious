@@ -1,4 +1,4 @@
-<?php // $Id: send_node.install,v 1.1 2010/07/28 19:02:55 vauxia Exp $
+<?php // $Id$
 
 /**
  * Implementation of hook_schema().

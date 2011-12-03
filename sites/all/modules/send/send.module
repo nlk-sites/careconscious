@@ -34,7 +34,8 @@ function send_perm() {
 /**
  * Access callback for send forms.
  */
-function send_access(&$profile, $nids = array()) {
+function send_access($profile, $nids = array()) {
+  if (!$profile = send_profile_load($profile)) return FALSE;
   if ($nids) {
     $profile->nids = ($nids && !is_array($nids)) ? explode(' ', $nids) : $nids;
   }
@@ -44,7 +45,7 @@ function send_access(&$profile, $nids = array()) {
 /**
  * Implementation of hook_nodeapi().
  */
-function send_nodeapi($op, &$edit, &$user) {
+function send_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   switch ($op){
     case 'delete':
       // Remove message history entries for this node.
@@ -106,7 +107,7 @@ function send_user($op, &$edit, &$user) {
         if ($scid = db_result(db_query("SELECT scid FROM {send_contact_mail}
           WHERE mail = '%s'", $edit['mail']))) {
 
-          db_query("UPDATE {send_contact} 
+          db_query("UPDATE {send_contact}
             SET uid = %d WHERE scid = %d", $user->uid, $scid);
         }
         // Simply update the existing send_contact_mail entry.

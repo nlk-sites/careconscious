@@ -1,4 +1,3 @@
-// $Id: img_assist_tinymce.js,v 1.7 2009/02/01 09:21:08 sun Exp $
 /**
  * This javascript file allows img_assist to work with TinyMCE via the
  * drupalimage plugin for TinyMCE.

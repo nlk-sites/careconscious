@@ -1,4 +1,4 @@
-<?php // $Id: send.menu.inc,v 1.5 2010/07/26 22:19:02 vauxia Exp $
+<?php // $Id$
 
 function send_menu_menu() {
   $path = drupal_get_path('module', 'send') .'/includes';
