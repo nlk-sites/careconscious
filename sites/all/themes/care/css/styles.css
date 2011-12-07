@@ -485,6 +485,53 @@ ul.secondary li.active a:hover {
   margin: 0 0 5px 12px;
 }
 
+/* your posts */
+
+.sidebar .quicktabs_main .block div.views-row {
+  padding: 0 0 5px;
+  margin: 0 0 5px;
+  border-bottom: 1px solid #e1e1e1;
+  color: #666;
+  line-height: 14px;
+}
+.sidebar .quicktabs_main .block div.views-row.views-row-last {
+  padding: 0;
+  margin: 0;
+  border-bottom: 0;
+}
+.sidebar .quicktabs_main .block .views-row .views-field-created {
+  display: block;
+  padding: 0 0 3px;
+  color: #000;
+}
+.sidebar .quicktabs_main .block .views-row .views-field-title {
+  display: block;
+  padding: 0 0 3px;
+  font-weight: bold;
+}
+
+/* comments */
+#comments {
+  background: #DAEDF4;
+  padding: 20px;
+}
+#comments .view-nodecomments  {
+  background: #fff;
+  padding: 20px;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 0 20px  ;
+}
+#comments .view-nodecomments .views-row  {
+  margin: 0 0 10px;
+  border-bottom: 1px solid #ccc;
+}
+#comments .indented   {
+  margin-left: 15px;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  padding: 10px 0 0 20px;
+}
 
 /* content */
 #content_top  {
@@ -1468,8 +1515,6 @@ body.dashboard #content .quicktabs_main {
 
 /* forms */
 .form-radios .form-item {
-  margin: 0 10px;
-  float: left;
 }
 
 .quicktabs_main .view-tasks .views-row {
