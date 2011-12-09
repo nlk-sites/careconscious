@@ -150,7 +150,7 @@ ini_set('session.use_only_cookies', 1);
 ini_set('session.use_trans_sid',    0);
 ini_set('url_rewriter.tags',        '');
 
-ini_set('memory_limit', '64M');
+ini_set('memory_limit', '128M');
 
 /**
  * If you encounter a situation where users post a large amount of text, and
