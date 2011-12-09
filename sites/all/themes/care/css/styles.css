@@ -1919,6 +1919,9 @@ body.page-user #content .form-submit {
   clear: both;
   padding: 10px 10px 30px;
 }
+body.front #postscript {
+  padding: 10px 10px 0;
+}
 
 /* resource topic menu */
 
@@ -2242,7 +2245,7 @@ body.page-eight-principles #content {
   color:#8bbc2f;
 }
 
-/* blocks principles */
+/* blocks principles and how it works */
 #block-block-38,
 .how_column01 {
   float: left;
@@ -2331,6 +2334,7 @@ ul.checks li {
 body.page-ask h1 {
   display: none;
 }
+/* ask */
 #block-block-46 {
   padding: 20px 20px 0;
 }
@@ -2360,6 +2364,7 @@ dt  {
   font-weight: bold;
 }
 
+/* principles grid*/
 #block-views-principles-block_2 {
   clear: both;
 }
@@ -2402,4 +2407,63 @@ dt  {
   padding: 0 20px;
   font-weight: bold;
   margin: 10px 0 0;
+}
+
+
+/* front */
+/* blockquote */
+#block-block-36 {
+  background: url(../images/img_front01.png) no-repeat top right;
+  margin: 0 0 30px;
+}
+#block-block-36 blockquote {
+  background: url(../images/bg_blockquote.png) no-repeat;
+  padding: 30px 60px 30px 30px;
+  color: #1B7188;
+  font-family: georgia,"charter",serif;
+  font-size: 20px;
+  line-height: 28px;
+  height: 135px;
+  width: 420px;
+}
+/* tools */
+
+#block-block-37 {
+  position: relative;
+  margin: 0 -10px;
+  padding: 30px 0;
+  background: #f3f3f3;
+}
+#block-block-37 .front_partners {
+  float: left;
+  display: inline;
+  width: 430px;
+  padding: 30px;
+  height: 220px;
+  background: url(../images/bg_front_partners.png) no-repeat;
+}
+#block-block-37 .front_partners h2 {
+  font-size: 28px;
+  font-family: georgia,"charter",serif;
+  font-weight: normal;
+  font-style: italic;
+}
+#block-block-37 .front_tools  {
+  float: right;
+  display: inline;
+  width: 150px;
+  padding: 50px 0 0 320px;
+  background: url(../images/bg_front_tools.png) no-repeat;
+  height: 230px;
+}
+#block-block-37 .front_tools h2  {
+  font-size: 28px;
+  line-height: 30px;
+  font-weight: normal;
+}
+#block-block-37 .front_tools a  {
+  font-weight: bold;
+  text-decoration: underline;
+  text-transform: uppercase;
+  font-size: 11px;
 }
