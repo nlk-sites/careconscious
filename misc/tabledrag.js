@@ -1,4 +1,3 @@
-// $Id: tabledrag.js,v 1.13.2.5 2009/06/18 12:24:24 goba Exp $
 
 /**
  * Drag and drop table rows with field manipulation.
@@ -172,9 +171,8 @@ Drupal.tableDrag.prototype.makeDraggable = function(item) {
   // Create the handle.
   var handle = $('<a href="#" class="tabledrag-handle"><div class="handle">&nbsp;</div></a>').attr('title', Drupal.t('Drag to re-order'));
   // Insert the handle after indentations (if any).
-  if ($('td:first .indentation:last', item).length) {
+  if ($('td:first .indentation:last', item).after(handle).size()) {
     // Update the total width of indentation in this entire table.
-    $('td:first .indentation:last', item).after(handle);
     self.indentCount = Math.max($('.indentation', item).size(), self.indentCount);
   }
   else {
