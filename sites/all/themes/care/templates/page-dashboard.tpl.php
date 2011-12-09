@@ -18,7 +18,8 @@
 
   </div><!-- END: header -->
 
-<div id="main">
+<div id="main_outer">
+  <div id="main">
 
       <?php if ($left): ?>
         <div id="sidebar_first" class="sidebar">
@@ -45,6 +46,13 @@
           <div class="clear"></div>
       </div><!-- END: content -->
 
+      <?php if ($content_bottom): ?>
+        <div id="content_bottom">
+          <?php print $content_bottom ?>
+          <div class="clear"></div>
+        </div><!-- END: content_bottom -->
+      <?php endif; ?>
+
       </div><!-- END: main_content -->
 
       <?php if ($right): ?>
@@ -54,15 +62,14 @@
         </div><!-- END: sidebar -->
       <?php endif; ?>
 
-      <?php if ($content_bottom): ?>
-        <div id="content_bottom">
-          <?php print $content_bottom ?>
+      <?php if ($postscript): ?>
+        <div id="postscript">
+          <?php print $postscript ?>
           <div class="clear"></div>
-        </div><!-- END: content_bottom -->
+        </div><!-- END: postscript -->
       <?php endif; ?>
-
     <div class="clear"></div>
-    </div><!-- END: main -->
+    </div></div><!-- END: main -->
   </div><!-- END: page layout -->
   </div><!-- END: bg -->
 

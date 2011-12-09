@@ -11,6 +11,7 @@
 <body class="<?php print $body_classes;?>">
 
   <div id="bg">
+  <div id="bg_top">
   <div id="page-layout">
   <div id="header">
     <div id="logo">
@@ -29,13 +30,8 @@
 
   </div><!-- END: header -->
 
-<div id="main">
-      <?php if ($content_top): ?>
-        <div id="content_top">
-          <?php print $content_top ?>
-          <div class="clear"></div>
-        </div><!-- END: content_top -->
-      <?php endif; ?>
+<div id="main_outer">
+  <div id="main">
 
       <?php if ($left): ?>
         <div id="sidebar_first" class="sidebar">
@@ -45,6 +41,13 @@
       <?php endif; ?>
 
     <div id="main_content">
+      <?php if ($content_top): ?>
+        <div id="content_top">
+          <?php print $content_top ?>
+          <div class="clear"></div>
+        </div><!-- END: content_top -->
+      <?php endif; ?>
+
       <div id="content">
         <?php if ($node->field_subhead_image): ?>
           <div class="subhead_image"><?php print t($node->field_subhead_image[0]['view']); ?></div>
@@ -58,6 +61,13 @@
         <div class="clear"></div>
       </div><!-- END: content -->
 
+      <?php if ($content_bottom): ?>
+        <div id="content_bottom">
+          <?php print $content_bottom ?>
+          <div class="clear"></div>
+        </div><!-- END: content_bottom -->
+      <?php endif; ?>
+
       </div><!-- END: main_content -->
 
       <?php if ($right): ?>
@@ -67,17 +77,16 @@
         </div><!-- END: sidebar -->
       <?php endif; ?>
 
-      <?php if ($content_bottom): ?>
-        <div id="content_bottom">
-          <?php print $content_bottom ?>
+      <?php if ($postscript): ?>
+        <div id="postscript">
+          <?php print $postscript ?>
           <div class="clear"></div>
-        </div><!-- END: content_bottom -->
+        </div><!-- END: postscript -->
       <?php endif; ?>
-
     <div class="clear"></div>
-    </div><!-- END: main -->
+    </div></div><!-- END: main -->
   </div><!-- END: page layout -->
-  </div><!-- END: bg -->
+  </div></div><!-- END: bg -->
 
       <?php if ($prefooter): ?>
         <div id="prefooter_outer">

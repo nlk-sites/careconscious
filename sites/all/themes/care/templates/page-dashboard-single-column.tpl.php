@@ -18,7 +18,8 @@
 
   </div><!-- END: header -->
 
-<div id="main">
+<div id="main_outer">
+  <div id="main">
       <?php if ($content_top): ?>
         <div id="content_top">
           <?php print $content_top ?>
@@ -48,8 +49,14 @@
         </div><!-- END: content_bottom -->
       <?php endif; ?>
 
+      <?php if ($postscript): ?>
+        <div id="postscript">
+          <?php print $postscript ?>
+          <div class="clear"></div>
+        </div><!-- END: postscript -->
+      <?php endif; ?>
     <div class="clear"></div>
-    </div><!-- END: main -->
+    </div></div><!-- END: main -->
   </div><!-- END: page layout -->
   </div><!-- END: bg -->
 
