@@ -42,7 +42,29 @@
           <?php if ($title): print '<h1'. ($tabs ? ' class="with-tabs"' : '') .'>'. $title .'</h1>'; endif; ?>
 
           <?php //if ($show_messages && $messages): print $messages; endif; ?>
-          <?php print $content ?>
+          <?php print $content;
+		  
+          global $user;
+		  if ( (arg(1) == 141443) && in_array( 'getstarted', $user->roles) ) { ?>
+			  <div id="getstartedhere">
+              <a href="#" class="x">x</a>
+              <h2><strong>Get Started Here.</strong><br />
+              Select a principle from the column to the left.</h2>
+              <img src="<?php echo base_path() . path_to_theme() ?>/images/getstarted.png" alt="Watch the Video : Do the Assessment : Get Your Own Custom Checklist" />
+              <p><em><strong>By the way, we don't expect you to complete all 8 principles at once.</strong> Start with the one that best suits your current needs, and simply complete other principles as time allows.</em></p>
+              </div>
+              <script type="text/javascript">
+			  jQuery(function() {
+				 jQuery('#content .block').append('<div class="fader" />');
+				 jQuery('#getstartedhere a.x').click(function() {
+					jQuery('#content .block .fader, #getstartedhere').remove();
+					return false; 
+				 });
+				 jQuery('#content').css('position','relative');
+				 jQuery('#getstartedhere, #content .block .fader').fadeIn();
+			  });
+			  </script>
+		  <?php } ?>
           <div class="clear"></div>
       </div><!-- END: content -->
 
