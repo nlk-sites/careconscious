@@ -43,8 +43,6 @@ function aalter_block($op = 'list', $delta = 0, $edit = array()) {
     case 'view':
       //$block[0]['subject'] = t('To Dos');
       $node = node_load(arg(1));
-        print_r(arg(1));
-        print_r(arg(0));
       if(!empty($node) && !empty($node->field_principle_nid)){
           $principle_id = $node->field_principle_nid[0]['nid'];
       }else $principle_id = NULL;
@@ -76,11 +74,13 @@ function aalter_theme() {
 }
 
 function aalter_user_todos($principle_id = NULL) {
+    global $user;
+    print_r($principle_id);
   $grouped_todos = array();
   $principles_by_nid = array();
-  
-	global $user;
+
 	$aUserTags = get_user_tags($user);
+    print_r($aUserTags);
 	$todo_items = array();
   
 	$todolists_ids = array();
@@ -228,6 +228,7 @@ GROUP BY ws.nid
   while($r = @db_fetch_array($ws_sids_results)){
       $ws_sids[] = $r['sid'];
   }
+  print_r($ws_sids);
   if(!empty($ws_sids)){
       $where = ' && ws.sid IN ('.implode(', ', $ws_sids).') ';
   }else $where = '';
