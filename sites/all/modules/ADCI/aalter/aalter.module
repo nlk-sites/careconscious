@@ -43,6 +43,8 @@ function aalter_block($op = 'list', $delta = 0, $edit = array()) {
     case 'view':
       //$block[0]['subject'] = t('To Dos');
       $node = node_load(arg(1));
+        print_r(arg(1));
+        print_r(arg(0));
       if(!empty($node) && !empty($node->field_principle_nid)){
           $principle_id = $node->field_principle_nid[0]['nid'];
       }else $principle_id = NULL;
@@ -212,7 +214,6 @@ function get_user_tags($account) {
     FROM node n
     INNER JOIN webform_submissions ws ON n.nid = ws.nid
     INNER JOIN webform_submitted_data wsd ON ws.sid = wsd.sid
-    #INNER JOIN webform_component wc ON wsd.nid = wc.nid && wsd.cid = wc.cid
 
     WHERE
       n.type = 'webform' &&
