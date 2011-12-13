@@ -4,7 +4,7 @@
 /**
  * Implementation of hook_menu()
  */
-
+/*
 function aalter_menu() {
   return array(
     'user/%user/todos' => array(
@@ -30,6 +30,27 @@ function aalter_menu() {
     ),
   );
 }
+*/
+/**
+* Implementation of hook_block().
+* Adds a block that has new text.
+*/
+function aalter_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks[0]['info'] = t('To Dos Block');
+      return $blocks;
+    case 'view':
+      //$block[0]['subject'] = t('To Dos');
+      $node = node_load(arg(1));
+      if(!empty($node) && !empty($node->field_principle_nid)){
+          $principle_id = $node->field_principle_nid[0]['nid'];
+      }else $principle_id = NULL;
+      //$block[0]['content'] = t('Hi from your custom block and your first new module');
+      $block[0]['content'] = aalter_user_todos($principle_id);
+       return $block[$delta];
+  }
+}
 
 /**
  * Implementation of hook_theme()
@@ -52,7 +73,7 @@ function aalter_theme() {
   );
 }
 
-function aalter_user_todos($user, $principle_id = NULL) {  
+function aalter_user_todos($principle_id = NULL) {
   $grouped_todos = array();
   $principles_by_nid = array();
   
@@ -185,6 +206,31 @@ function aalter_views_query_alter(&$view,&$query) {
 
 function get_user_tags($account) {
   $tags = array();
+  $ws_sids_query = "SELECT
+      MAX(ws.sid) as sid
+
+    FROM node n
+    INNER JOIN webform_submissions ws ON n.nid = ws.nid
+    INNER JOIN webform_submitted_data wsd ON ws.sid = wsd.sid
+    #INNER JOIN webform_component wc ON wsd.nid = wc.nid && wsd.cid = wc.cid
+
+    WHERE
+      n.type = 'webform' &&
+      n.title LIKE 'Principle %' &&
+      ws.uid = %d &&
+      ws.is_draft != 1 &&
+      wsd.data IS NOT NULL
+GROUP BY ws.nid
+    ORDER BY ws.submitted DESC;";
+  $ws_sids_results = db_query($ws_sids_query, $account->uid);
+  $ws_sids = array();
+  while($r = @db_fetch_array($ws_sids_results)){
+      $ws_sids[] = $r['sid'];
+  }
+  if(!empty($ws_sids)){
+      $where = ' && ws.sid IN ('.implode(', ', $ws_sids).') ';
+  }else $where = '';
+
   $query = '
     SELECT 
       n.nid, n.title, 
@@ -202,6 +248,7 @@ function get_user_tags($account) {
       ws.uid = %d && 
       ws.is_draft != 1 &&
       wsd.data IS NOT NULL
+      '.$where.'
 
     ORDER BY ws.submitted DESC
   ';
@@ -215,7 +262,7 @@ function get_user_tags($account) {
     $nid = $r->nid;
     $name = intval($r->name);
     
-    get_user_tags_formats(&$tags, $principle[1], $name, $r->data);
+    get_user_tags_formats($tags, $principle[1], $name, $r->data);
   }
   return $tags;
 }
