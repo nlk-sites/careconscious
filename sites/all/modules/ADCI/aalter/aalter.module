@@ -75,12 +75,10 @@ function aalter_theme() {
 
 function aalter_user_todos($principle_id = NULL) {
     global $user;
-    print_r($principle_id);
   $grouped_todos = array();
   $principles_by_nid = array();
 
 	$aUserTags = get_user_tags($user);
-    print_r($aUserTags);
 	$todo_items = array();
   
 	$todolists_ids = array();
@@ -103,6 +101,7 @@ function aalter_user_todos($principle_id = NULL) {
   ', $principle_id);
   
 	while ($node = @db_fetch_object($result)) {
+        print_r($node);
 		$atags = explode(" ", $node->tags);
     if (is_array($atags) && count($atags)) {
       foreach ($atags as $key => $val) {
@@ -228,7 +227,6 @@ GROUP BY ws.nid
   while($r = @db_fetch_array($ws_sids_results)){
       $ws_sids[] = $r['sid'];
   }
-  print_r($ws_sids);
   if(!empty($ws_sids)){
       $where = ' && ws.sid IN ('.implode(', ', $ws_sids).') ';
   }else $where = '';
