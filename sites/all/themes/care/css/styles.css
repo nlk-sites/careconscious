@@ -1029,6 +1029,9 @@ body.dashboard #bg  {
 body.dashboard #header  {
   height: 220px;
 }
+body.dashboard #main_outer  {
+  background: none;
+}
 body.dashboard #main  {
   background: none;
   margin: 0 0 20px;
@@ -1040,6 +1043,9 @@ body.dashboard a:visited  {
 }
 body.dashboard h2  {
   text-transform: none;
+}
+body.dashboard #content .block-quicktabs .terms {
+  display: none;
 }
 
 a.dashboard-logo:link,
@@ -1422,6 +1428,7 @@ body.dashboard.dashboard-main #main_content {
   margin: 0 0 10px;
   padding: 12px;
   width: 630px;
+  float: right;
 }
 body.dashboard.dashboard-main #content {
   padding: 20px 15px;
