@@ -99,7 +99,20 @@ function aalter_user_todos($principle_id = NULL) {
     GROUP BY n.nid
 		ORDER BY n.changed DESC 
   ', $principle_id);
-  
+  print_r('
+		SELECT
+      nr.nid, nr.title, nr.body, nr.format, ct.field_tags_value as tags,
+      nr1.nid as p_nid, nr1.title as p_title, nr1.body as p_body, nr1.format as p_format
+		FROM {node} n
+    LEFT JOIN {node_revisions} nr ON nr.nid = n.nid
+    LEFT JOIN {content_type_todo} ct ON ct.nid = n.nid
+    LEFT JOIN {node_revisions} nr1 ON nr1.nid = ct.field_parent_principle_nid
+		WHERE n.type = \'todo\'
+    ' . $where . '
+    GROUP BY n.nid
+		ORDER BY n.changed DESC
+  ');
+  print_r($principle_id);
 	while ($node = @db_fetch_object($result)) {
         print_r($node);
 		$atags = explode(" ", $node->tags);
