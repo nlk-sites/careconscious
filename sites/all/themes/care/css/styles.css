@@ -1448,8 +1448,8 @@ body.dashboard-main #content .block-views {
   font-size: 12px;
   line-height: 14px;
 }
-body.dashboard-main #content #block-views-tasks-block_9 {}
-body.dashboard-main #content #block-views-tasks-block_9 .more-link {
+body.dashboard-main #content #block-aalter-0 {}
+body.dashboard-main #content #block-aalter-0 .more-link {
   font-size: 11px;
   position: absolute;
   top: 7px;
@@ -1488,7 +1488,7 @@ body.dashboard-main #content .block-views .more-link {
 body.dashboard-main #content .block-views .content {
   padding: 10px 15px;
 }
-body.dashboard-main #content #block-views-tasks-block_9.block-views .content {
+body.dashboard-main #content #block-aalter-0 .block-views .content {
   padding: 10px 0;
 }
 body.dashboard-main #content .block .item-list {
@@ -1535,6 +1535,30 @@ body.dashboard-main #content .block .views-row .views-field-created {
 body.dashboard-main #content .block .views-row .views-field-title {
   display: block;
   padding: 0 0 3px;
+}
+/* my caregiving tasks */
+body.dashboard-main #block-aalter-0 .tasks-lists {
+  float: left;
+  width: 175px;
+  margin: 0 -2px 10px 15px;
+  color: #666;
+  font-size: 12px;
+  border-right: 1px solid #e1e1e1;
+  padding: 0 10px 0 0;
+}
+body.dashboard-main #block-aalter-0 .tasks-lists .tasks-principle {
+  text-transform: uppercase;
+  font-size: 10px;
+}
+body.dashboard-main #block-aalter-0 .tasks-lists h3.principle-title {
+  font-size: 13px;
+  font-weight: bold;
+  color:#000;
+}
+body.dashboard-main #block-aalter-0 .tasks-lists ul {}
+body.dashboard-main #block-aalter-0 .tasks-lists ul li  {
+  margin: 0 0 10px;
+  list-style: square;
 }
 
 

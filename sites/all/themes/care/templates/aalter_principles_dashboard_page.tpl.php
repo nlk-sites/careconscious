@@ -3,11 +3,11 @@
 <?php } else {?>
   <div class="block-views">
     <h2>My Caregiving Tasks</h2>
-    <?php echo l('View all', 'dashboard/user-tasks');?>
+    <div class="more-link"><?php echo l('View all', 'dashboard/user-tasks');?></div>
     <div class="content">
       <?php foreach ($principles as $group => $principle) {?>
-        <div>
-          <div>Principle <?php echo $principle->principle_number;?></div>
+        <div class="tasks-lists">
+          <div class="tasks-principle">Principle <?php echo $principle->principle_number;?></div>
           <h3 class="principle-title"><?php echo $principle->p_title;?></h3>
           <ul>
             <?php if(isset($todos[$principle->p_nid]) && !empty($todos[$principle->p_nid])){
