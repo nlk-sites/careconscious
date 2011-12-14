@@ -1560,12 +1560,18 @@ body.dashboard-main #block-aalter-0 .tasks-lists ul li  {
   margin: 0 0 10px;
   list-style: square;
 }
+body.dashboard-main #block-aalter-0 .tasks-lists ul li a:link,
+body.dashboard-main #block-aalter-0 .tasks-lists ul li a:visited  {
+  font-weight: normal;
+  color:#666;
+}
 /* my caregiving tasks page */
 .mytasks-header {
   padding: 0 0 50px;
 }
 
 .tasks-lists-main {
+  position: relative;
   float: left;
   width: 290px;
   margin: 0 10px 50px 0;
@@ -1573,10 +1579,10 @@ body.dashboard-main #block-aalter-0 .tasks-lists ul li  {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  position: relative;
   font-size: 12px;
   line-height: 14px;
   color:#666;
+  height: 220px;
 }
 .tasks-lists-main .tasks-header {
   padding: 10px 15px;
@@ -1600,14 +1606,23 @@ body.dashboard-main #block-aalter-0 .tasks-lists ul li  {
   padding: 0;
 }
 .tasks-lists-main ul  {
- margin: 20px 20px 20px 30px;
+ margin: 20px 20px 40px 30px;
  padding: 0;
 }
 .tasks-lists-main ul li  {
   margin: 0 0 10px;
   list-style: square;
 }
+.tasks-lists-main ul li a:link,
+.tasks-lists-main ul li a:visited  {
+  font-weight: normal;
+  color:#666;
+}
 .tasks-lists-main .more-link  {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 260px;
   border-top: 1px solid #e1e1e1;
   padding: 3px 15px;
   clear: both;
