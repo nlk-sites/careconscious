@@ -4,17 +4,17 @@
 /**
  * Implementation of hook_menu()
  */
-/*
+
 function aalter_menu() {
   return array(
-    'user/%user/todos' => array(
-      'title' => 'Your Caregiving Tasks',
+    'dashboard/user-tasks' => array(
+      'title' => 'My Caregiving Tasks',
       'page callback' => 'aalter_user_todos',
-      'page arguments' => array(1),
+      //'page arguments' => array(1),
       'access arguments' => array('access content'),
       'type' => MENU_CALLBACK,
     ),
-    'user/%user/todos/%' => array(
+    /*'user/%user/todos/%' => array(
       'title' => 'Your Caregiving Tasks',
       'page callback' => 'aalter_user_todos',
       'page arguments' => array(1,3),
@@ -27,10 +27,10 @@ function aalter_menu() {
       'page arguments' => array(1),
       'access arguments' => array('access content'),
       'type' => MENU_CALLBACK,
-    ),
+    ),*/
   );
 }
-*/
+
 /**
 * Implementation of hook_block().
 * Adds a block that has new text.
@@ -59,7 +59,15 @@ function aalter_block($op = 'list', $delta = 0, $edit = array()) {
 function aalter_theme() {
   return array(
     'aalter_principles_page' => array(
-      'arguments' => array('principles' => NULL, 'user' => NULL),
+      'arguments' => array('principles' => NULL, 'user' => NULL, 'todos' => NULL),
+      'template' => 'pages/aalter_principles_page',
+    ),
+    'aalter_principles_dashboard_page' => array(
+      'arguments' => array('principles' => NULL, 'user' => NULL, 'todos' => NULL),
+      'template' => 'pages/aalter_principles_dashboard_page',
+    ),
+    'aalter_principles_pdf_page' => array(
+      'arguments' => array('principles' => NULL, 'user' => NULL, 'todos' => NULL),
       'template' => 'pages/aalter_principles_page',
     ),
     'aalter_todos_page' => array(
@@ -93,12 +101,13 @@ function aalter_user_todos($principle_id = NULL) {
 	$result = @db_query('
 		SELECT
       nr.nid, nr.title, nr.body, nr.format, ct.field_tags_value as tags, 
-      nr1.nid as p_nid, nr1.title as p_title, nr1.body as p_body, nr1.format as p_format
+      nr1.nid as p_nid, nr1.title as p_title, nr1.body as p_body, nr1.format as p_format, ctp.field_principle_number_value as principle_number
 		FROM {node} n
     LEFT JOIN {node_revisions} nr ON nr.nid = n.nid 
     LEFT JOIN {content_type_todo} ct ON ct.nid = n.nid
-    LEFT JOIN content_field_parent_principle cfpp ON ct.vid = cfpp.vid
+    LEFT JOIN {content_field_parent_principle} cfpp ON ct.vid = cfpp.vid
     LEFT JOIN {node_revisions} nr1 ON nr1.nid = cfpp.field_parent_principle_nid
+    LEFT JOIN {content_type_principle} ctp ON ctp.nid = nr1.nid
 		WHERE n.type = \'todo\'
     ' . $where . '
     GROUP BY n.nid
@@ -126,15 +135,25 @@ function aalter_user_todos($principle_id = NULL) {
 
   ksort($principles_by_nid);
   ksort($grouped_todos);
-
-  if(strpos($_SERVER["REQUEST_URI"], 'print') !== FALSE){
+/*  echo "<pre>";
+  print_r($_SERVER["REQUEST_URI"]);
+  print_r(arg(0));
+  print_r(arg(1));
+print_r($principles_by_nid);
+//print_r($grouped_todos);
+echo "</pre>";
+die();*/
+  if($_SERVER["REQUEST_URI"] == '/dashboard'){
+      $principles_by_nid = array_slice($principles_by_nid, -3, 3, true);
+      return theme('aalter_principles_dashboard_page', $principles_by_nid, $user, $grouped_todos);
+  }elseif(strpos($_SERVER["REQUEST_URI"], 'print') !== FALSE){
     return $principle_id ?
       theme('aalter_todos_pdf_page', $principle, $grouped_todos) :
-      theme('aalter_principles_pdf_page', $principles_by_nid, $user);
+      theme('aalter_principles_pdf_page', $principles_by_nid, $user, $grouped_todos);
   }else{
     return $principle_id ?
       theme('aalter_todos_page', $principle, $grouped_todos) :
-      theme('aalter_principles_page', $principles_by_nid, $user);
+      theme('aalter_principles_page', $principles_by_nid, $user, $grouped_todos);
   }
 }
 
