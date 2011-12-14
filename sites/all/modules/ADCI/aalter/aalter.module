@@ -70,6 +70,10 @@ function aalter_theme() {
       'arguments' => array('resources' => NULL),
       'template' => 'pages/aalter_resources_page',
     ),
+    'aalter_todos_pdf_page' => array(
+      'arguments' => array('principle' => NULL, 'todos' => NULL),
+      'template' => 'pages/aalter_todos_pdf_page',
+    ),
   );
 }
 
@@ -122,11 +126,16 @@ function aalter_user_todos($principle_id = NULL) {
 
   ksort($principles_by_nid);
   ksort($grouped_todos);
-  
-  
-  return $principle_id ? 
-    theme('aalter_todos_page', $principle, $grouped_todos) :
-    theme('aalter_principles_page', $principles_by_nid, $user);
+
+  if(strpos($_SERVER["REQUEST_URI"], 'print') !== FALSE){
+    return $principle_id ?
+      theme('aalter_todos_pdf_page', $principle, $grouped_todos) :
+      theme('aalter_principles_pdf_page', $principles_by_nid, $user);
+  }else{
+    return $principle_id ?
+      theme('aalter_todos_page', $principle, $grouped_todos) :
+      theme('aalter_principles_page', $principles_by_nid, $user);
+  }
 }
 
 function aalter_user_resources($user) {
