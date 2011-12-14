@@ -84,7 +84,7 @@ function aalter_user_todos($principle_id = NULL) {
 	$todolists_ids = array();
   $left = '';
   if ($principle_id) {
-    $where = '&& ct.field_parent_principle_nid = %d';
+    $where = '&& cfpp.field_parent_principle_nid = %d';
   }
 	$result = @db_query('
 		SELECT
@@ -92,29 +92,16 @@ function aalter_user_todos($principle_id = NULL) {
       nr1.nid as p_nid, nr1.title as p_title, nr1.body as p_body, nr1.format as p_format
 		FROM {node} n
     LEFT JOIN {node_revisions} nr ON nr.nid = n.nid 
-    LEFT JOIN {content_type_todo} ct ON ct.nid = n.nid 
-    LEFT JOIN {node_revisions} nr1 ON nr1.nid = ct.field_parent_principle_nid 
+    LEFT JOIN {content_type_todo} ct ON ct.nid = n.nid
+    LEFT JOIN content_field_parent_principle cfpp ON ct.vid = cfpp.vid
+    LEFT JOIN {node_revisions} nr1 ON nr1.nid = cfpp.field_parent_principle_nid
 		WHERE n.type = \'todo\'
     ' . $where . '
     GROUP BY n.nid
 		ORDER BY n.changed DESC 
   ', $principle_id);
-  print_r('
-		SELECT
-      nr.nid, nr.title, nr.body, nr.format, ct.field_tags_value as tags,
-      nr1.nid as p_nid, nr1.title as p_title, nr1.body as p_body, nr1.format as p_format
-		FROM {node} n
-    LEFT JOIN {node_revisions} nr ON nr.nid = n.nid
-    LEFT JOIN {content_type_todo} ct ON ct.nid = n.nid
-    LEFT JOIN {node_revisions} nr1 ON nr1.nid = ct.field_parent_principle_nid
-		WHERE n.type = \'todo\'
-    ' . $where . '
-    GROUP BY n.nid
-		ORDER BY n.changed DESC
-  ');
-  print_r($principle_id);
+    
 	while ($node = @db_fetch_object($result)) {
-        print_r($node);
 		$atags = explode(" ", $node->tags);
     if (is_array($atags) && count($atags)) {
       foreach ($atags as $key => $val) {
