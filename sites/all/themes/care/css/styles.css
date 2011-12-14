@@ -1536,7 +1536,7 @@ body.dashboard-main #content .block .views-row .views-field-title {
   display: block;
   padding: 0 0 3px;
 }
-/* my caregiving tasks */
+/* my caregiving tasks dashboard */
 body.dashboard-main #block-aalter-0 .tasks-lists {
   float: left;
   width: 175px;
@@ -1559,6 +1559,58 @@ body.dashboard-main #block-aalter-0 .tasks-lists ul {}
 body.dashboard-main #block-aalter-0 .tasks-lists ul li  {
   margin: 0 0 10px;
   list-style: square;
+}
+/* my caregiving tasks page */
+.mytasks-header {
+  padding: 0 0 50px;
+}
+
+.tasks-lists-main {
+  float: left;
+  width: 290px;
+  margin: 0 10px 50px 0;
+  border: 1px solid #e1e1e1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  position: relative;
+  font-size: 12px;
+  line-height: 14px;
+  color:#666;
+}
+.tasks-lists-main .tasks-header {
+  padding: 10px 15px;
+  background: #eee url(../images/bg_block_head.png) repeat-x;
+  font-size: 14px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
+}
+.tasks-lists-main .tasks-header .tasks-principle {
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.tasks-lists-main .tasks-header h3.principle-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+.tasks-lists-main ul  {
+ margin: 20px 20px 20px 30px;
+ padding: 0;
+}
+.tasks-lists-main ul li  {
+  margin: 0 0 10px;
+  list-style: square;
+}
+.tasks-lists-main .more-link  {
+  border-top: 1px solid #e1e1e1;
+  padding: 3px 15px;
+  clear: both;
 }
 
 
