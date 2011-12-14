@@ -6,7 +6,7 @@
     <div class="more-link"><?php echo l('View all', 'dashboard/user-tasks');?></div>
     <div class="content">
       <?php foreach ($principles as $group => $principle) {?>
-        <div class="tasks-lists">
+        <div class="tasks-lists" id="tasks-lists-p<?php echo $principle->principle_number;?>">
           <div class="tasks-principle">Principle <?php echo $principle->principle_number;?></div>
           <h3 class="principle-title"><?php echo $principle->p_title;?></h3>
           <ul>
@@ -14,13 +14,9 @@
               $p_todos = $todos[$principle->p_nid];
               $i = 1;
               foreach($p_todos as $t){
-                $body = str_get_html($t->body);
-                $lis = $body->find('li');
-                foreach($lis as $l){
-                  echo $l;
-                  if($i++ >= 3){
-                    break 2;
-                  }
+                echo '<li>'.l($t->title, 'node/'.$t->nid).'</li>';
+                if($i++ >= 3){
+                  break;
                 }
               }
             }?>
