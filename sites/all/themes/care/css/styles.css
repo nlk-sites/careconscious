@@ -252,11 +252,11 @@ body.not-dashboard #main .views-table td {
 
 
 /* Detail / Nodes */
-div.links ul.links {
+body.not-dashboard div.links ul.links {
   margin: 0;
   padding: 0;
 }
-div.links ul.links li {
+body.not-dashboard div.links ul.links li {
   font-size: 11px;
   text-transform: uppercase;
   font-weight: bold;
@@ -264,8 +264,8 @@ div.links ul.links li {
   display:inline-block;
   padding: 0;
 }
-div.links ul.links li a:link,
-div.links ul.links li a:visited {
+body.not-dashboard div.links ul.links li a:link,
+body.not-dashboard div.links ul.links li a:visited {
   color:#fff;
   background: #05576c url(../images/btn_small.png) repeat-x;
   display:inline-block;
@@ -273,11 +273,11 @@ div.links ul.links li a:visited {
   line-height: 23px;
   padding: 0 10px;
 }
-div.links ul.links li a:hover {
+body.not-dashboard div.links ul.links li a:hover {
   background: #05576c;
   text-decoration: none;
 }
-div.links {
+body.not-dashboard div.links {
   margin: 0 0 20px;
 }
 
@@ -1663,7 +1663,7 @@ body.dashboard #content {
 }
 body.dashboard #main_content h1 {
   font-family: helvetica, arial, sans-serif;
-  margin: 0 10px;
+  margin: 20px 10px 0;
   padding: 10px 0;
   text-transform: none;
   font-size: 16px;
@@ -1680,6 +1680,7 @@ body.dashboard #sidebar_second h2  {
   border-top: 8px solid #4f7b7e;
   font-weight: normal;
   padding: 10px 0;
+  margin: 20px 0 0;
 }
 body.dashboard #sidebar_second h2 span  {
   display: block;
@@ -2721,4 +2722,26 @@ body.page-video-library #postscript  {
   padding: 10px 0 0;
   display: block;
   font-size: 11px;
+}
+
+/* pdf */
+body.dashboard #content {
+  position: relative;
+}
+body.dashboard .print_pdf {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  margin: 0;
+}
+body.dashboard-main .print_pdf  {
+  display: none;
+}
+body.dashboard .print_pdf a:link,
+body.dashboard .print_pdf a:visited {
+  background: url(../images/icon_pdf.png) no-repeat;
+  display: inline-block;
+  padding: 0 0 0 20px;
+  font-size: 11px;
+  font-weight: normal;
 }
