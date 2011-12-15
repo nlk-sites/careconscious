@@ -519,7 +519,7 @@ body.not-dashboard .sidebar .block a:visited {
 #block-quicktabs-qt_your_account .quicktabs_tabs li.active a:link,
 #block-quicktabs-qt_your_account .quicktabs_tabs li.active a:visited {
   color:#fff;
-  background: #3ab2cd url(../images/qt_on.png) no-repeat 50% 0;
+  background: url(../images/qt_on.png) no-repeat 50% 0;
   height: 62px;
 }
 #block-quicktabs-register_login .quicktabs_main,
@@ -585,7 +585,7 @@ body.not-dashboard .sidebar .block a:visited {
 #block-quicktabs-register_login form .form-submit,
 #block-quicktabs-qt_your_account form .form-submit {
   color:#fff;
-  background: #05576c url(../images/btn_large.png) repeat-x;
+  background: #05576c url(../images/btn_extralarge.png) repeat-x;
   text-transform: uppercase;
   display:inline-block;
   height: 46px;
