@@ -10,9 +10,7 @@
       </div>
       <div class="views-field-body">
         <div class="field-content">
-          <?php print $todo->format;?>
-          <?php print $todo->body;?>
-          <?php print $todo->body ? check_markup($todo->body, $todo->format) : $todo->title; ?>
+          <?php print $todo->body ? $todo->body : $todo->title; ?>
         </div>
       </div>
     </div>
