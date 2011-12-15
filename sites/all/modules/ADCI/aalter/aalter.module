@@ -156,7 +156,7 @@ die();*/
       theme('aalter_principles_page', $principles_by_nid, $user, $grouped_todos);
   }
 }
-
+/*
 function aalter_user_resources($user) {
 	global $user;
 	$aUserTags = get_user_tags($user);
@@ -232,7 +232,7 @@ function aalter_views_query_alter(&$view,&$query) {
     $view->pager['items_per_page'] = 5;
   }
 }
-
+*/
 function get_user_tags($account) {
   $tags = array();
   $ws_sids_query = "SELECT
