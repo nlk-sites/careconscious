@@ -11,7 +11,9 @@
 Options -Indexes
 
 # Follow symbolic links in this directory.
-Options +FollowSymLinks
+# For security reasons, Option followsymlinks cannot be overridden.
+#Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
 
 # Make Drupal handle any 404 errors.
 ErrorDocument 404 /index.php
@@ -36,6 +38,8 @@ DirectoryIndex index.php
   php_value mbstring.http_input             pass
   php_value mbstring.http_output            pass
   php_value mbstring.encoding_translation   0
+  php_value post_max_size            		8M
+  php_value upload_max_filesize				8M
 </IfModule>
 
 # PHP 4, Apache 2.
@@ -46,6 +50,8 @@ DirectoryIndex index.php
   php_value mbstring.http_input             pass
   php_value mbstring.http_output            pass
   php_value mbstring.encoding_translation   0
+  php_value post_max_size            		8M
+  php_value upload_max_filesize				8M
 </IfModule>
 
 # PHP 5, Apache 1 and 2.
@@ -56,6 +62,8 @@ DirectoryIndex index.php
   php_value mbstring.http_input             pass
   php_value mbstring.http_output            pass
   php_value mbstring.encoding_translation   0
+  php_value post_max_size            		8M
+  php_value upload_max_filesize				8M
 </IfModule>
 
 # Requires mod_expires to be enabled.
