@@ -1,0 +1,47 @@
+<?php
+
+function rules_webform_submitted_rules_event_info() {
+	return array();
+}
+
+function rules_webform_submitted_rules_condition_info() {
+  $items = array();
+  $defaults = array(
+    'arguments' => array(
+    //  'node' => array('type' => 'node', 'label' => t('Content')),
+    ),
+    'module' => 'Webform',
+  );
+  $items['rules_webform_submitted_condition_content_is_fantastic'] = $defaults + array(
+    'label' => t('Webform has been submitted'),
+  //  'help' => t('Evaluates to TRUE, if the designated webform has been submitted.'),
+  );
+  return $items;
+}
+
+/**
+ * Condition: Check for selected content types
+ */
+function rules_webform_submitted_condition_content_is_fantastic($settings) {
+    include_once(drupal_get_path('module', 'webform') ."/webform_submissions.inc");
+	global $user;
+	$nid = $settings['selected_webform'];
+    $submission_count = webform_get_submission_count($nid, $user->uid);
+    return $submission_count; // non-zero is TRUE, "You have already submitted this form"
+}
+
+function rules_webform_submitted_condition_content_is_fantastic_form($settings, &$form) {
+  $query = db_query("SELECT nid, title FROM {node} WHERE type = '%s'", 'webform');
+  $options = array();
+  while ($webform = db_fetch_array($query)) {
+    $form_id = 'webform-client-form-'. $webform['nid'];
+    $options[$webform['nid']] = $webform['title'];
+  }
+  $form['settings']['selected_webform'] = array(
+    '#type' => 'select',
+    '#title' => t('Webform to check'),
+    '#options' => $options,
+    '#default_value' => isset($settings['selected_webform']) ? $settings['selected_webform'] : '',
+    '#required' => TRUE,
+  );
+}

@@ -1,0 +1,14 @@
+name = Rules Webform Submitted
+description = Adds a condition to Rules to check if a Webform has been submitted by the current user, useful for restricting access to content until you've collected some information
+core = 6.x
+package = Rules
+
+dependencies[] = webform
+dependencies[] = rules
+
+; Information added by drupal.org packaging script on 2011-04-25
+version = "6.x-1.0"
+core = "6.x"
+project = "rules_webform_submitted"
+datestamp = "1303757516"
+
