@@ -151,6 +151,7 @@ ini_set('session.use_trans_sid',    0);
 ini_set('url_rewriter.tags',        '');
 
 ini_set('memory_limit', '128M');
+ini_set('upload_max_filesize', '40M');
 
 /**
  * If you encounter a situation where users post a large amount of text, and
