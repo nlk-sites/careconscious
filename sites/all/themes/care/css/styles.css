@@ -2668,6 +2668,10 @@ body.page-video-library #postscript  {
   width: 646px;
   overflow: hidden;
 }
+#block-views-video-block_1 .quicktabs_main object  {
+  height: 414px;
+  width: 646px;
+}
 
 #block-block-40 {
   border-top: 2px solid #f3f3f3;
