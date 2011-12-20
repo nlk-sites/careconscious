@@ -1,7 +1,8 @@
 <?php
   $hash = md5("fretdsfte");
   ob_start();
-  print "--".$hash."\n"."Content-Type: text/plain; charset=ISO-8859-1\n";
+  print "--".$hash."\n"
+  ."Content-Type: text/plain; charset=ISO-8859-1\n";
 ?>
 Thank you for submitting your contact info.  You may sign up for an account at <?php echo l('user/register');?>.
 
