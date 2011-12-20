@@ -4,8 +4,12 @@
   print "--".$hash."\n"
   ."Content-Type: text/plain; charset=ISO-8859-1\n";
 ?>
+<html>
+    <head></head>
+    <body>
 Thank you for submitting your contact info.  You may sign up for an account at <?php echo l('user/register');?>.
-
+    </body>
+</html>
 <?php
 
     print "--".$hash."\n"
