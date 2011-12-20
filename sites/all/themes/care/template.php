@@ -24,6 +24,21 @@ function phptemplate_body_class($left, $right) {
   }
 }
 
+function care_webform_mail_headers($form_values, $node, $sid, $cid) {
+  if (141473 == $form_values['details']['nid']) {
+    $hash = md5("fretdsfte");
+    $headers = array(
+      "Content-Type" => "multipart/mixed; boundary=\"".$hash."\"",
+      "X-Mailer" => 'Drupal Webform (PHP/'.phpversion().')',
+    );
+  } else {
+    $headers = array(
+      'X-Mailer' => 'Drupal Webform (PHP/'. phpversion() .')',
+    );
+  }
+  return $headers;
+}
+
 /**
  * Return a themed breadcrumb trail.
  *
