@@ -25,7 +25,7 @@ function phptemplate_body_class($left, $right) {
 }
 
 function care_webform_mail_headers($form_values, $node, $sid, $cid) {
-  if (141473 == $form_values['details']['nid']) {
+  if (141473 == $form_values->nid) {
     $hash = md5("fretdsfte");
     $headers = array(
       "Content-Type" => "multipart/mixed; boundary=\"".$hash."\"",
