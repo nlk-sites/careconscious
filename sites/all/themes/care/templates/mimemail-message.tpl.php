@@ -18,7 +18,7 @@
  * @see template_preprocess_mimemail_message()
  */
 ?>
-<?php if(strpos($body, '<html>') !== FALSE){
+<?php if($subject == 'Thank you'){
   print $body;
 }else{?>
 <html>
