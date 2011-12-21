@@ -1,5 +1,10 @@
 <?php if( !count($principles) ){ ?>
-  <p><?php echo t('No additional to-dos to display') ?></p>
+  <div class="block-views">
+    <h2>My Caregiving Tasks</h2>
+    <div class="content">
+   <div class="tasks-lists" style="border-right:none"><p><?php echo t('No additional to-dos to display') ?></p></div>
+    </div>
+  </div>
 <?php } else {?>
   <div class="block-views">
     <h2>My Caregiving Tasks</h2>
