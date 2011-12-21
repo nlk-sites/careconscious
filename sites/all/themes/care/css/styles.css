@@ -540,9 +540,13 @@ body.not-dashboard .sidebar .block a:visited {
   text-align: left;
   padding: 20px 0 0;
 }
+#webform-component-top-blurb { float: left; width: 130px; height: 184px; padding: 1px 0 0 140px; margin: -15px 0 0 -6px; background: url(../images/bg_register.png) no-repeat 0 0; font: italic 14px/15px Georgia, "Times New Roman", Times, serif }
+body.not-dashboard .sidebar .block #webform-component-top-blurb h2 { font: italic 19px/20px Georgia, "Times New Roman", Times, serif; color: #137289; text-transform: none }
+#webform-component-top-blurb ul { margin: 4px 0 0 -1em }
+#webform-component-top-blurb li { margin: 0 0 8px }
 #block-quicktabs-register_login form .form-item,
 #block-quicktabs-qt_your_account form .form-item {
-  margin: 0 0 3px;
+  margin: 0 0 8px;
 }
 #block-quicktabs-register_login form .form-item .description,
 #block-quicktabs-register_login form fieldset legend,
