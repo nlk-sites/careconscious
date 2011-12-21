@@ -1,0 +1,17 @@
+<?php
+
+function pr($val = ''){
+    echo "<pre>";
+    print_r($val);
+    echo "</pre>";
+}
+function prd($val = ''){
+    pr($val);
+    die();
+}
+
+function careconscious_form_user_register_alter(&$form, &$form_state){
+  $form['top_markup'] = array('#type' => 'markup', '#value' => '<div id="registration-top-markup">Join today to become a valued member of our community. Get the support and answers you need to be effective, reduce stress, get organized, save time and make effective decisions. Prepared Family Caregivers can even avoid burn out and depression and reduce doctor visits!
+Take control, start today and get your customized Family Caregiver’s Plan.</div>', '#weight' => -20);
+  $form['name']['#title'] = 'Create a username';
+}

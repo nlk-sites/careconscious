@@ -1,0 +1,3 @@
+name = Careconscious
+description = "Custom module for CareConscious"
+core = 6.x
