@@ -1241,10 +1241,11 @@ body.dashboard #header .btn_download a:visited  {
   float: left;
   height: 42px;
   line-height: 42px;
-  padding: 0 15px;
+  padding: 0 13px;
   color: #bbb;
   font-weight: normal;
 }
+#block-menu-menu-dashboard-main ul.menu li a.h { padding: 0; width: 34px; text-indent: -999em; background: url(../images/home-icon.jpg) no-repeat 0 50% }
 #block-menu-menu-dashboard-main ul.menu li.active-trail a:link,
 #block-menu-menu-dashboard-main ul.menu li.active-trail a:visited {
   font-weight:bold;
@@ -1252,31 +1253,23 @@ body.dashboard #header .btn_download a:visited  {
   color: #fff;
 }
 
-.dashboard #block-search-0 {
-  position: absolute;
-  top: 10px;
-  left: 480px;
-}
+.dashboard #block-search-0 { display: none; position: absolute; top: 36px; right: 0; float: left; padding: 26px 0 21px 23px; width: 259px; heigth: 43px; background: url(../images/search-bg.png) no-repeat 0 0 }
 .dashboard #block-search-0 .form-item  {
   margin: 0;
 }
-.dashboard #block-search-0 .form-item  {
-  margin: 0;
-}
+.dashboard #block-search-0 .form-item label.compact-form-label { top: 4px; font: italic 12px Helvetica, Arial, sans-serif; color: #767676 }
 .dashboard #block-search-0 .form-text {
   border: 0;
-  padding: 3px;
+  padding: 4px;
   background: #fff;
-  font-size: 13px;
-  font-family: helvetica, arial, sans-serif;
-  font-style: italic;
-  color:#888;
-  width: 150px;
+  font: italic 12px Helvetica, Arial, sans-serif;
+  color:#767676;
+  width: 230px;
 }
 .dashboard #block-search-0 .form-submit {
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 31px;
+  right: 27px;
   height: 14px;
   width: 18px;
   border: 0;
