@@ -26,6 +26,7 @@ body {
   height: 210px;
   z-index:90;
 }
+body.not-logged-in.page-user #tabs-wrapper { margin: 15px 0 }
 #logo {
   float: left;
   margin: 35px 0 0;
@@ -457,6 +458,9 @@ body.not-dashboard .sidebar .block h2 {
 body.not-dashboard .sidebar .block a:link,
 body.not-dashboard .sidebar .block a:visited {
 }
+
+#user-register input.form-text { width: 391px }
+
 /* sidebar second */
 #block-quicktabs-register_login,
 #block-quicktabs-qt_your_account,
