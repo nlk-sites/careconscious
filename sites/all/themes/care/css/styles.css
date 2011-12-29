@@ -2748,3 +2748,12 @@ body.dashboard .print_pdf a:visited {
   font-size: 11px;
   font-weight: normal;
 }
+
+.fcol { float: left; width: 419px; margin-right: 30px; font: 13px/16px Arial, Helvetica, sans-serif }
+.fcol .form-item label { font-weight: normal; color: #000; margin: 0 0 6px }
+.fcol .form-checkboxes .form-item { float: left; width: 193px; margin-right: 10px }
+.fcol .form-checkboxes .form-item label { margin: 0; color: #666 }
+.fcol .form-radios { padding: 8px 0; background: #f3f3f3; border-radius: 6px; float: left; width: 360px; display: inline; margin: 0 }
+.fcol .form-radios .form-item { float: left; margin: 0 65px 0 -20px; position: relative; left: 40px }
+.fcol span.lm { float: left; color: #999 }
+.fcol span.lm.m { float: right; margin-right: 59px }

@@ -186,36 +186,7 @@ function aalter_user_resources($user) {
 	return theme('aalter_resources_page', $nodes);
 }
 
-function aalter_form_alter( &$form, $form_state, $form_id){
-  switch ($form_id) {
-    case 'user_register':
-      $form['submit']['#value'] = '';
-    break;
-    case 'user_login':
-      $form['submit']['#value'] = '';
-    break;
-    case 'views_exposed_form':
-      if (!$form['title']['#default_value']) {
-        $form['title']['#attributes']['class'] = !$form['title']['#attributes']['class'] ? 'empty' : $form['title']['#attributes']['class'] . ' empty';
-      }
-      $form['title']['#attributes']['data-phrase'] = 'type in a keyword or phrase';
-      $form['title']['#size'] = 60;
-      $form['#validate'][] = 'aalter_views_exposed_form_validate';
-    break;
-    case 'expert_q_node_form':
-      if (!isset($GLOBALS['user']->roles[3]) && !isset($GLOBALS['user']->roles[5])) {
-        unset($form['taxonomy']);
-      }
-      if (!isset($GLOBALS['user']->roles[3])) {
-        unset($form['body_field']['teaser_js']);
-        unset($form['body_field']['teaser_include']);
-      }
-    break;
-    case 'search_block_form':
-      $form['submit']['#attributes'] = array('class' => 'medGoldBtn');
-    break;
-  }
-}
+
 
 function aalter_views_exposed_form_validate($form, &$form_state){
   if ($form_state['values']['title'] == $form['title']['#attributes']['data-phrase']) {
@@ -331,4 +302,15 @@ function get_user_tags_formats(&$tags,  $principle, $number, $answer) {
   //format: P6_Q10_0
   $tag = "P" . $principle . "_Q" . $number . "_" . $answer;
   $tags[$tag] = "'" . $tag . "'";
+}
+
+function aalter_form_alter( &$form, $form_state, $form_id){
+	switch ($form_id) {
+		case 'profile_details_node_form':
+			unset ($form['preview']);
+			unset ($form['buttons']['preview']);
+			$form['buttons']['submit']['#value'] = 'Submit';
+			$form['buttons']['submit']['#attributes'] = array('class'=>'submitbutton');
+			break;
+	}
 }
