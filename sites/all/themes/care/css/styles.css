@@ -2551,10 +2551,7 @@ dt  {
   background: url(../images/bg_front_partners.png) no-repeat;
 }
 #block-block-37 .front_partners h2 {
-  font-size: 28px;
-  font-family: georgia,"charter",serif;
-  font-weight: normal;
-  font-style: italic;
+  font-size: 14px;
 }
 #block-block-37 .front_tools  {
   float: right;
@@ -2568,6 +2565,7 @@ dt  {
   font-size: 28px;
   line-height: 30px;
   font-weight: normal;
+  font-style: italic;
 }
 #block-block-37 .front_tools a  {
   font-weight: bold;
