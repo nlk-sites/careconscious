@@ -110,7 +110,11 @@
     <?php print $footer ?>
     <div class="clear"></div>
   </div></div>
-
+<script type="text/javascript">
+jQuery(function() {
+	jQuery('.flowplayer-processed object').append('<param name="wmode" value="opaque" />');
+});
+</script>
   <?php print $closure ?>
   </body>
 </html>
