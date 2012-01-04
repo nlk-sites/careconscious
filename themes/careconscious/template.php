@@ -8,14 +8,10 @@ function careconscious_comment_submitted($comment) {
 }
 
 function careconscious_node_submitted($node){
-  if ($node->field_anon[0][value]) {
-    return 'Submitted by Anonymous';
-  } else {
     return t('Submitted by !username',
       array(
          '!username' => theme('username', $node),
        ));
-  }
 }
 
 function careconscious_preprocess_user_profile(&$vars){
