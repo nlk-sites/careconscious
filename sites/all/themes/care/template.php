@@ -134,6 +134,29 @@ function phptemplate_get_ie_styles() {
   return $iecss;
 }
 
+
+function phptemplate_flowplayer($config = NULL, $id = 'flowplayer', $attributes = array(), $contents = '') {
+  // Prepare the ID.
+  $id = form_clean_id($id);
+
+  // Prepare the attributes, passing in the flowplayer class.
+  if (isset($attributes['class'])) {
+    $attributes['class'] .= ' flowplayer';
+  }
+  else {
+    $attributes['class'] = 'flowplayer';
+  }
+  $attributes = drupal_attributes($attributes);
+  
+  $config['playlist'][1]['onFinish'] = 'clip_started=function(){var assess_tab = jQuery("div.content li.qtab-1 a"); if(assess_tab.length){assess_tab.trigger("click");}}';
+
+  // Add the JavaScript to handle the element.
+  flowplayer_add('#'. $id, $config);
+
+  // Return the markup.
+  return "<div id='$id' $attributes>$contents</div>";
+}
+
 function phptemplate_form_element($element, $value) {
   // This is also used in the installer, pre-database setup.
   $t = get_t();
