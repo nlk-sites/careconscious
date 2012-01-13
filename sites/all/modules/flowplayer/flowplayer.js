@@ -82,8 +82,7 @@ Drupal.behaviors.flowplayer = function() {
     if (config['clip'] && config['clip']['onCuepoint'] && typeof(config['clip']['onCuepoint'][1]) == 'string') {
       config['clip']['onCuepoint'][1] = eval(config['clip']['onCuepoint'][1]);
     }
-
     // Create the flowplayer element on the non-processed elements.
-    $(selector + ':not(.flowplayer-processed)').addClass('flowplayer-processed').flowplayer(Drupal.settings.basePath + Drupal.settings.flowplayerSwf, config);
+    $(selector + ':not(.flowplayer-processed)').addClass('flowplayer-processed').flowplayer({src: Drupal.settings.basePath + Drupal.settings.flowplayerSwf, wmode:'opaque'}, config);
   });
 };
