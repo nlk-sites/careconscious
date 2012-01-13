@@ -1,5 +1,4 @@
 <?php
-// $Id: block_edit.module,v 1.1.2.28 2010/02/17 18:24:24 psynaptic Exp $
 
 /**
  * @file
@@ -25,6 +24,13 @@ function block_edit_menu() {
 }
 
 /**
+ * Implementation of hook_perm().
+ */
+function block_edit_perm() {
+  return array('view block edit links', 'view node edit links', 'administer block_edit');
+}
+
+/**
  * Implementation of hook_views_api().
  */
 function block_edit_views_api() {
@@ -37,8 +43,8 @@ function block_edit_views_api() {
 function block_edit_init() {
   if (function_exists('drupal_get_path')) {
     $path = drupal_get_path('module', 'block_edit');
-    drupal_add_js($path .'/block_edit.js');
-    drupal_add_css($path .'/block_edit.css');
+    drupal_add_js($path .'/block_edit.js', 'module', 'header', FALSE, TRUE, FALSE);
+    drupal_add_css($path .'/block_edit.css', 'module', 'all', FALSE);
   }
   drupal_add_js(array(
     'block_edit' => array(
@@ -59,7 +65,8 @@ function block_edit_preprocess_block(&$vars) {
 
   if (user_access('administer blocks')) {
 
-    if ($block->module != 'views') {
+    // Display if not a Views block, or if Views is not already showing them.
+    if ($block->module != 'views' || variable_get('views_no_hover_links', FALSE)) {
       $vars['block_edit_links_array'][] = array(
         'title' => t('[Configure]'),
         'href' => "admin/build/block/configure/$block->module/$block->delta",
@@ -136,17 +143,17 @@ function block_edit_preprocess_node(&$vars) {
 
   global $user;
 
-  $options = variable_get('node_link_options', block_edit_node_link_options());
+  $options = variable_get('block_edit_node_link_options', block_edit_node_link_options());
 
   if (user_access('access content') && $options['view']) {
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['node-view'] = array(
       'title' => t('[View]'),
       'href' => "node/$node->nid",
     );
   }
 
   if (((user_access("edit any $node->type content") || (user_access("edit own $node->type content") && $user->uid == $node->uid) || ($node->type == 'webform' && user_access("edit {$node->type}s"))) || user_access('administer nodes')) && $options['edit']) {
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['node-edit'] = array(
       'title' => t('[Edit]'),
       'href' => "node/$node->nid/edit",
       'query' => drupal_get_destination(),
@@ -154,45 +161,45 @@ function block_edit_preprocess_node(&$vars) {
   }
 
   if (((user_access("delete any $node->type content") || (user_access("delete own $node->type content") && $user->uid == $node->uid)) || user_access('administer nodes')) && $options['delete']) {
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['node-delete'] = array(
       'title' => t('[Delete]'),
       'href' => "node/$node->nid/delete",
       'query' => drupal_get_destination(),
     );
   }
 
-  if (module_exists('clone') && user_access('clone node') && $options['clone']) {
-    $vars['node_edit_links_array'][] = array(
+  if (module_exists('clone') && user_access('clone node') && !empty($options['clone'])) {
+    $vars['node_edit_links_array']['clone'] = array(
       'title' => t('[Clone]'),
       'href' => "node/$node->nid/clone",
       'query' => drupal_get_destination(),
     );
   }
 
-  if (module_exists('devel') && user_access('access devel information') && $options['devel']) {
-    $vars['node_edit_links_array'][] = array(
+  if (module_exists('devel') && user_access('access devel information') && !empty($options['devel'])) {
+    $vars['node_edit_links_array']['devel-load'] = array(
       'title' => t('[Dev load]'),
       'href' => "node/$node->nid/devel/load",
     );
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['devel-render'] = array(
       'title' => t('[Dev render]'),
       'href' => "node/$node->nid/devel/render",
     );
   }
 
-  if (module_exists('content') && user_access('administer nodes') && $options['cck']) {
+  if (module_exists('content') && user_access('administer nodes') && user_access('administer content types') && !empty($options['cck'])) {
     $node_type = str_replace('_', '-', $node->type);
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['node-type'] = array(
       'title' => t('[Edit type]'),
       'href' => "admin/content/node-type/$node_type",
       'query' => drupal_get_destination(),
     );
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['node-type-fields'] = array(
       'title' => t('[Manage fields]'),
       'href' => "admin/content/node-type/$node_type/fields",
       'query' => drupal_get_destination(),
     );
-    $vars['node_edit_links_array'][] = array(
+    $vars['node_edit_links_array']['node-type-display'] = array(
       'title' => t('[Display fields]'),
       'href' => "admin/content/node-type/$node_type/display",
       'query' => drupal_get_destination(),
@@ -217,8 +224,8 @@ function block_edit_preprocess_node(&$vars) {
  *   The name of the template being rendered ("page" in this case.)
  */
 function block_edit_preprocess_page(&$vars, $hook) {
-  $block_edit_tabs = variable_get('block_edit_tabs', array_keys(node_get_types('names')));
-  if ($block_edit_tabs[$vars['node']->type] === 0) {
+  $block_edit_tabs = variable_get('block_edit_tabs', node_get_types('names'));
+  if (isset($vars['node']->type) && isset($block_edit_tabs[$vars['node']->type]) && $block_edit_tabs[$vars['node']->type] === 0 && arg(2) == '') {
     $vars['tabs'] = '';
   }
 }
@@ -230,6 +237,9 @@ function block_edit_visible($type, $vars) {
   switch ($type) {
 
     case 'node':
+      if (!user_access('view node edit links')) {
+        return FALSE;
+      }
       // Enable node edit links setting.
       if (!variable_get('block_edit_node_links', 1)) {
         return FALSE;
@@ -238,8 +248,13 @@ function block_edit_visible($type, $vars) {
       if (!block_edit_visibility('node')) {
         return FALSE;
       }
-      // Content type settings.
       $node = $vars['node'];
+      // Shouldn't appear in other build modes, such as search indexing and
+      // results, RSS, print, preview, etc.
+      if (isset($node->build_mode) && $node->build_mode !== NODE_BUILD_NORMAL) {
+        return FALSE;
+      }
+      // Content type settings.
       $allowed_nodes = variable_get('block_edit_content_types', array_combine(array_keys(node_get_types('names')), array_keys(node_get_types('names'))));
       if ($allowed_nodes[$node->type] !== $node->type) {
         return FALSE;
@@ -251,6 +266,9 @@ function block_edit_visible($type, $vars) {
       break;
 
     case 'block':
+      if (!user_access('view block edit links')) {
+        return FALSE;
+      }
       // Enable block edit links setting.
       if (!variable_get('block_edit_block_links', 1)) {
         return FALSE;
@@ -319,7 +337,7 @@ function block_edit_visibility($type) {
 }
 
 function block_edit_preprocess_panels_pane(&$vars) {
-  if (!variable_get('block_edit_panels_links', FALSE)) {
+  if (!variable_get('block_edit_panels_links', TRUE)) {
     $vars['admin_links'] = '';
   }
 }
@@ -331,10 +349,14 @@ function block_edit_node_link_options() {
     'delete',
   );
 
+  if (module_exists('clone')) {
+    $options[] = 'clone';
+  }
+
   if (module_exists('devel')) {
     $options[] = 'devel';
   }
-  
+
   if (module_exists('content')) {
     $options[] = 'cck';
   }

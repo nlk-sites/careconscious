@@ -24,7 +24,7 @@ function block_edit_admin_settings() {
   $form['block_edit_panels_links'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable panels edit links'),
-    '#default_value' => variable_get('block_edit_panels_links', 0),
+    '#default_value' => variable_get('block_edit_panels_links', TRUE),
   );
 
   $form['links'] = array(
@@ -34,11 +34,11 @@ function block_edit_admin_settings() {
     '#collapsed' => FALSE,
   );
 
-  $form['links']['node_link_options'] = array(
+  $form['links']['block_edit_node_link_options'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Types of node links to show'),
     '#options' => block_edit_node_link_options(),
-    '#default_value' => variable_get('node_link_options', block_edit_node_link_options()),
+    '#default_value' => variable_get('block_edit_node_link_options', block_edit_node_link_options()),
   );
 
   $form['types'] = array(

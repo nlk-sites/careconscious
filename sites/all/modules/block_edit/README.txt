@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.1.2.2 2009/12/17 09:37:48 psynaptic Exp $
 
 AUTHOR/MAINTAINERS
 ==================
