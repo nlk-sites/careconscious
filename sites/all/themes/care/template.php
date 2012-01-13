@@ -155,7 +155,7 @@ function phptemplate_flowplayer($config = NULL, $id = 'flowplayer', $attributes 
 
   // Add the JavaScript to handle the element.
   flowplayer_add('#'. $id, $config);
-  
+  /*
   drupal_add_js('jQuery(document).ready(function () {
     var player = $("#'.$id.'");
 	player.children("object").append("<param name=\"wmode\" value=\"opaque\" />");
@@ -163,6 +163,7 @@ function phptemplate_flowplayer($config = NULL, $id = 'flowplayer', $attributes 
 	player.empty().html(phtm);
 	
   });', 'inline');
+  */
   // Return the markup.
   return "<div id='$id' $attributes>$contents</div>";
 }
