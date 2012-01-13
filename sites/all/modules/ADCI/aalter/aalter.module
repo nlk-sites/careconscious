@@ -143,7 +143,10 @@ print_r($principles_by_nid);
 //print_r($grouped_todos);
 echo "</pre>";
 die();*/
-  if($_SERVER["REQUEST_URI"] == '/dashboard'){
+  if($_SERVER["REQUEST_URI"] == '/dashboard'){ // <- this line needs to be modified in order to get CHECKS / COMPLETED on PRINCIPLE subpages
+	  if ( $principle_id ) {
+		  return count($grouped_todos) > 0;
+	  }
       $principles_by_nid = array_slice($principles_by_nid, -3, 3, true);
       return theme('aalter_principles_dashboard_page', $principles_by_nid, $user, $grouped_todos);
   }elseif(strpos($_SERVER["REQUEST_URI"], 'print') !== FALSE){
