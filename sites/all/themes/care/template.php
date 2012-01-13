@@ -151,8 +151,6 @@ function phptemplate_flowplayer($config = NULL, $id = 'flowplayer', $attributes 
   
   $config['playlist'][1]['onFinish'] = 'clip_started=function(){var assess_tab = jQuery("div.content li.qtab-1 a"); if(assess_tab.length){assess_tab.trigger("click");}}';
 
-	$config['wmode'] = 'opaque';
-
   // Add the JavaScript to handle the element.
   flowplayer_add('#'. $id, $config);
   /*
