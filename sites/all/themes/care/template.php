@@ -146,23 +146,22 @@ function phptemplate_flowplayer($config = NULL, $id = 'flowplayer', $attributes 
   else {
     $attributes['class'] = 'flowplayer';
   }
+  if ( isset($attributes['style']) ) $attributes['style'] = str_replace('position: absolute;', '',$attributes['style']);
   $attributes = drupal_attributes($attributes);
   
   $config['playlist'][1]['onFinish'] = 'clip_started=function(){var assess_tab = jQuery("div.content li.qtab-1 a"); if(assess_tab.length){assess_tab.trigger("click");}}';
+
+	$config['wmode'] = 'opaque';
 
   // Add the JavaScript to handle the element.
   flowplayer_add('#'. $id, $config);
   
   drupal_add_js('jQuery(document).ready(function () {
-    var player = $("#'.$id.' > object");
-    if(player.length){
-      player.append(
-        $("<param/>").attr({
-          "name": "wmode",
-          "value": "opaque"
-        })
-      ).find("embed").attr("wmode", "opaque");
-    }   
+    var player = $("#'.$id.'");
+	player.children("object").append("<param name=\"wmode\" value=\"opaque\" />");
+	var phtm = player.html();
+	player.empty().html(phtm);
+	
   });', 'inline');
   // Return the markup.
   return "<div id='$id' $attributes>$contents</div>";
