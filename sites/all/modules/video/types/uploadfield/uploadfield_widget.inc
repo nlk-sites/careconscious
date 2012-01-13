@@ -1,5 +1,5 @@
 <?php
-
+module_load_include('inc', 'video', 'video_widget');
 
 /**
  * @file
@@ -114,11 +114,6 @@ function uploadfield_widget_process($element, $edit, &$form_state, $form) {
 
   if (isset($element['preview']) && $element['#value']['fid'] != 0) {
     $element['preview']['#value'] = theme('video_widget_preview', $element['#value']);
-  }
-
-  // Title is not necessary for each individual field.
-  if ($field['multiple'] > 0) {
-    unset($element['#title']);
   }
 
   // Create our thumbnails
