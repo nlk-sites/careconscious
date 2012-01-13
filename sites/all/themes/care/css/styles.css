@@ -1090,22 +1090,34 @@ body.dashboard .support-or  {
   color: #999;
   font-style: italic;
 }
-body.dashboard .btn_download a:link,
-body.dashboard .btn_download a:visited  {
-  background: #030303 url(../images/btn_download.png) repeat-x;
+body.dashboard .btn_download a  {
+  background: url(../images/btn_download2.png) no-repeat 0 0;
   height: 34px;
   line-height: 34px;
   display: inline-block;
-  padding: 0 15px;
+  padding: 0;
+  text-align: center;
+  width: 223px;
   font-weight: bold;
   text-transform: uppercase;
-  color:#fff;-webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
+  color:#fff;
   font-size: 13px;
 }
-body.dashboard #header .btn_download a:link,
-body.dashboard #header .btn_download a:visited  {
+body.dashboard .btn_todo a  {
+  background: url(../images/btn_todo.png) no-repeat 0 0;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  width: 223px;
+  font-weight: normal;
+  text-transform: none;
+  color:#333;
+  font-size: 13px;
+  margin-bottom: 11px;
+}
+body.dashboard #header .btn_download a  {
   position: absolute;
   top: 72px;
   right: 0;
@@ -1767,6 +1779,7 @@ body.dashboard #sidebar_second .block-block ul.steps li {
   border-bottom: 1px solid #ccc;
   list-style: none;
 }
+body.dashboard #sidebar_second .block-block ul.steps li b { display: block }
 body.dashboard #sidebar_second .block-block ul.steps li.icon_learn {
   background: url(../images/icon_learn.png) no-repeat 0 10px;
 }
@@ -1776,11 +1789,10 @@ body.dashboard #sidebar_second .block-block ul.steps li.icon_assess {
 body.dashboard #sidebar_second .block-block ul.steps li.icon_assist {
   background: url(../images/icon_assist.png) no-repeat 0 10px;
 }
-body.dashboard #sidebar_second .block-block .btn_download {
+body.dashboard #sidebar_second .block-block .btn_todo, body.dashboard #sidebar_second .block-block .btn_download {
   text-align: center;
 }
-body.dashboard #sidebar_second .block-block .btn_download a:link,
-body.dashboard #sidebar_second .block-block .btn_download a:visited  {
+body.dashboard #sidebar_second .block-block .btn_download a  {
   text-transform: none;
   font-weight: normal;
 }
@@ -1790,6 +1802,10 @@ body.dashboard .quicktabs_tabs {
   height: 26px;
   padding: 0 0 0 15px;
   margin: 0;
+  position:absolute;
+  top: -26px;
+  left:0;
+  z-index:99;
 }
 body.dashboard .quicktabs_tabs li {
   padding: 0;
