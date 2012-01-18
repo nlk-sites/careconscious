@@ -55,13 +55,13 @@
               </div>
               <script type="text/javascript">
 			  jQuery(function() {
-				 jQuery('#content .block').append('<div class="fader" />');
+				 jQuery('#main_content .block').append('<div class="fader" />');
 				 jQuery('#getstartedhere a.x').click(function() {
-					jQuery('#content .block .fader, #getstartedhere').remove();
+					jQuery('#main_content .block .fader, #getstartedhere').remove();
 					return false; 
 				 });
 				 jQuery('#content').css('position','relative');
-				 jQuery('#getstartedhere, #content .block .fader').fadeIn();
+				 jQuery('#getstartedhere, #main_content .block .fader').fadeIn();
 			  });
 			  </script>
 		  <?php } ?>
