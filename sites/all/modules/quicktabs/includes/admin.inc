@@ -30,7 +30,7 @@ function quicktabs_list() {
       }
 
       $tablerow = array(
-        array('data' => $quicktabs['title']),
+        array('data' => check_plain($quicktabs['title'])),
         array('data' => $storage),
         array('data' => l(t('Edit'), 'admin/build/quicktabs/'. $quicktabs['machine_name'] .'/edit')),
         array('data' => l(t('Export'), 'admin/build/quicktabs/'. $quicktabs['machine_name'] .'/export')),
@@ -40,7 +40,7 @@ function quicktabs_list() {
     }
     else {
       $tablerow = array(
-        array('data' => $quicktabs['title']),
+        array('data' => check_plain($quicktabs['title'])),
         array('data' => t('Normal')),
         array('data' => l(t('Edit'), 'admin/build/quicktabs/'. $quicktabs['machine_name'] .'/edit')),
         array('data' => l(t('Clone'), 'admin/build/quicktabs/'. $quicktabs['machine_name'] .'/clone')),
@@ -260,7 +260,7 @@ function _quicktabs_form($details, $quicktabs) {
       '#default_value' => $selected_view,
       '#title' => t('Select a view'),
       '#ahah' => array(
-        'path' => 'quicktabs/ahah/',
+        'path' => 'quicktabs/ahah',
         'wrapper' => 'quicktabs-tabs',
         'method' => 'replace',
         'event' => 'change',
