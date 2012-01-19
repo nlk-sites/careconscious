@@ -91,8 +91,17 @@
  */
 
 //$db_url = 'mysqli://carecons_ccdru:lErNuJAw8%23eu@localhost/carecons_ccdrudb';
-$db_url = 'mysqli://ninthlin_drp1:AmJGveYCfM@localhost/ninthlin_drp1';
-//$db_url = 'mysqli://root:root@localhost/careconscious';
+switch($_SERVER['SERVER_NAME']) {
+	case 'dev.careconscious.com':
+		$db_url = 'mysqli://carecons_ccdru:lErNuJAw8%23eu@localhost/carecons_dev';
+		break;
+	case 'careconscious.ninthlink.net':
+		$db_url = 'mysqli://ninthlin_drp1:AmJGveYCfM@localhost/ninthlin_drp1';
+		break;
+	case 'careconscious.localhost':
+		$db_url = 'mysqli://root@localhost/careconscious';
+		break;
+}
 $db_prefix = '';
 
 /**
