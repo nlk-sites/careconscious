@@ -12,6 +12,9 @@ stylesheets[all][] = css/html-elements.css
 stylesheets[all][] = css/styles.css
 stylesheets[print][] = css/print.css
 
+
+scripts[] = js/care.js
+
 regions[header] = Header
 regions[left]  = First sidebar
 regions[right] = Second sidebar

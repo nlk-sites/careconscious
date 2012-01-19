@@ -1771,14 +1771,28 @@ body.dashboard #sidebar_second .block-block ul.steps {
   margin: 0 0 50px;
   padding: 0;
   border-top: 1px solid #ccc;
-  line-height: 13px;
+  line-height: 15px;
 }
 body.dashboard #sidebar_second .block-block ul.steps li {
   margin: 0;
-  padding: 10px 0 10px 22px;
+  padding: 6px 0 11px 37px;
   border-bottom: 1px solid #ccc;
   list-style: none;
+  position:relative;
 }
+body.dashboard #sidebar_second .block-block ul.steps li.step { cursor: pointer }
+body.dashboard #sidebar_second .block-block ul.steps li.step.on { cursor: default }
+body.dashboard #sidebar_second .block-block ul.steps li.step span.stepnum {
+	display: block; width: 30px; height: 30px; line-height: 30px; position: absolute; top: 9px; left: 0; text-align: center; font-size: 16px; font-weight: bold; color: #fff; background: url(../images/stepdots.png) no-repeat 0 0;
+}
+body.dashboard-principle1 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -48px }
+body.dashboard-principle2 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -96px }
+body.dashboard-principle3 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -144px }
+body.dashboard-principle4 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -192px }
+body.dashboard-principle5 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -240px }
+body.dashboard-principle6 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -288px }
+body.dashboard-principle7 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -336px }
+body.dashboard-principle8 #sidebar_second .block-block ul.steps li.step.on span.stepnum { background-position: 0 -384px }
 body.dashboard #sidebar_second .block-block ul.steps li b { display: block }
 body.dashboard #sidebar_second .block-block ul.steps li.icon_learn {
   background: url(../images/icon_learn.png) no-repeat 0 10px;
