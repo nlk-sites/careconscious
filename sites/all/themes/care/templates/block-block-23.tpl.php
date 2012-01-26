@@ -8,7 +8,7 @@
   <div class="content">
     <?php print $block->content ?>
     <ul class="steps">
-<li class="step"><span class="stepnum">1</span><b>Step One: Learn</b>
+<li class="step"><span class="stepnum">1</span><b>Step One: Educate</b>
 Watch the Video</li>
 <li class="step"><span class="stepnum">2</span><b>Step Two: Assess</b>
 Complete the Assessment</li>
