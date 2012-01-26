@@ -5,9 +5,7 @@
     <?php $cur_node = node_load(arg(1));
     $principle_num = node_load($cur_node->field_principle_nid[0]['nid'])->field_principle_number[0]['value'];?>
     <p><b>Your Family Caregiver's Plan for Principle <?php echo $principle_num;?></b></p>
-    <p>
-      Based on your answers we've delivered your customized Family Caregiver's Plan for <?php echo $cur_node->title; ?>, which includes the important tasks to complete and recommended advice and resources to help you complete those tasks. It's what you need to do and what you need to do it, all in one place.  
-    </p>
+    <p>Based on your answers we've delivered your customized Family Caregiver's Plan for <?php echo $cur_node->title; ?>, which includes the important tasks to complete and recommended advice and resources to help you complete those tasks.</p>
     <?php foreach ($todos as $todo) { ?>
       <div class="views-row">
         <div class="views-field-body">
