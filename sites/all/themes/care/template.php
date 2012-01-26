@@ -92,6 +92,10 @@ function phptemplate_preprocess_page(&$vars) {
   if (module_exists('color')) {
     _color_page_alter($vars);
   }
+  
+  if ( ( arg(0) == 'user' ) && ( $vars['title'] != 'User account' ) ) {
+	$vars['title'] = 'Your Profile: '. $vars['title'];  
+  }
 }
 
 /**
