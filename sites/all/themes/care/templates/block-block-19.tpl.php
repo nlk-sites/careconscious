@@ -16,7 +16,7 @@ Complete the Assessment</li>
 Review &amp; Print your Assist Plan</li>
 </ul>
 <div class='btn_todo'><?php echo l('View Dashboard', 'dashboard');?></div>
-<div class='btn_todo'><?php echo l('Next Principle', 'dashboard/principle-2');?></div>
+<div class='btn_todo next'><?php echo l('Start Next Principle', 'dashboard/principle-2');?></div>
 <div class="btn_download"><?php echo l('Download & Print Your Plan', 'printpdf/141442');?></div>
     <div class="clear"></div>
   </div>
