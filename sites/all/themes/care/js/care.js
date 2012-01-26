@@ -3,6 +3,11 @@ jQuery(function($) {
 		var ac = $('#user-login-form').attr('action');
 		ac = ac.substr(0,ac.lastIndexOf('?destination='));
 		$('#user-login-form').attr('action', ac );
+		
+		if ( ( $('#sidebar_second .messages').size() > 0 ) && ( $('#quicktabs_tabpage_register_login_1').size() > 0 ) ) {
+			$('#sidebar_second .messages').prependTo('#user-login-form');
+			$('#quicktabs-tab-register_login-1').click();
+		}
 	}
 	if ( $('#sidebar_second ul.steps').size() > 0 ) {
 		$('#content .quicktabs_tabs a').each(function(i) {

@@ -73,6 +73,7 @@
       <?php if ($right): ?>
         <div id="sidebar_second" class="sidebar">
           <?php print $right ?>
+          <?php if ($show_messages && $messages): print $messages; endif; ?>
           <div class="clear"></div>
         </div><!-- END: sidebar -->
       <?php endif; ?>
