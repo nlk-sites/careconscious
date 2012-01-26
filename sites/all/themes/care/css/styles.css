@@ -1355,7 +1355,7 @@ body.dashboard .sidebar .block .views-field-title {
   font-size: 12px;
   font-style: italic;
   font-weight: bold;
-  background: url(../images/img_labels.png) no-repeat bottom right;;
+  background: url(../images/img_labels.png) no-repeat 99% 0;
 }
 #block-block-20 ul.menu {
   padding: 0;
