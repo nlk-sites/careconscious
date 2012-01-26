@@ -1,4 +1,9 @@
 jQuery(function($) {
+	if ( $('#user-login-form').size() > 0 ) {
+		var ac = $('#user-login-form').attr('action');
+		ac = ac.substr(0,ac.lastIndexOf('?destination='));
+		$('#user-login-form').attr('action', ac );
+	}
 	if ( $('#sidebar_second ul.steps').size() > 0 ) {
 		$('#content .quicktabs_tabs a').each(function(i) {
 			$(this).bind('click' ,function() {
