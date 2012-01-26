@@ -20,9 +20,9 @@ foreach ($ourprinciples as $k => $v ) {
 	?>
   <li class="item_principle<?php print $i ?>"><?php echo l($v,'dashboard/principle-'. $i); ?>
     <ul>
-      <li class="icon_learn"><a href="/dashboard/principle-<?php print $i ?>?quicktabs_dashboard_principle_<?php print $i ?>_qt=0#quicktabs-dashboard_principle_<?php print $i ?>_qt">Learn</a></li>
-      <li class="icon_assess"><a href="/dashboard/principle-<?php print $i ?>?quicktabs_dashboard_principle_<?php print $i ?>_qt=1#quicktabs-dashboard_principle_<?php print $i ?>_qt">Assess</a></li>
-      <li class="icon_assist"><a href="/dashboard/principle-<?php print $i ?>?quicktabs_dashboard_principle_<?php print $i ?>_qt=2#quicktabs-dashboard_principle_<?php print $i ?>_qt">Assist</a></li>
+      <li class="icon_learn"><a href="/dashboard/principle-<?php print $i ?>?quicktabs_dashboard_principle_<?php print $i ?>_qt=0<?php /*#quicktabs-dashboard_principle_<?php print $i ?>_qt */ ?>">Learn</a></li>
+      <li class="icon_assess"><a href="/dashboard/principle-<?php print $i ?>?quicktabs_dashboard_principle_<?php print $i ?>_qt=1<?php /*#quicktabs-dashboard_principle_<?php print $i ?>_qt */ ?>">Assess</a></li>
+      <li class="icon_assist"><a href="/dashboard/principle-<?php print $i ?>?quicktabs_dashboard_principle_<?php print $i ?>_qt=2<?php /*#quicktabs-dashboard_principle_<?php print $i ?>_qt */ ?>">Assist</a></li>
     </ul>
     <?php
 	print '<span class="'. (aalter_user_todos($princ_node_ids[$k]) ? '' :'no') .'check"></span>';
