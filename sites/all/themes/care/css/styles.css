@@ -881,7 +881,9 @@ body.page-how #content {
   text-decoration: underline;
 }
 #block-block-17 a.btn:link,
-#block-block-17 a.btn:visited  {
+#block-block-17 a.btn:visited,
+#block-block-36 a.btn:link,
+#block-block-36 a.btn:visited  {
   color:#fff;
   background: #05576c url(../images/btn_large.png) repeat-x;
   text-transform: uppercase;
@@ -892,7 +894,7 @@ body.page-how #content {
   font-weight: bold;
   margin: 10px 0 0;
 }
-#block-block-17 a.btn:hover  {
+#block-block-17 a.btn:hover, #block-block-36 a.btn:hover  {
   background: #05576c;
   text-decoration: none;
 }
@@ -2566,12 +2568,12 @@ dt  {
   background: url(../images/bg_blockquote.png) no-repeat;
   padding: 30px 60px 30px 30px;
   color: #1B7188;
-  font-family: georgia,"charter",serif;
-  font-size: 20px;
-  line-height: 28px;
+  font: 20px/28px Georgia, "Charter", serif;
   height: 135px;
   width: 420px;
 }
+
+#block-block-36 blockquote a.btn { font: 13px/34px Helvetica, Arial, sans-serif; margin-top: 5px !important }
 /* tools */
 
 #block-block-37 {
