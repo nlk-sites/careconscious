@@ -1117,6 +1117,13 @@ body.dashboard .btn_todo a  {
   font-size: 13px;
   margin-bottom: 11px;
 }
+body.dashboard .btn_todo.next a { background: url(../images/btn_steps.png) no-repeat 0 -36px }
+body.dashboard.dashboard-principle2 .btn_todo.next a { background-position: 0 -72px }
+body.dashboard.dashboard-principle3 .btn_todo.next a { background-position: 0 -108px }
+body.dashboard.dashboard-principle4 .btn_todo.next a { background-position: 0 -144px }
+body.dashboard.dashboard-principle5 .btn_todo.next a { background-position: 0 -180px }
+body.dashboard.dashboard-principle6 .btn_todo.next a { background-position: 0 -216px }
+body.dashboard.dashboard-principle7 .btn_todo.next a { background-position: 0 -252px }
 body.dashboard #header .btn_download a  {
   position: absolute;
   top: 72px;
