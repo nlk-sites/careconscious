@@ -1,13 +1,13 @@
 <?php if( !count($principles) ){ ?>
   <div class="block-views">
-    <h2>My Caregiving Tasks</h2>
+    <h2>My Family Caregiver's Plan</h2>
     <div class="content">
    <div class="tasks-lists" style="border-right:none"><p><?php echo t('No additional to-dos to display') ?></p></div>
     </div>
   </div>
 <?php } else {?>
   <div class="block-views">
-    <h2>My Caregiving Tasks</h2>
+    <h2>My Family Caregiver's Plan</h2>
     <div class="more-link"><?php echo l('View all', 'dashboard/user-tasks');?></div>
     <div class="content">
       <?php foreach ($principles as $group => $principle) {?>
