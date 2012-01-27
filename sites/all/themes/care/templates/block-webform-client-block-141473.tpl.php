@@ -6,8 +6,9 @@
 <?php endif;?>
 
   <div class="content">
-    <?php print $block->content ?>
-    <p style="text-align: center"><br />-or- <?php print l('Register Today for Free', 'user/register'); ?></p>
+    <?php print $block->content;
+	//<p style="text-align: center"><br />-or- <?php print l('Register Today for Free', 'user/register'); ?></p>
+	 ?>
     <div class="clear"></div>
   </div>
 </div>
