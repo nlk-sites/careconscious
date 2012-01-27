@@ -8,7 +8,7 @@
 function aalter_menu() {
   return array(
     'dashboard/user-tasks' => array(
-      'title' => 'My Caregiving Tasks',
+      'title' => 'My Family Caregiver\'s Plan',
       'page callback' => 'aalter_user_todos',
       //'page arguments' => array(1),
       'access arguments' => array('access content'),
