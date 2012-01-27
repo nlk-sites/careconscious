@@ -94,7 +94,7 @@ function phptemplate_preprocess_page(&$vars) {
   }
   
   if ( ( arg(0) == 'user' ) && ( $vars['title'] != 'User account' ) ) {
-	$vars['title'] = 'Your Profile: '. $vars['title'];  
+	$vars['title'] = 'Your Account: '. $vars['title'];  
   }
 }
 
