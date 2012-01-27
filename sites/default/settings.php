@@ -93,6 +93,8 @@
 //$db_url = 'mysqli://carecons_ccdru:lErNuJAw8%23eu@localhost/carecons_ccdrudb';
 switch($_SERVER['SERVER_NAME']) {
 	case 'dev.careconscious.com':
+	case 'www.careconscious.com':
+	case 'careconscious.com':
 		$db_url = 'mysqli://carecons_ccdru:lErNuJAw8%23eu@localhost/carecons_dev';
 		break;
 	case 'careconscious.ninthlink.net':
