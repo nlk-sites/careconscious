@@ -12,3 +12,11 @@
     <div class="clear"></div>
   </div>
 </div>
+<script>
+    $(document).ready(function(){
+        var webform = $('#webform-client-form-141473');
+        var captcha = webform.find('fieldset.captcha');
+        captcha.hide();
+        webform.find(':input').change(function(){captcha.show();});
+    });
+</script>
