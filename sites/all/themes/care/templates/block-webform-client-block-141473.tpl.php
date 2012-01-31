@@ -18,5 +18,17 @@
         var captcha = webform.find('fieldset.captcha');
         captcha.hide();
         webform.find(':input').change(function(){captcha.show();});
+        <?php foreach(array('name' => 'Name', 'email' => 'Email', 'zip-code' => 'Zip Code') as $webform_field => $webform_field_value){?>
+            $('#edit-submitted-<?php echo $webform_field;?>').focus(function(){
+                if($(this).val() == '<?php echo $webform_field_value;?>'){
+                    $(this).val('');
+                }
+            });
+            $('#edit-submitted-<?php echo $webform_field;?>').blur(function(){
+                if($(this).val() == ''){
+                    $(this).val('<?php echo $webform_field_value;?>');
+                }
+            });
+        <?php }?>
     });
 </script>
