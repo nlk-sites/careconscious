@@ -103,6 +103,9 @@ switch($_SERVER['SERVER_NAME']) {
 	case 'careconscious.localhost':
 		$db_url = 'mysqli://root@localhost/careconscious';
 		break;
+	case '23.21.210.204':
+		$db_url = 'mysqli://careconscious:tSjHm8W2uhvdcru3@ccdbinstance.ccuhg9iudatw.us-east-1.rds.amazonaws.com/careconscious';
+		break;
 }
 $db_prefix = '';
 
