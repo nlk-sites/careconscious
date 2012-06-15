@@ -4,12 +4,12 @@
   <?php }else{?>
     <?php $cur_node = node_load(arg(1));
     $principle_num = node_load($cur_node->field_principle_nid[0]['nid'])->field_principle_number[0]['value'];?>
-    <p><b>Your Family Caregiver's Plan for Principle <?php echo $principle_num;?></b></p>
-    <p>Based on your answers we've delivered your customized Family Caregiver's Plan for <?php echo $cur_node->title; ?>, which includes the important tasks to complete and recommended advice and resources to help you complete those tasks.</p>
+    <div class="assisthdr p<?php echo $principle_num;?>"><div class="cp">Your Family<br />Caregiver's Plan</div><div class="pn"><span class="p">Principle</span><span class="n"><?php echo $principle_num;?></span></div></div>
+    <p class="assistfp"><strong class="p<?php echo $principle_num;?>"><?php echo $cur_node->title; ?>:</strong> Based on your answers we've delivered your customized Family Caregiver's Plan , which includes the important tasks to complete and recommended advice and resources to help you complete those tasks.</p>
     <?php foreach ($todos as $todo) { ?>
       <div class="views-row">
         <div class="views-field-body">
-          <div class="field-content">
+          <div class="field-content assist">
             <?php print $todo->body ? $todo->body : $todo->title; ?>
           </div>
         </div>
