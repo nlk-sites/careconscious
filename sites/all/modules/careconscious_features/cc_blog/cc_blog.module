@@ -1,0 +1,3 @@
+<?php
+
+include_once('cc_blog.features.inc');
