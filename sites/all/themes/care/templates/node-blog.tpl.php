@@ -11,7 +11,7 @@
 	<div class="byline clear-block">
     <?php
 	$postdate = format_date(strtotime($node->field_date[0]['value']),'custom', 'F d, Y');
-	echo $postdate .' : ';
+	echo strtoupper($postdate) .' : ';
 	$firsttax = array_shift($node->taxonomy);
 	print l( $firsttax->name, 'taxonomy/term/'. $firsttax->tid );
 	?>

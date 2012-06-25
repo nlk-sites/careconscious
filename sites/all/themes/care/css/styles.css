@@ -1068,6 +1068,13 @@ div.block-edit-link,
 div.node-edit-link  {
   height: 20px;
 }
+/* more blog stuff */
+.byline {
+	color: #666;
+	font: bold 10px/15px Verdana, Geneva, sans-serif;
+	display: block;
+	margin: -17px 0 12px;
+}
 /* dashboard */
 body.dashboard #bg  {
   background: #f3f3f3 url(../images/bg_dashboard.png) repeat-x;
