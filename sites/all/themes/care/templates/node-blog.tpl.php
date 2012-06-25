@@ -17,7 +17,16 @@
 	?>
     </div>
   <div class="content clear-block">
-    <?php print $content ?>
+    <?php print $content;
+	
+	// sharethis
+	?>
+    <div class="sthere">
+<span class='st_twitter_hcount' displayText='Tweet'></span>
+<span class='st_facebook_hcount' displayText='Facebook'></span>
+<span class='st_googleplus_hcount' displayText='Google +'></span>
+<span class='st_sharethis_hcount' displayText='ShareThis'></span>
+    </div>
   </div>
 
   <div class="clear-block">

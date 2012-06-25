@@ -519,6 +519,7 @@ body.not-dashboard .sidebar .block a:visited {
   margin: 0;
   background:#EEF8FA;
 }
+#block-quicktabs-register_login.blogtop .quicktabs_tabs { height: 41px; overflow: hidden }
 #block-quicktabs-register_login .quicktabs_tabs li,
 #block-quicktabs-qt_your_account .quicktabs_tabs li {
   padding: 0;
@@ -1014,23 +1015,23 @@ body.page-how #content {
   top: 270px;
   right: 0;
 }
-#block-follow-site ul.links.inline {
+.block-follow ul.links.inline {
   position: absolute;
 }
-#block-follow-site a.follow-link:link,
-#block-follow-site a.follow-link:visited  {
+.block-follow a.follow-link:link,
+.block-follow a.follow-link:visited  {
   float: left;
   height: 20px;
   width: 20px;
   padding: 0;
   margin: 0 5px;
 }
-#block-follow-site a.follow-link-facebook:link,
-#block-follow-site a.follow-link-facebook:visited {
+.block-follow a.follow-link-facebook:link,
+.block-follow a.follow-link-facebook:visited {
   background: url(../images/icon_facebook.png) no-repeat;
 }
-#block-follow-site a.follow-link-twitter:link,
-#block-follow-site a.follow-link-twitter:visited {
+.block-follow a.follow-link-twitter:link,
+.block-follow a.follow-link-twitter:visited {
   background: url(../images/icon_twitter.png) no-repeat;
 }
 #footer .block-follow h2 { display: none }
@@ -1069,6 +1070,19 @@ div.node-edit-link  {
   height: 20px;
 }
 /* more blog stuff */
+body.ccblog #bg, body.ccblog #prefooter_outer, body.ccblog #footer_outer { float: left; width: 100% }
+body.ccblog #main { background: url(../images/twocolbg.gif) repeat-y 0 0; width: 960px; margin: -36px 0 41px; float: left; height: auto; border-bottom: 3px solid #fff }
+body.ccblog #main_content { background: url(../images/bg_main.png) no-repeat 0 0; margin-left: -3px }
+body.not-dashboard.ccblog .sidebar .block {
+	background: none;
+	padding: 5px 0 0;
+	margin: 15px;
+	border-top: 1px solid #ccc;
+}
+.ccblog .sidebar .block-follow a.follow-link { width: 29px; height: 30px; margin: 0 7px 0 0; background: url(../images/bsoc.png) no-repeat 0 0 }
+.ccblog .sidebar .block-follow a.follow-link.follow-link-facebook { background-position: 0 0 }
+.ccblog .sidebar .block-follow a.follow-link.follow-link-twitter { background-position: -29px 0 }
+.sthere { display: block; float: left; width: 100%; margin: 30px 0 }
 .byline {
 	color: #666;
 	font: bold 10px/15px Verdana, Geneva, sans-serif;
