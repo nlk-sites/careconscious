@@ -1,5 +1,4 @@
 <?php
-// $Id: multiblock.module,v 1.1.4.13 2009/01/27 16:27:00 andrewlevine Exp $
 
 /**
  * Implementation of hook_menu().
@@ -320,7 +319,7 @@ function theme_multiblock_general($add_block_form, $multiblocks, $edit = FALSE) 
     }
     $rows[] = array(
       check_plain($row->title),
-      $title,
+      check_plain($title),
       $row->module,
       array('data' => theme('image', $mb_enabled, $alt, $alt), 'align' => 'center'),
       $row->orig_delta, $ops_link,

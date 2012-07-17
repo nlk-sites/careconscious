@@ -20,12 +20,7 @@ function video_transcoder_admin_settings() {
  * Form API callback to validate the upload settings form.
  */
 function video_transcoder_admin_settings_validate($form, &$form_state) {
-  // check ffmpeg_wrapper module installed or not
-  if ($form_state['values']['vid_convertor'] == 'video_ffmpeg_wrapper' && !module_exists('ffmpeg_wrapper')) {
-    form_set_error('vid_convertor', t('You need to download and install the !ffmpeg_wrapper module to enable this option.', array('!ffmpeg_wrapper' => l(t('FFMPEG Wrapper'), 'http://drupal.org/project/ffmpeg_wrapper'))));
-  }
-
-  // add vallidations by trnacoder interface
+  // add validations by transcoder interface
   $transcoder = $form_state['values']['vid_convertor'];
   module_load_include('inc', 'video', '/includes/transcoder');
   $transcoder = new video_transcoder($transcoder);
@@ -126,7 +121,7 @@ function video_players_admin_settings($form_state) {
     $form['extensions']['video_extension_' . $ext . '_html5_player'] = array(
       '#type' => !empty($html5_players) ? 'radios' : 'markup',
       '#title' => t('HTML5 Player for') . ' ' . $ext,
-      '#value' => !empty($html5_players) ? '' : t('No HTML5 players detected.<br />You need to install !videojs.', array('!videojs' => l(t('VideoJS'), 'http://www.drupal.org/project/videojs'), '!flowplayer' => l(t('Flowplayer'), 'http://www.drupal.org/project/flowplayer'))),
+      '#value' => !empty($html5_players) ? '' : t('No HTML5 players detected.<br />You need to install !videojs.', array('!videojs' => l(t('Video.js'), 'http://www.drupal.org/project/videojs'), '!flowplayer' => l(t('Flowplayer'), 'http://www.drupal.org/project/flowplayer'))),
       '#options' => $html5_players,
       '#default_value' => variable_get('video_extension_' . $ext . '_html5_player', ''),
       '#prefix' => '<div class="admin_html5_player_wrapper" id="html5_player_' . $ext . '">',
@@ -247,7 +242,7 @@ function video_video_flv_players() {
 function video_video_html5_players() {
   $options = array();
   if (module_exists('videojs')) {
-    $options['videojs'] = t('Video JS');
+    $options['videojs'] = t('Video.js');
   }
   if (module_exists('video')) {
     $options['video'] = t('Video (Default)');

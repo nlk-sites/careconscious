@@ -38,8 +38,8 @@ DirectoryIndex index.php
   php_value mbstring.http_input             pass
   php_value mbstring.http_output            pass
   php_value mbstring.encoding_translation   0
-  php_value post_max_size            		64M
-  php_value upload_max_filesize				64M
+  php_value post_max_size            		640M
+  php_value upload_max_filesize				640M
 </IfModule>
 
 # PHP 4, Apache 2.
@@ -50,8 +50,8 @@ DirectoryIndex index.php
   php_value mbstring.http_input             pass
   php_value mbstring.http_output            pass
   php_value mbstring.encoding_translation   0
-  php_value post_max_size            		64M
-  php_value upload_max_filesize				64M
+  php_value post_max_size            		640M
+  php_value upload_max_filesize				640M
 </IfModule>
 
 # PHP 5, Apache 1 and 2.
@@ -62,8 +62,8 @@ DirectoryIndex index.php
   php_value mbstring.http_input             pass
   php_value mbstring.http_output            pass
   php_value mbstring.encoding_translation   0
-  php_value post_max_size            		64M
-  php_value upload_max_filesize				64M
+  php_value post_max_size            		640M
+  php_value upload_max_filesize				640M
 </IfModule>
 
 # Requires mod_expires to be enabled.
@@ -122,5 +122,9 @@ RewriteRule ^(.*)$ http://www.careconscious.com/$1 [L,R=301]
   RewriteCond %{REQUEST_URI} !=/favicon.ico
   RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
 </IfModule>
+
+AddType video/ogg  .ogv
+AddType video/mp4  .mp4
+AddType video/webm .webm
 
 # $Id$

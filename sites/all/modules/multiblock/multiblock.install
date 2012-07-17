@@ -1,5 +1,4 @@
 <?php
-// $Id: multiblock.install,v 1.1.4.3 2009/01/25 06:07:14 andrewlevine Exp $
 
 function multiblock_schema() {
   $schema = array();

@@ -85,7 +85,11 @@ function webform_rules_condition_webform_id($form_id, $selected_webform) {
  * Generates the condition form to select a webform.
  */
 function webform_rules_condition_webform_id_form($settings, &$form) {
-  $query = db_query("SELECT nid, title FROM {node} WHERE type = '%s'", 'webform');
+  // Get a list of all webform-enabled content types.
+  $webform_types = webform_variable_get('webform_node_types');
+  // Get all nodes that are a) webform-enabled and b) are configured to use a
+  // webform.
+  $query = db_query('SELECT n.nid, n.title FROM {node} n INNER JOIN {webform} w ON n.nid = w.nid WHERE type IN ('. db_placeholders($webform_types) .')', $webform_types);
   $options = array();
   while ($webform = db_fetch_array($query)) {
     $form_id = 'webform-client-form-'. $webform['nid'];

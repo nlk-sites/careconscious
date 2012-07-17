@@ -5,9 +5,9 @@ package = Webform
 dependencies[] = webform
 dependencies[] = rules
 
-; Information added by drupal.org packaging script on 2011-11-20
-version = "6.x-1.6"
+; Information added by drupal.org packaging script on 2012-02-13
+version = "6.x-1.7"
 core = "6.x"
 project = "webform_rules"
-datestamp = "1321802451"
+datestamp = "1329118840"
 
