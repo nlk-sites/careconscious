@@ -17,8 +17,9 @@
     </div>
   <div class="content clear-block">
     <?php print $content;
-	
-	// sharethis
+	print '<p>'. l('Read More', 'node/'. $node->nid, array('attributes' => array('class'=>'readmore'))) .'</p>';
+	// sharethis?
+	/*
 	?>
     <div class="sthere">
 <span class='st_twitter_hcount' displayText='Tweet'></span>
@@ -26,6 +27,7 @@
 <span class='st_googleplus_hcount' displayText='Google +'></span>
 <span class='st_sharethis_hcount' displayText='ShareThis'></span>
     </div>
+	<?php */ ?>
   </div>
 
   <div class="clear-block">

@@ -1089,6 +1089,8 @@ body.not-dashboard.ccblog .sidebar .block {
 	display: block;
 	margin: -17px 0 12px;
 }
+.view-recent-blogs .views-row .node .watcher_node { display: none }
+.view-recent-blogs .views-row .node a.readmore { display: block; width: 86px; height: 22px; text-indent: -999em; background: url(../images/btn_readmore.png) no-repeat 0 0 }
 /* dashboard */
 body.dashboard #bg  {
   background: #f3f3f3 url(../images/bg_dashboard.png) repeat-x;
