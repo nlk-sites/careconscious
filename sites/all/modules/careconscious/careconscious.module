@@ -16,3 +16,10 @@ function careconscious_form_user_register_alter(&$form, &$form_state){
   $form['name']['#title'] = 'Create a username';
   $form['submit']['#value'] = 'Create Account';
 }
+
+function careconscious_cart_item($op, &$item) {
+  // Restrict all quantities to 1.
+  if ($op == 'load' && $item->qty > 1) {
+    $item->qty = 1;
+  }
+}
