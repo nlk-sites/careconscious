@@ -23,3 +23,72 @@ function careconscious_cart_item($op, &$item) {
     $item->qty = 1;
   }
 }
+
+function careconscious_menu_alter($items){
+  $items['cart/checkout'] = array(
+    'title' => 'Checkout',
+    'description' => 'Purchase the items in your shopping cart.',
+    'page callback' => 'careconscious_uc_cart_checkout',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    //'file' => 'uc_cart.pages.inc',
+  );
+}
+
+/**
+ * Displays the cart checkout page built of checkout panes from enabled modules.
+ */
+function careconscious_uc_cart_checkout() {
+  global $user;
+
+  $items = uc_cart_get_contents();
+  if (count($items) == 0 || !variable_get('uc_checkout_enabled', TRUE)) {
+    drupal_goto('cart');
+  }
+
+  $context = array(
+    'revision' => 'altered',
+    'type' => 'amount',
+  );
+
+  if (($min = uc_price(variable_get('uc_minimum_subtotal', 0), $context)) > 0) {
+    $subtotal = 0;
+    if (is_array($items) && count($items) > 0) {
+      foreach ($items as $item) {
+        $data = module_invoke($item->module, 'cart_display', $item);
+        if (!empty($data)) {
+          $subtotal += $data['#total'];
+        }
+      }
+    }
+    if ($subtotal < $min) {
+      $context = array(
+        'revision' => 'formatted-original',
+        'type' => 'amount',
+      );
+      drupal_set_message(variable_get('uc_minimum_subtotal_text', t('The minimum order subtotal for checkout is !min.', array('!min' => uc_price($min, $context)))), 'error');
+      drupal_goto('cart');
+    }
+  }
+
+  // Send anonymous users to login page when anonymous checkout is disabled.
+  if (!$user->uid && !variable_get('uc_checkout_anonymous', TRUE)) {
+    drupal_set_message(t('You must register before you can proceed to checkout.'));
+    if (variable_get('user_register', 1) != 0) {
+      drupal_set_message(t('If you already have an account, you should <a href="!url">log in now</a>.', array('!url' => url('user', array('query' => drupal_get_destination())))));
+    }
+    drupal_goto('user/register', drupal_get_destination());
+  }
+
+  $list = _line_item_list();
+  foreach ($list as $line_item) {
+    if (isset($line_item['callback']) && function_exists($line_item['callback'])) {
+      $line_item['callback']('cart-preview', $items);
+    }
+  }
+
+  drupal_add_js(drupal_get_path('module', 'uc_cart') .'/uc_cart.js');
+  $output = drupal_get_form('uc_cart_checkout_form');
+
+  return $output;
+}
