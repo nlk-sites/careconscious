@@ -1931,7 +1931,7 @@ body.dashboard #content .quicktabs_main {
   padding: 20px;
 }
 /* GETSTARTED */
-#getstartedhere { display: none; width: 384px; height: 252px; padding: 20px 33px 0; position: absolute; top: -105px; left: -31px; background: url(../images/getstartedbg.png) no-repeat 0 0 }
+#getstartedhere { display: none; width: 384px; height: 252px; padding: 20px 33px 0; position: absolute; top: -105px; left: -31px; background: url(../images/getstartedbg.png) no-repeat 0 0; z-index: 99 }
 #getstartedhere h2 { color: #999; line-height: 19px }
 #getstartedhere h2 strong { color: #000 }
 #getstartedhere img { display: block; margin: 20px 0 20px 30px }
