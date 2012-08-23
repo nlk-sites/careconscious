@@ -23,3 +23,32 @@ function careconscious_cart_item($op, &$item) {
     $item->qty = 1;
   }
 }
+
+function careconscious_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks[0]['info'] = t('Remarketing Code');
+      return $blocks;
+    case 'view':
+      $block[0]['content'] = '<!-- Google Code for Remarketing, non-conversions Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 942504911;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "M8aFCNGW8gMQz_e1wQM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/942504911/?value=0&amp;label=M8aFCNGW8gMQz_e1wQM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+';
+       return $block[$delta];
+  }
+}
