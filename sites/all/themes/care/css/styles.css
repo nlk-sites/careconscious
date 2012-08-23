@@ -2069,7 +2069,8 @@ body.dashboard_single #watcher_binder table td.active  {
 }
 .profile h3,
 .profile .content-profile-display,
-.profile .user-member {
+.profile .user-member,
+.profile dl {
   margin: 0 0 0 360px;
   border: 0;
   padding: 0 0 10px;
