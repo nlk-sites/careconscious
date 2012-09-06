@@ -3155,5 +3155,5 @@ letter-spacing: .1em;
 }
 
 body.node-type-landing-page #care-front-player {
-  margin:-12px 0 15px -12px;
+  margin:-12px 0 15px -12px !important;
 }
