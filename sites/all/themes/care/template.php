@@ -201,3 +201,73 @@ function phptemplate_form_element($element, $value) {
 
   return $output;
 }
+
+/**
+ * Formats the cart contents table on the checkout page.
+ *
+ * @param $show_subtotal
+ *   TRUE or FALSE indicating if you want a subtotal row displayed in the table.
+ *
+ * @return
+ *   The HTML output for the cart review table.
+ *
+ * @ingroup themeable
+ */
+function care_cart_review_table($show_subtotal = TRUE) {
+  $subtotal = 0;
+
+  // Set up table header.
+  $header = array(
+    array('data' => t('Qty'), 'class' => 'qty'),
+    array('data' => t('Products'), 'class' => 'products'),
+    array('data' => t('Price'), 'class' => 'price'),
+  );
+
+  $context = array();
+
+  // Set up table rows.
+  $contents = uc_cart_get_contents();
+  foreach ($contents as $item) {
+    $price_info = array(
+      'price' => $item->price,
+      'qty' => $item->qty,
+    );
+
+    $context['revision'] = 'altered';
+    $context['type'] = 'cart_item';
+    $context['subject'] = array(
+      'cart' => $contents,
+      'cart_item' => $item,
+      'node' => node_load($item->nid),
+    );
+
+    $total = uc_price($price_info, $context);
+    $subtotal += $total;
+
+    $description = check_plain($item->title) . uc_product_get_description($item);
+
+    // Remove node from context to prevent the price from being altered.
+    $context['revision'] = 'themed-original';
+    $context['type'] = 'amount';
+    unset($context['subject']);
+    $rows[] = array(
+      array('data' => t('@qty', array('@qty' => $item->qty)), 'class' => 'qty'),
+      array('data' => $description, 'class' => 'products'),
+      array('data' => uc_price($total, $context), 'class' => 'price'),
+    );
+  }
+
+  // Add the subtotal as the final row.
+  if ($show_subtotal) {
+    $context = array(
+      'revision' => 'themed-original',
+      'type' => 'amount',
+    );
+    $rows[] = array(
+      'data' => array(array('data' => '<span id="subtotal-title">' . t('Subtotal:') . '</span> ' . uc_price($subtotal, $context), 'colspan' => 3, 'class' => 'subtotal')),
+      'class' => 'subtotal',
+    );
+  }
+
+  return theme('table', $header, $rows, array('class' => 'cart-review'));
+}
