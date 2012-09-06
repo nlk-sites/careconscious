@@ -2996,7 +2996,7 @@ small {
   #signpost-downward{ position:absolute; top:0; right:-.2em; width:312px;height:11em; background:url(../images/signpost-down.png) no-repeat 0px 34px; padding:45px 0 0;}
     #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
     #signpost-downward p span {color:#A9D5DF; font-size:80%;}
-  #signpost-rightward{ position:relative;left:-.8em; width:68.6em;height:6.1em; background:url(../images/signpost-right.png) no-repeat 0px 2px;}
+  #signpost-rightward{ position:relative;left:-.8em; width:48.6em;height:6.1em; background:url(../images/signpost-right.png) no-repeat 0px 2px; float:left;}
   #signpost-rightward p{position:absolute;top:-9px;left:0px;background:url(../images/signpost-right-wrap.gif) no-repeat;line-height:4em;}
 #article{ width:96.1em; margin:0 auto; padding: 1em 0; background:#FFF; border:1px solid #CCC; border-width:0 .1em; position:relative; top:-1em;}
 #bulk{ min-height:50em; padding:2em 2.1em .5em 0; border-right:1px solid #CCC;}
@@ -3016,15 +3016,20 @@ small {
   text-transform:none;
 }
 
+#block-block-58 .pbtn-wrapper {
+  float:right;
+  margin:15px 15px 0 0;
+}
+
 .purchase-btn {
   background:url(../images/purchase_btn.gif) no-repeat;
   display: block;
   position: relative;
   color: white;
-  padding: .8em 1.3em;
   text-decoration: none;
   width:271px;
   height:57px;
+  text-indent:-9999px;
 }
 
 ul.check,
