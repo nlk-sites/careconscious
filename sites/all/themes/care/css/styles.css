@@ -3016,22 +3016,15 @@ small {
   text-transform:none;
 }
 
-button {
+.purchase-btn {
+  background:url(../images/purchase_btn.gif) no-repeat;
   display: block;
   position: relative;
   color: white;
   padding: .8em 1.3em;
   text-decoration: none;
-  border: solid #14738A .1em;
-  -webkit-border-radius: .5em;
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-  -webkit-box-shadow: 2px 2px 2px #999;
-  -moz-box-shadow: 2px 2px 2px #999;
-  box-shadow: 2px 2px 2px #999;
-  text-shadow: -1px -1px 0px #666;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#38B2CE), to(#14738A));
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38B2CE', endColorstr='#14738A',GradientType=0 );
+  width:271px;
+  height:57px;
 }
 
 ul.check,
