@@ -271,3 +271,50 @@ function care_cart_review_table($show_subtotal = TRUE) {
 
   return theme('table', $header, $rows, array('class' => 'cart-review'));
 }
+
+/**
+ * Themes cart items on the checkout review order page.
+ *
+ * @param $items
+ *   An associative array containing cart items, with keys:
+ *   - qty: Quantity in cart.
+ *   - title: Item title.
+ *   - price: Item price.
+ *   - desc: Item description.
+ *
+ * @return
+ *   A string of HTML for the page contents.
+ *
+ * @ingroup themeable
+ */
+function care_uc_checkout_pane_cart_review($items) {
+  $context = array(
+    'revision' => 'themed',
+    'type' => 'cart_item',
+    'subject' => array(),
+  );
+
+  $rows = array();
+
+  foreach ($items as $item) {
+    $price_info = array(
+      'price' => $item->price,
+      'qty' => $item->qty,
+    );
+
+    $context['subject'] = array(
+      'cart' => $items,
+      'cart_item' => $item,
+      'node' => node_load($item->nid),
+    );
+
+    $rows[] = array(
+      array('data' => $item->qty, 'class' => 'qty'),
+      array('data' => check_plain($item->title) . uc_product_get_description($item), 'class' => 'products'),
+      array('data' => uc_price($price_info, $context), 'class' => 'price'),
+    );
+  }
+
+  return theme('table', NULL, $rows, array('class' => 'cart-review'));
+}
+
