@@ -2891,7 +2891,8 @@ body.node-type-landing-page {
 body.node-type-landing-page #bg,
 body.node-type-landing-page #bg_top,
 body.node-type-landing-page #footer_outer,
-body.node-type-landing-page #main {
+body.node-type-landing-page #main,
+body.node-type-landing-page #main_outer {
   background:none;
 }
 
@@ -2928,12 +2929,12 @@ body.node-type-landing-page #main_content {
 }
 
 body.node-type-landing-page #content {
-  margin:498px 0 0;
+  margin:430px 0 0;
   padding:20px 20px 0 20px;
 }
 
 body.node-type-landing-page #sidebar_second {
-  margin: 715px 0 0;
+  margin: 665px 0 0;
   width:290px;
 }
 
@@ -2942,6 +2943,10 @@ body.node-type-landing-page #footer {
   padding:0;
   color:#909090;
   width:968px;
+}
+
+body.node-type-landing-page #footer p {
+  margin:0;
 }
 
 big {
@@ -2964,7 +2969,7 @@ small {
 }
 
 #fold{background-position:-27em 5em;}
-.highlights{margin:2em 2em 0 7em; font-size:.85em;}
+#block-block-58 .highlights{margin:2em 2em 0 7em; font-size:.85em;}
 .hn-w-points{ position:absolute; left:47em; top:13em; font-weight:bold;}
 .hn-w-points h2{ font-family:Arial, "Helvetica Neue", sans-serif; font-style:normal; color:#333; font-size:1.2em; font-weight:inherit; margin:0;}
 .hn-w-points ul{ margin:0;padding:0;}
@@ -2975,7 +2980,7 @@ small {
 .hn-w-points .i4{ background-position: 0 -96px; line-height:2.3; }
 #fold h1{ font-size:2.8em; margin:0 1em; text-align:center; width:13em; margin-bottom:6.8em;}
 #fold form{position:relative;margin:0;padding:11px 0 0;background:#FFF url(../images/hr-spectrum-large.gif) no-repeat 4px -1px;}
-#fold button{position:absolute;top:1.8em;right:2em; width:18em;height:3.5em;}
+#fold button{position:absolute;top:2em;right:2em; width:18em;height:3.5em;}
 #fold button:before{width:17.7em;height:3.2em;}
 #signpost-rightward p{color:#0C505F;margin:0;text-indent:3em;font-size:1.7em;line-height:4.5;letter-spacing:.08em;}
 
@@ -2986,15 +2991,15 @@ small {
   filter: progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=90),
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=180),
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=270);
-  position:relative; z-index:5; width: 970px; border:.2em solid #FFF; border-top:none; margin:0 auto; min-height: 50em; background: #ffffff url(../images/bg-fold-fill.jpg) no-repeat -270px 118px;}
+  position:relative; z-index:5; width: 970px; border:.2em solid #FFF; border-top:none; margin:0 auto; background: #ffffff url(../images/bg-fold-fill.jpg) no-repeat -270px 118px;}
   #logo-and-tag{background:#243436 url(../images/treplace-logo.png) no-repeat 0px 32px; margin:0; height:8.6em; text-indent:-999em;}
   #signpost-downward{ position:absolute; top:0; right:-.2em; width:312px;height:11em; background:url(../images/signpost-down.png) no-repeat 0px 34px; padding:45px 0 0;}
     #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
     #signpost-downward p span {color:#A9D5DF; font-size:80%;}
-  #signpost-rightward{ position:relative;left:-.8em; width:68.6em;height:8.1em; background:url(../images/signpost-right.png) no-repeat;}
+  #signpost-rightward{ position:relative;left:-.8em; width:68.6em;height:6.1em; background:url(../images/signpost-right.png) no-repeat 0px 2px;}
   #signpost-rightward p{position:absolute;top:-9px;left:0px;background:url(../images/signpost-right-wrap.gif) no-repeat;line-height:4em;}
 #article{ width:96.1em; margin:0 auto; padding: 1em 0; background:#FFF; border:1px solid #CCC; border-width:0 .1em; position:relative; top:-1em;}
-#bulk{ min-height:50em; padding:.5em 2.1em .5em 0; border-right:1px solid #CCC;}
+#bulk{ min-height:50em; padding:2em 2.1em .5em 0; border-right:1px solid #CCC;}
   #principles{ list-style: none outside; margin:0;padding:0;}
   #principles li{ background: url(../images/hr-spectrum.gif) no-repeat; padding:1em 0 2em;}
   #principles li li{ background: none; padding:0;}
@@ -3012,21 +3017,21 @@ small {
 }
 
 button {
-display: block;
-position: relative;
-color: white;
-padding: .8em 1.3em;
-text-decoration: none;
-border: solid #14738A .1em;
--webkit-border-radius: .5em;
--moz-border-radius: .5em;
-border-radius: .5em;
--webkit-box-shadow: 2px 2px 2px #999;
--moz-box-shadow: 2px 2px 2px #999;
-box-shadow: 2px 2px 2px #999;
-text-shadow: -1px -1px 0px #666;
-background: -webkit-gradient(linear, 0 0, 0 100%, from(#38B2CE), to(#14738A));
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38B2CE', endColorstr='#14738A',GradientType=0 );
+  display: block;
+  position: relative;
+  color: white;
+  padding: .8em 1.3em;
+  text-decoration: none;
+  border: solid #14738A .1em;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  -webkit-box-shadow: 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px #999;
+  box-shadow: 2px 2px 2px #999;
+  text-shadow: -1px -1px 0px #666;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#38B2CE), to(#14738A));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38B2CE', endColorstr='#14738A',GradientType=0 );
 }
 
 ul.check,
@@ -3065,6 +3070,14 @@ background: #38B2CE;
 button label {
 font-size: 1.4em;
 letter-spacing: .1em;
+}
+
+#block-block-59 {
+  padding:15px 0 0 10px;
+}
+
+#block-block-58 p {
+  margin:0;
 }
 
 #block-block-57 {
