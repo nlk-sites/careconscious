@@ -3191,7 +3191,7 @@ body.node-type-landing-page #care-front-player {
   right: .4em;
   width: 307px;
   padding: 11px 0 2px .2em;
-  background: white url(../images/fieldset-cap.gif) no-repeat 0px 11px;
+  background-color: white;
   height: 519px;
   border: 1px solid #E1E1DC;
   border-width: 0 1px 1px;
@@ -3231,7 +3231,7 @@ body.node-type-landing-page #care-front-player {
   border: none;
   webkit-box-shadow: none;
   box-shadow: none;
-  margin: 2em 1.5em 0;
+  margin: 2em 2em 0;
   font-size: 1.1em;
   text-transform: uppercase;
   padding: 0 0 0 12px;
@@ -3243,5 +3243,5 @@ body.node-type-landing-page #care-front-player {
 }
 
 #webform-client-form-141780 .webform-component {
-  margin:0 0 6px 0;
+  margin:0 0 6px 5px;
 }
