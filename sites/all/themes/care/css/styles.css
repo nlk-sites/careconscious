@@ -3229,4 +3229,7 @@ body.node-type-landing-page #care-front-player {
   height: 57px;
   text-indent: -9999px;
   border:none;
+  webkit-box-shadow:none;
+  box-shadow:none;
+  
 }
