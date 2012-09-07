@@ -3192,7 +3192,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 #signpost-downward{z-index:5;}
 #block-block-60 #signpost-downward p{margin-top:1em;}
 #block-block-60 #signpost-rightward{position:absolute;bottom:0;z-index:10;}
-#block-block-60 #signpost-rightward p{color:#0C505F;margin:0;text-indent:1.5em;font-size:1.8em;line-height:5.8;letter-spacing:0;}
+#block-block-60 #signpost-rightward p{color:#0C505F;margin:0;text-indent:1.5em;font-size:1.3em;letter-spacing:0;line-height:5.8em;}
 #block-block-60 #signpost-rightward .nonsem{display:block;position:absolute;top:-11px;left:11px;width:654px;height:12px;background:#FFF url(../images/hr-spectrum-medium.gif) 0 2px no-repeat;}
 #block-block-60 form input, form label, form p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif;}
 #block-block-60 form input, form select{ border:1px inset #CCC; background:#FFF; color:#333;width:100%; padding:3px 0; margin:0; }
