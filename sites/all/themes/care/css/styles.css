@@ -3201,7 +3201,7 @@ body.node-type-landing-page #care-front-player {
   font-weight:normal;
 }
 
-#webform-client-form-141780 input, form label, #webform-client-form-141780 p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif; text-align:left;}
+#webform-client-form-141780 input, form label, #webform-client-form-141780 p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif; text-align:left; font-weight:normal;}
 #webform-client-form-141780 input, form select{ border:1px inset #CCC; background:#FFF; color:#333;width:100%; padding:3px 0; margin:0; }
   form input{
     -webkit-box-shadow: inset 1px 1px 0 #CCC;
@@ -3211,3 +3211,21 @@ body.node-type-landing-page #care-front-player {
   }
 #webform-client-form-141780 select{border-style:solid;padding-right:3px;}
 #webform-client-form-141780 #edit-submitted-first-name-wrapper, #webform-client-form-141780 #edit-submitted-last-name-wrapper {float:left;display:inline;margin: 0 1.2em .9em;}
+
+#webform-client-form-141780 #edit-submit {
+  display: block;
+  position: relative;
+  color: white;
+  padding: .8em 1.3em;
+  text-decoration: none;
+  border: solid #14738A .1em;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  -webkit-box-shadow: 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px #999;
+  box-shadow: 2px 2px 2px #999;
+  text-shadow: -1px -1px 0px #666;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#38B2CE), to(#14738A));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38B2CE', endColorstr='#14738A',GradientType=0 );
+}
