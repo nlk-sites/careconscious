@@ -3024,14 +3024,18 @@ small {
 }
 
 .purchase-btn {
-  background:url(../images/purchase_btn.gif) no-repeat;
+  background:url(../images/default_btn.gif) no-repeat;
   display: block;
   position: relative;
   color: white;
   text-decoration: none;
   width:271px;
   height:57px;
-  text-indent:-9999px;
+  color:white;
+  margin: 2em 2em 0;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  padding: 0 35px;
 }
 
 ul.check,
