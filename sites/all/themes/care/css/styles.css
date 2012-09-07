@@ -3024,19 +3024,18 @@ small {
 }
 
 #block-block-56 .purchase-btn {
-  background:url(../images/default_btn.jpg) no-repeat;
+  background: url(../images/default_btn.jpg) no-repeat;
   display: block;
   position: relative;
   color: white;
   text-decoration: none;
-  width:271px;
-  height:57px;
-  color:white;
+  width: 271px;
+  height: 57px;
+  color: white;
   margin: 2em 2em 0;
-  font-size: 1.1em;
+  font-size: .85em;
   text-transform: uppercase;
-  padding: 0 35px;
-  
+  padding: 18px 18px 0;
 }
 
 ul.check,
