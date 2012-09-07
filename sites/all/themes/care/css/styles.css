@@ -3215,4 +3215,5 @@ body.node-type-landing-page #care-front-player {
   border: 1px solid #E1E1DC;
   border-width: 0 1px 1px;
   text-align: center;
+  z-index:50;
 }
