@@ -2993,7 +2993,7 @@ small {
   filter: progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=90),
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=180),
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=270);
-  position:relative; z-index:5; width: 970px; border:.2em solid #FFF; border-top:none; margin:0 auto; background: #ffffff url(../images/bg-fold-fill.jpg) no-repeat -270px 118px;}
+  position:relative; width: 970px; border:.2em solid #FFF; border-top:none; margin:0 auto; background: #ffffff url(../images/bg-fold-fill.jpg) no-repeat -270px 118px;}
   #logo-and-tag{background:#243436 url(../images/treplace-logo.png) no-repeat 0px 32px; margin:0; height:8.6em; text-indent:-999em;}
   #signpost-downward{ position:absolute; top:0; right:-.2em; width:312px;height:11em; background:url(../images/signpost-down.png) no-repeat 0px 34px; padding:45px 0 0;}
     #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
@@ -3179,9 +3179,9 @@ body.node-type-landing-page #care-front-player {
 #webform-client-form-141780 #edit-submitted-first-name, #webform-client-form-141780 #edit-submitted-last-name {width:10.5em;}
 #block-block-60 #fold button{position:relative; margin:1.6em 2.2em 0; width:18em;height:3.5em;}
 #block-block-60 #fold button:before{width:17.7em;height:3.2em;}
-#block-block-60 #signpost-downward{z-index:5;}
+#block-block-60 #signpost-downward{z-index:60;}
 #block-block-60 #signpost-downward p{margin-top:1em;}
-#block-block-60 #signpost-rightward{position:absolute;bottom:0;z-index:10; background-color:white;}
+#block-block-60 #signpost-rightward{position:absolute;bottom:0;z-index:60; background-color:white;}
 #block-block-60 #signpost-rightward p{color:#0C505F;margin:0;text-indent:1.5em;font-size:1.3em;letter-spacing:0;line-height:5.8em;}
 #block-block-60 #signpost-rightward .nonsem{display:block;position:absolute;top:-9px;left:11px;width:662px;height:12px;background:#FFF url(../images/hr-spectrum-medium.gif) 0 2px no-repeat;}
 
