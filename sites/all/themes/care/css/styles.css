@@ -3228,10 +3228,13 @@ body.node-type-landing-page #care-front-player {
   text-decoration: none;
   width: 271px;
   height: 57px;
-  border:none;
-  webkit-box-shadow:none;
-  box-shadow:none;
+  border: none;
+  webkit-box-shadow: none;
+  box-shadow: none;
   margin: 1.6em 1.3em 0;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  padding: 0 0 0 12px;
 }
 
 #webform-client-form-141780 .form-item {
