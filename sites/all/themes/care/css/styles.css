@@ -3185,7 +3185,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 #signpost-rightward p{color:#0C505F;margin:0;text-indent:1.5em;font-size:1.3em;letter-spacing:0;line-height:5.8em;}
 #block-block-60 #signpost-rightward .nonsem{display:block;position:absolute;top:-9px;left:11px;width:654px;height:12px;background:#FFF url(../images/hr-spectrum-medium.gif) 0 2px no-repeat;}
 
-#webform-client-form-141780 {
+#block-webform-client-block-141780 {
   position: absolute;
   top: 7.8em;
   right: .2em;
@@ -3213,19 +3213,12 @@ body.node-type-landing-page #care-front-player {
 #webform-client-form-141780 #edit-submitted-first-name-wrapper, #webform-client-form-141780 #edit-submitted-last-name-wrapper {float:left;display:inline;margin: 0 1.2em .9em;}
 
 #webform-client-form-141780 #edit-submit {
+  background: url(../images/purchase_btn.gif) no-repeat;
   display: block;
   position: relative;
   color: white;
-  padding: .8em 1.3em;
   text-decoration: none;
-  border: solid #14738A .1em;
-  -webkit-border-radius: .5em;
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-  -webkit-box-shadow: 2px 2px 2px #999;
-  -moz-box-shadow: 2px 2px 2px #999;
-  box-shadow: 2px 2px 2px #999;
-  text-shadow: -1px -1px 0px #666;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#38B2CE), to(#14738A));
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38B2CE', endColorstr='#14738A',GradientType=0 );
+  width: 271px;
+  height: 57px;
+  text-indent: -9999px;
 }
