@@ -3187,8 +3187,8 @@ body.node-type-landing-page #care-front-player {
 
 #block-webform-client-block-141780 {
   position: absolute;
-  top: 7.8em;
-  right: .2em;
+  top: 11.1em;
+  right: .3em;
   width: 307px;
   padding: 11px 0 2px .2em;
   background: white url(../images/fieldset-cap.gif) no-repeat 0px 11px;
@@ -3199,6 +3199,13 @@ body.node-type-landing-page #care-front-player {
   z-index:50;
   font-size:.7em;
   font-weight:normal;
+}
+
+#block-webform-client-block-141780 h2 {
+  font-weight: normal;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  text-transform: none;
 }
 
 #webform-client-form-141780 input, form label, #webform-client-form-141780 p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif; text-align:left; font-weight:normal;}
@@ -3221,4 +3228,5 @@ body.node-type-landing-page #care-front-player {
   width: 271px;
   height: 57px;
   text-indent: -9999px;
+  border:none;
 }
