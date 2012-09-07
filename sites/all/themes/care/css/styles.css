@@ -3221,18 +3221,17 @@ body.node-type-landing-page #care-front-player {
 #webform-client-form-141780 #edit-submitted-first-name-wrapper, #webform-client-form-141780 #edit-submitted-last-name-wrapper {float:left;display:inline;margin: 0 1.2em .9em; width:127px;}
 
 #webform-client-form-141780 #edit-submit {
-  background: url(../images/purchase_btn.gif) no-repeat;
+  background: url(../images/default_btn.gif) no-repeat;
   display: block;
   position: relative;
   color: white;
   text-decoration: none;
   width: 271px;
   height: 57px;
-  text-indent: -9999px;
   border:none;
   webkit-box-shadow:none;
   box-shadow:none;
-  margin: 1.6em 1.7em 0;
+  margin: 1.6em 1.3em 0;
 }
 
 #webform-client-form-141780 .form-item {
