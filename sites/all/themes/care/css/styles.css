@@ -3203,3 +3203,16 @@ body.node-type-landing-page #care-front-player {
     box-shadow: inset 1px 1px 0 #CCC;
   }
 #block-block-60 form select{border-style:solid;padding-right:3px;}
+
+#block-block-60 #fold #webform-client-form-141780 {
+  position: absolute;
+  top: 7.6em;
+  right: 0;
+  width: 307px;
+  padding: 11px 0 2px .2em;
+  background: white url(../images/fieldset-cap.gif) no-repeat 0px 11px;
+  height: 459px;
+  border: 1px solid #E1E1DC;
+  border-width: 0 1px 1px;
+  text-align: center;
+}
