@@ -3024,7 +3024,7 @@ small {
 }
 
 .purchase-btn {
-  background:url(../images/default_btn.gif) no-repeat;
+  background:url(../images/default_btn.jpg) no-repeat;
   display: block;
   position: relative;
   color: white;
@@ -3036,6 +3036,7 @@ small {
   font-size: 1.1em;
   text-transform: uppercase;
   padding: 0 35px;
+  
 }
 
 ul.check,
