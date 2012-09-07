@@ -3208,7 +3208,7 @@ body.node-type-landing-page #care-front-player {
   text-transform: none;
 }
 
-#webform-client-form-141780 input, form label, #webform-client-form-141780 p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif; text-align:left; font-weight:normal;}
+#webform-client-form-141780 input, form label, #webform-client-form-141780 p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif; text-align:left; font-weight:normal !important;}
 #webform-client-form-141780 input, form select{ border:1px inset #CCC; background:#FFF; color:#333;width:100%; padding:3px 0; margin:0; }
   form input{
     -webkit-box-shadow: inset 1px 1px 0 #CCC;
@@ -3231,5 +3231,5 @@ body.node-type-landing-page #care-front-player {
   border:none;
   webkit-box-shadow:none;
   box-shadow:none;
-  
+  margin: 1.6em 2.2em 0;
 }
