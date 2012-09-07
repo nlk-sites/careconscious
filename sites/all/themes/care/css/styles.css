@@ -3181,7 +3181,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 #fold button:before{width:17.7em;height:3.2em;}
 #block-block-60 #signpost-downward{z-index:5;}
 #block-block-60 #signpost-downward p{margin-top:1em;}
-#block-block-60 #signpost-rightward{position:absolute;bottom:0;z-index:10;}
+#block-block-60 #signpost-rightward{position:absolute;bottom:0;z-index:10; background-color:white;}
 #block-block-60 #signpost-rightward p{color:#0C505F;margin:0;text-indent:1.5em;font-size:1.3em;letter-spacing:0;line-height:5.8em;}
 #block-block-60 #signpost-rightward .nonsem{display:block;position:absolute;top:-9px;left:11px;width:654px;height:12px;background:#FFF url(../images/hr-spectrum-medium.gif) 0 2px no-repeat;}
 
@@ -3231,7 +3231,7 @@ body.node-type-landing-page #care-front-player {
   border: none;
   webkit-box-shadow: none;
   box-shadow: none;
-  margin: 1.6em 1.3em 0;
+  margin: 2em 1.5em 0;
   font-size: 1.1em;
   text-transform: uppercase;
   padding: 0 0 0 12px;
