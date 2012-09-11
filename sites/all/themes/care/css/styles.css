@@ -3270,3 +3270,26 @@ body.node-type-landing-page #care-front-player {
 #webform-client-form-141780 .webform-component {
   margin:0 0 6px 5px;
 }
+
+#node-141780 #webform-component-country {
+  clear:both;
+}
+
+#node-141780 #webform-component-first-name,
+#node-141780 #webform-component-last-name {
+  width:250px;
+  margin:0;
+}
+
+#node-141780 .form-submit {
+  padding:0;
+  font-size:.85em;
+}
+
+#node-141780 label {
+  font-size:1em;
+}
+
+h1.with-tabs {
+  line-height:30px;
+}
