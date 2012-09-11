@@ -2999,7 +2999,7 @@ small {
     #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
     #signpost-downward p span {color:#A9D5DF; font-size:80%;}
   #signpost-rightward{ position:relative;left:-.8em; width:48.6em;height:6.1em; background:url(../images/signpost-right.png) no-repeat 0px 2px; float:left;}
-  #signpost-rightward p{position:absolute;top:-9px;left:0px;background:url(../images/signpost-right-wrap.gif) no-repeat;line-height:4em;}
+  #signpost-rightward p{position:absolute;top:-9px;left:0px;background:url(../images/signpost-right-wrap.gif) no-repeat;
 #article{ width:96.1em; margin:0 auto; padding: 1em 0; background:#FFF; border:1px solid #CCC; border-width:0 .1em; position:relative; top:-1em;}
 #bulk{ min-height:50em; padding:2em 2.1em .5em 0; border-right:1px solid #CCC;}
   #principles{ list-style: none outside; margin:0;padding:0;}
