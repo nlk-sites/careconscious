@@ -3020,7 +3020,7 @@ small {
 
 #block-block-58 .pbtn-wrapper {
   float:right;
-  margin:15px 15px 0 0;
+  margin:15px 0 0 0;
 }
 
 #block-block-56 .purchase-btn {
@@ -3035,6 +3035,23 @@ small {
   font-size: .85em;
   text-transform: uppercase;
   padding: 18px 18px 0;
+}
+
+.pbtn-wrapper .purchase-btn,
+#block-block-61 .purchase-btn {
+  background: url(../images/purchase_btn.gif) no-repeat;
+  display: block;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  width: 270px;
+  height: 57px;
+  border: none;
+  webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0 .6em 0;
+  text-indent:-9999px;
+  text-transform: uppercase;
 }
 
 ul.check,
@@ -3098,7 +3115,8 @@ letter-spacing: .1em;
   font-style:normal;
 }
 
-#block-block-56 {
+#block-block-56,
+#block-block-61 {
   margin:15px 0 0;
   width:290px;
 }

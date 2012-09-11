@@ -28,4 +28,5 @@ jQuery(function($) {
 
  $(window).load(function(){
     $('#block-block-56').sticky({ topSpacing: 25 });
+    $('#block-block-61').sticky({ topSpacing: 25 });
   });
