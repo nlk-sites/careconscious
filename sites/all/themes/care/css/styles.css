@@ -3023,8 +3023,7 @@ small {
   margin:15px 0 0 0;
 }
 
-#block-block-56 .purchase-btn,
-#block-block-61 .purchase-btn {
+#block-block-56 .purchase-btn {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
   position: relative;
@@ -3038,6 +3037,7 @@ small {
   padding: 18px 18px 0;
 }
 
+#block-block-61 .purchase-btn,
 .pbtn-wrapper .purchase-btn {
   background: url(../images/purchase_btn.gif) no-repeat;
   display: block;
