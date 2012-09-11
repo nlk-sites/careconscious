@@ -27,6 +27,6 @@ jQuery(function($) {
 });
 
  $(window).load(function(){
-    $('#block-block-51').sticky({ topSpacing: 25 });
+    $('#block-block-61').sticky({ topSpacing: 25 });
     $('#block-block-62').sticky({ topSpacing: 25 });
   });
