@@ -3236,6 +3236,7 @@ body.node-type-landing-page #care-front-player {
   line-height: 1.2em;
   text-transform: none;
   margin:35px 0 0;
+  padding:0 10px;
 }
 
 #webform-client-form-141780 input, form label, #webform-client-form-141780 p{font-size:1.2em;font-family:Arial, "Helvetica Neue", sans-serif; text-align:left; font-weight:normal !important;}
@@ -3249,6 +3250,10 @@ body.node-type-landing-page #care-front-player {
 #webform-client-form-141780 select{border-style:solid;padding-right:3px;}
 #webform-client-form-141780 #edit-submitted-first-name-wrapper, #webform-client-form-141780 #edit-submitted-last-name-wrapper {float:left;display:inline;margin: 0 1.2em .9em; width:127px;}
 
+#webform-client-form-141780 #edit-actions {
+  position:relative;
+}
+
 #webform-client-form-141780 #edit-submit {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
@@ -3260,10 +3265,12 @@ body.node-type-landing-page #care-front-player {
   border: none;
   webkit-box-shadow: none;
   box-shadow: none;
-  margin: 2em 2em 0;
-  font-size: 1.1em;
+  font-size: 2.5em;
   text-transform: uppercase;
-  padding: 0 35px;
+  position:absolute;
+  top:20px;
+  left:20px;
+  text-align:center;
 }
 
 #webform-client-form-141780 .form-item {
