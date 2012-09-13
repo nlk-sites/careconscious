@@ -3247,7 +3247,7 @@ body.node-type-landing-page #care-front-player {
     -o-box-shadow: inset 1px 1px 0 #CCC;
     box-shadow: inset 1px 1px 0 #CCC;
   }
-#webform-client-form-141780 .form-checkboxes label:after {
+form#uc-cart-checkout-form .form-checkboxes label:after {
   content:" *";
 }
 #webform-client-form-141780 select{border-style:solid;padding-right:3px;}
