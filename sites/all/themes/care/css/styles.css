@@ -3305,3 +3305,8 @@ body.node-type-landing-page #care-front-player {
 h1.with-tabs {
   line-height:30px;
 }
+
+
+.node-type-landing-page #footer_outer {
+  min-height:230px;
+}
