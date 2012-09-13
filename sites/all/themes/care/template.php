@@ -322,3 +322,20 @@ function care_uc_checkout_pane_cart_review($items) {
   return theme('table', NULL, $rows, array('class' => 'cart-review'));
 }
 
+function care_status_messages($display = NULL){
+    $message = drupal_set_message();
+    $set_login_message = FALSE;
+    if(!empty($message) && isset($message['status'])){
+        foreach($message['status'] as $k => $m){
+            if($m == 'You must login before you can proceed to checkout.' || $m == 'If you do not have an account yet, you should <a href="/user/register?destination=cart%2Fcheckout">register now</a>.'){
+                unset($_SESSION['messages']['status'][intval($k)]);
+                $set_login_message = TRUE;
+            }
+        }
+        if($set_login_message){
+            drupal_set_message('Please fill out the information below to create your new account.', 'status', $repeat = FALSE);
+            drupal_set_message('If you already have an account, click "login" above and proceed to log in.', 'status', $repeat = FALSE);
+        }
+    }
+    return theme_status_messages($display);
+}
