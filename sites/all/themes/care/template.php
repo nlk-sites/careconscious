@@ -93,8 +93,12 @@ function phptemplate_preprocess_page(&$vars) {
     _color_page_alter($vars);
   }
   
-  if ( ( arg(0) == 'user' ) && ( $vars['title'] != 'User account' ) ) {
+  if ( ( arg(0) == 'user' ) && ( $vars['title'] != 'User account' )) {
+      if(arg(2) == 'edit' && arg(3) == 'profile_details'){
+          $vars['title'] = 'Your Caregiver\'s Profile';
+      }else{
 	$vars['title'] = 'Your Account: '. $vars['title'];  
+      }
   }
 }
 
