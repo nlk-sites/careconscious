@@ -3249,6 +3249,7 @@ body.node-type-landing-page #care-front-player {
   }
 form#uc-cart-checkout-form .form-checkboxes label:after {
   content:" *";
+  color:red;
 }
 
 form#uc-cart-checkout-form #edit-cancel {
