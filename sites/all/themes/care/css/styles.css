@@ -2930,7 +2930,8 @@ body.node-type-landing-page #main_content {
   margin:0;
 }
 
-body.node-type-landing-page .submitted {
+body.node-type-landing-page .submitted,
+body.node-type-landing-page .picture {
   display:none;
 }
 
