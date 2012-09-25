@@ -3272,7 +3272,6 @@ form#uc-cart-checkout-form #edit-cancel {
 #webform-client-form-141780 #edit-submit {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
-  position: relative;
   color: white;
   text-decoration: none;
   width: 271px;
@@ -3283,7 +3282,7 @@ form#uc-cart-checkout-form #edit-cancel {
   font-size: 2.5em;
   text-transform: uppercase;
   position:absolute;
-  top:20px;
+  bottom:20px;
   left:20px;
   text-align:center;
 }
