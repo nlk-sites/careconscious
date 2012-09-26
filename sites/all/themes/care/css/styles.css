@@ -38,7 +38,7 @@ body {
   font-family: helvetica, arial, sans-serif;
   text-align: center;
   color: #333;
-  line-height: 20px;
+/*  line-height: 20px;*/
   background: #1b292a;
 }
 #bg {
@@ -3210,7 +3210,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 #fold form{position:absolute;top:7.6em;right:0;width:307px; margin:0;padding:11px 0 2px .2em;background:#FFF url(../images/fieldset-cap.gif) no-repeat 0px 11px;}
 #block-block-60 #fold .pair{margin: 0 1.2em .9em; text-align:left;}
 #block-block-60 #fold .pair label{display:block;}
-#webform-client-form-141780 #edit-submitted-first-name, #webform-client-form-141780 #edit-submitted-last-name {width:10.5em;}
+#webform-client-form-141780 #edit-submitted-first-name, #webform-client-form-141780 #edit-submitted-last-name {width:127px;}
 #block-block-60 #fold button{position:relative; margin:1.6em 2.2em 0; width:18em;height:3.5em;}
 #block-block-60 #fold button:before{width:17.7em;height:3.2em;}
 #block-block-60 #signpost-downward{z-index:60;}
@@ -3280,7 +3280,7 @@ form#uc-cart-checkout-form #edit-cancel {
   box-shadow: none;
   font-size: 25px;
   text-transform: uppercase;
-  margin:35px 0 0 20px;
+  margin:30px 0 0 20px;
   text-align:center;
 }
 
