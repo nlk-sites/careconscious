@@ -3264,10 +3264,6 @@ form#uc-cart-checkout-form #edit-cancel {
 #webform-client-form-141780 select{border-style:solid;padding-right:3px;}
 #webform-client-form-141780 #edit-submitted-first-name-wrapper, #webform-client-form-141780 #edit-submitted-last-name-wrapper {float:left; display:inline; margin: 0 11px 9px; width:127px;}
 
-#webform-client-form-141780 #edit-actions {
-  position:relative;
-}
-
 #webform-client-form-141780 #edit-submit {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
