@@ -17,6 +17,18 @@ function careconscious_form_user_register_alter(&$form, &$form_state){
   $form['submit']['#value'] = 'Create Account';
 }
 
+function careconscious_uc_cart_alter(&$items){
+  //if there are multiple items in the cart, remove any that aren't the free trial
+  if(count($items) > 1){
+    foreach($items as $item_id => $item){
+      if($item->model != 'Trial'){
+        uc_cart_remove_item($item->nid, $item->cart_id, $item->data, 'remove');
+        unset($items[$item_id]);
+      }
+    }
+  }
+}
+
 function careconscious_cart_item($op, &$item) {
   // Restrict all quantities to 1.
   if ($op == 'load' && $item->qty > 1) {
