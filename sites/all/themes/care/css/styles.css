@@ -2980,7 +2980,7 @@ small {
 .hn-w-points{ position:absolute; left:47em; top:13em; font-weight:bold;}
 .hn-w-points h2{ font-family:Arial, "Helvetica Neue", sans-serif; font-style:normal; color:#333; font-size:1.2em; font-weight:inherit; margin:0;}
 .hn-w-points ul{ margin:0;padding:0;}
-.hn-w-points li{ list-style:none; height:2.3em; width:17.5em; overflow:visible; background:url(../images/spritebullets1.png) no-repeat; padding:0 0 0 3em; margin:2em 0;}
+.hn-w-points li{ list-style:none; height:2.3em; width:17.5em; overflow:visible; background:url(../images/spritebullets1.png) no-repeat; padding:0 0 0 3em; margin:1.7em 0;}
 .hn-w-points .i1{ background-position: 0 0;}
 .hn-w-points .i2{ background-position: 0 -32px;}
 .hn-w-points .i3{ background-position: 0 -64px;}
@@ -3000,7 +3000,7 @@ small {
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=270);
   position:relative; width: 970px; border:.2em solid #FFF; border-top:none; margin:0 auto; background: #ffffff url(../images/bg-fold-fill.jpg) no-repeat -348px 118px;}
   #logo-and-tag{background:#243436 url(../images/treplace-logo.png) no-repeat 0px 32px; margin:0; height:8.6em; text-indent:-999em; position:relative;}
-  #logo-and-tag a {position:absolute;top:37px; left:0px; width:660px; height:84px;}
+  #logo-and-tag a {position:absolute;top:37px; left:0px; width:660px; height:84px; text-indent:-9999px; display:block;}
   #signpost-downward{ position:absolute; top:0; right:-.2em; width:312px;height:11em; background:url(../images/signpost-down.png) no-repeat 0px 34px; padding:45px 0 0;}
     #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
     #signpost-downward p span {color:#A9D5DF; font-size:80%;}
@@ -3024,7 +3024,7 @@ small {
   text-transform:none;
 }
 
-#block-block-62 .pbtn-wrapper
+#block-block-62 .pbtn-wrapper,
 #block-block-58 .pbtn-wrapper {
   float:right;
   margin:15px 0 0 0;
