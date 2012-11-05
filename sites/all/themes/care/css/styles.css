@@ -2999,7 +2999,8 @@ small {
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=180),
           progid:DXImageTransform.Microsoft.Shadow(Color=#888888, Strength=8, Direction=270);
   position:relative; width: 970px; border:.2em solid #FFF; border-top:none; margin:0 auto; background: #ffffff url(../images/bg-fold-fill.jpg) no-repeat -348px 118px;}
-  #logo-and-tag{background:#243436 url(../images/treplace-logo.png) no-repeat 0px 32px; margin:0; height:8.6em; text-indent:-999em;}
+  #logo-and-tag{background:#243436 url(../images/treplace-logo.png) no-repeat 0px 32px; margin:0; height:8.6em; text-indent:-999em; position:relative;}
+  #logo-and-tag a {position:absolute;top:37px; left:0px; width:660px; height:84px;}
   #signpost-downward{ position:absolute; top:0; right:-.2em; width:312px;height:11em; background:url(../images/signpost-down.png) no-repeat 0px 34px; padding:45px 0 0;}
     #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
     #signpost-downward p span {color:#A9D5DF; font-size:80%;}
