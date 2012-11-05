@@ -3024,6 +3024,7 @@ small {
   text-transform:none;
 }
 
+#block-block-62 .pbtn-wrapper
 #block-block-58 .pbtn-wrapper {
   float:right;
   margin:15px 0 0 0;
@@ -3313,7 +3314,6 @@ form#uc-cart-checkout-form #edit-cancel {
 h1.with-tabs {
   line-height:30px;
 }
-
 
 .node-type-landing-page #footer_outer {
   min-height:230px;
