@@ -3208,7 +3208,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 .hn-w-points .i2{ background-position: 0 -32px;}
 #block-block-60 .hn-w-points .i3{ background-position: 0 -64px;}
 #block-block-60 .hn-w-points .i4{ background-position: 0 -96px; line-height:2.3; }
-#block-block-60 .hn-w-points .i5{ background-position: 0 -133px; }
+#block-block-60 .hn-w-points .i5, #block-block-63 .hn-w-points .i5{ background-position: 0 -133px; }
 #block-block-60 #fold h1{ font-size:3em; margin:0 .3em; width:13em; line-height:1.2; letter-spacing:-1px; text-align:left;}
 #block-block-60 #fold form{position:absolute;top:7.6em;right:0;width:307px; margin:0;padding:11px 0 2px .2em;background:#FFF url(../images/fieldset-cap.gif) no-repeat 0px 11px;}
 #block-block-60 #fold .pair{margin: 0 1.2em .9em; text-align:left;}
