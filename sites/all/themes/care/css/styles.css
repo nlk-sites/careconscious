@@ -3002,7 +3002,7 @@ small {
   #logo-and-tag{background:#243436 url(../images/treplace-logo.png) no-repeat 0px 32px; margin:0; height:8.6em; text-indent:-999em; position:relative;}
   #logo-and-tag a {position:absolute;top:37px; left:0px; width:660px; height:84px; text-indent:-9999px; display:block;}
   #signpost-downward{ position:absolute; top:0; right:-.2em; width:312px;height:11em; background:url(../images/signpost-down.png) no-repeat 0px 34px; padding:45px 0 0;}
-    #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.3em; text-align:center;}
+    #signpost-downward p{ margin:.3em .3em 0; color:#FFF; font-size:1.2em; text-align:center;}
     #signpost-downward p span {color:#A9D5DF; font-size:80%;}
   #signpost-rightward{ position:relative;left:-.8em; width:48.6em;height:6.1em; background:url(../images/signpost-right.png) no-repeat 0px 2px; float:left;}
   #signpost-rightward p{position:absolute;top:-9px;left:0px;background:url(../images/signpost-right-wrap.gif) no-repeat;}
@@ -3208,6 +3208,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 .hn-w-points .i2{ background-position: 0 -32px;}
 #block-block-60 .hn-w-points .i3{ background-position: 0 -64px;}
 #block-block-60 .hn-w-points .i4{ background-position: 0 -96px; line-height:2.3; }
+#block-block-60 .hn-w-points .i5{ background-position: 0 -133px; }
 #block-block-60 #fold h1{ font-size:3em; margin:0 .3em; width:13em; line-height:1.2; letter-spacing:-1px; text-align:left;}
 #block-block-60 #fold form{position:absolute;top:7.6em;right:0;width:307px; margin:0;padding:11px 0 2px .2em;background:#FFF url(../images/fieldset-cap.gif) no-repeat 0px 11px;}
 #block-block-60 #fold .pair{margin: 0 1.2em .9em; text-align:left;}
