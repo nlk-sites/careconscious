@@ -3048,6 +3048,22 @@ small {
   padding: 18px 18px 0 39px;
 }
 
+#block-block-63 .free-trial-btn {
+  background: url(../images/free_trial_btn.gif) no-repeat;
+  display: block;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  width: 270px;
+  height: 57px;
+  border: none;
+  webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0 .6em 0;
+  text-indent:-9999px;
+  text-transform: uppercase;
+}
+
 #block-block-62 .purchase-btn,
 .pbtn-wrapper .purchase-btn {
   background: url(../images/purchase_btn.gif) no-repeat;
