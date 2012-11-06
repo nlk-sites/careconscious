@@ -3048,7 +3048,8 @@ small {
   padding: 18px 18px 0 39px;
 }
 
-#block-block-63 .free-trial-btn {
+#block-block-63 .free-trial-btn,
+#block-block-64 .free-trial-btn {
   background: url(../images/free_trial_btn.gif) no-repeat;
   display: block;
   position: relative;
