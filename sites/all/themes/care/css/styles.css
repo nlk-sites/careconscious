@@ -3034,6 +3034,10 @@ small {
   width:290px;
 }
 
+#block-block-64 {
+  text-align:center;
+}
+
 #block-block-61 .purchase-btn {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
@@ -3049,7 +3053,8 @@ small {
 }
 
 #block-block-63 .free-trial-btn,
-#block-block-64 .free-trial-btn {
+#block-block-64 .free-trial-btn,
+#block-block-65 .free-trial-btn {
   background: url(../images/free_trial_btn.gif) no-repeat;
   display: block;
   position: relative;
@@ -3166,8 +3171,7 @@ letter-spacing: .1em;
   text-transform:uppercase;
 }
  
-#block-block-53,
-#block-block-65 {
+#block-block-53 {
   text-align:center;
 }
 
