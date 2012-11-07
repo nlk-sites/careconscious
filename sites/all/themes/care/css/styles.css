@@ -3170,6 +3170,10 @@ letter-spacing: .1em;
 #block-block-65 {
   text-align:center;
 }
+
+#block-block-65 strong {
+  font-size:1em;
+}
  
 #block-block-53 span.inline-left {
   float:none;
