@@ -3038,7 +3038,8 @@ small {
   text-align:center;
 }
 
-#block-block-61 .purchase-btn {
+#block-block-61 .purchase-btn,
+#block-block-63 .purchase-btn {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
   position: relative;
