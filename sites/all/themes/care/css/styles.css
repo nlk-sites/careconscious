@@ -3038,8 +3038,21 @@ small {
   text-align:center;
 }
 
-#block-block-61 .purchase-btn,
-#block-block-63 .purchase-btn {
+#block-block-61 .purchase-btn {
+  background: url(../images/default_btn.jpg) no-repeat;
+  display: block;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  width: 271px;
+  height: 57px;
+  color: white;
+  font-size: .85em;
+  text-transform: uppercase;
+  padding: 18px 18px 0 39px;
+}
+
+#block-block-63 .blank-btn {
   background: url(../images/default_btn.jpg) no-repeat;
   display: block;
   position: relative;
