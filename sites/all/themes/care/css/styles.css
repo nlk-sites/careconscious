@@ -3260,6 +3260,7 @@ body.node-type-landing-page #care-front-player {
 #block-block-60 #fold button:before{width:17.7em;height:3.2em;}
 #block-block-60 #signpost-downward{z-index:60;}
 #block-block-60 #signpost-downward p{margin-top:1em;}
+#block-block-63 #signpost-downward p strong {font-size:1.2em;}
 #block-block-60 #signpost-rightward{position:absolute;bottom:0;z-index:60; background-color:white;}
 #block-block-60 #signpost-rightward p{color:#0C505F;margin:0;text-indent:1.5em;font-size:1.3em;letter-spacing:0;line-height:5.8em;}
 #block-block-60 #signpost-rightward .nonsem{display:block;position:absolute;top:-9px;left:11px;width:662px;height:12px;background:#FFF url(../images/hr-spectrum-medium.gif) 0 2px no-repeat;}
